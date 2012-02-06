@@ -1,0 +1,49 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Gep13.WindowsMobile.VbfViewer.Client.Views.WelcomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <StackPanel>
+        <ItemsControl Style="{StaticResource PageHeader}"/>
+
+        <Grid Margin="20,0" Height="616">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="welcome" Style="{StaticResource PhoneTextTitle1Style}" Margin="0"/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="0,30,0,0">
+                <TextBox Template="{StaticResource TextboxClicker}" 
+                     Text="Sendu webtexting client allows you to access and send free messages via your service provider. You will need to obtain your login details for this service from &#xd;&#xa;your provider.&#xa;&#xa;If you already have those details tap the proceed button to get started." 
+                     AcceptsReturn="True" 
+                     TextWrapping="Wrap" 
+                     FontSize="21.333" 
+                     IsEnabled="False"
+                     Background="{StaticResource PhoneBackgroundBrush}" 
+                     SelectionBackground="{x:Null}" 
+                     BorderBrush="{x:Null}" 
+                     FontFamily="Segoe WP" 
+                     SelectionForeground="{x:Null}" 
+                     BorderThickness="0" 
+                     Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+                <Button x:Name="NavigateToAddAccountView" 
+                    Content="proceed" 
+                    HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,16 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Gep13.WindowsMobile.VbfViewer.Client"
+             x:Class="Gep13.WindowsMobile.VbfViewer.Client.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\Resources\StylesAndTemplates\PageHeader.xaml"/>
+                <ResourceDictionary Source="\Resources\StylesAndTemplates\TextStyles.xaml"/>
+                <ResourceDictionary Source="\Resources\StylesAndTemplates\TextboxClicker.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:AppBootstrapper x:Key="bootstrapper" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style x:Key="PageHeader" TargetType="ItemsControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ItemsControl">
+					<Grid HorizontalAlignment="Left" 
+						VerticalAlignment="Center"
+						Height="60"
+						Width="100" >
+						<TextBlock Text="SENDU" 
+								VerticalAlignment="Center" 
+								HorizontalAlignment="Center" 
+								FontFamily="Segoe WP Bold"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="FontSize" Value="24"/>
+	</Style>
+
+</ResourceDictionary> 

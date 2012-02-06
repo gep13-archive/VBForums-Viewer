@@ -1,0 +1,8 @@
+obj
+bin
+deploy
+*.csproj.user
+*.suo
+*.orig
+output
+packages
