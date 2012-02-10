@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="WelcomeViewModel.cs" company="GEP13">
+// <copyright file="ProfileView.xaml.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -15,43 +15,21 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
+namespace Gep13.WindowsMobile.VbfViewer.Client.Views
 {
-    using Caliburn.Micro;
     using Microsoft.Phone.Controls;
 
     /// <summary>
-    /// The ViewModel class for the Welcome page
+    /// After the WelcomeView, or the InitialView, this is what the user sees
     /// </summary>
-    public class WelcomeViewModel
+    public partial class ProfileView : PhoneApplicationPage
     {
         /// <summary>
-        /// The NavigationService is an object built into
-        /// Caliburn.Micro to enable ViewModel to ViewModel
-        /// navigation. We are going to get this via IOC
-        /// from the container we made in the bootstrapper. I
-        /// think this is added to the container from register
-        /// phone services. Either way we get it for free.
+        /// Initializes a new instance of the ProfileView class
         /// </summary>
-        private readonly INavigationService navigationService;
-
-        /// <summary>
-        /// Initializes a new instance of the WelcomeViewModel class
-        /// </summary>
-        /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        public WelcomeViewModel(INavigationService navigationService)
+        public ProfileView()
         {
-            this.navigationService = navigationService;
-        }
-
-        /// <summary>
-        /// Move onto the next screen, for registering a new account.
-        /// </summary>
-        public void NavigateToAddAccountView()
-        {
-            (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
-
-            this.navigationService.UriFor<AddAccountViewModel>().Navigate();
+            this.InitializeComponent();
         }
     }
 }

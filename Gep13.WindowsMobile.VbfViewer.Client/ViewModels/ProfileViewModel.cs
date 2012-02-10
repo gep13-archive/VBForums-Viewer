@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="WelcomeViewModel.cs" company="GEP13">
+// <copyright file="ProfileViewModel.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -18,12 +18,11 @@
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using Caliburn.Micro;
-    using Microsoft.Phone.Controls;
 
     /// <summary>
-    /// The ViewModel class for the Welcome page
+    /// The ViewModel class for the Profile page
     /// </summary>
-    public class WelcomeViewModel
+    public class ProfileViewModel
     {
         /// <summary>
         /// The NavigationService is an object built into
@@ -36,22 +35,12 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         private readonly INavigationService navigationService;
 
         /// <summary>
-        /// Initializes a new instance of the WelcomeViewModel class
+        /// Initializes a new instance of the ProfileViewModel class
         /// </summary>
         /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        public WelcomeViewModel(INavigationService navigationService)
+        public ProfileViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-        }
-
-        /// <summary>
-        /// Move onto the next screen, for registering a new account.
-        /// </summary>
-        public void NavigateToAddAccountView()
-        {
-            (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
-
-            this.navigationService.UriFor<AddAccountViewModel>().Navigate();
         }
     }
 }

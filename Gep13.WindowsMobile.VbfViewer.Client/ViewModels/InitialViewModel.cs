@@ -18,7 +18,7 @@
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using Caliburn.Micro;
-    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
+    using WinPhoneKit.Storage;
 
     /// <summary>
     /// The ViewModel class for the Initial page
@@ -55,7 +55,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             switch (this.ObtainFirstRunFlag())
             {
-                case true:
+                case false:
 
                     this.NavigateToWelcomeView();
                     break;
@@ -76,7 +76,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// <returns>A bool, indicating whether the app have been run before.</returns>
         private bool ObtainFirstRunFlag()
         {
-            return ApplicationStorage.RetriveFirstRunFlag();
+            return IsolatedStorage.Get<bool>("FirstRunFlag");
         }
 
         /// <summary>

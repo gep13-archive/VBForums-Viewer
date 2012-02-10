@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage x:Class="Gep13.WindowsMobile.VbfViewer.Client.Views.AddAccountView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            d:DesignHeight="696"
+                            d:DesignWidth="480"
+                            shell:SystemTray.IsVisible="True">
+
+    <StackPanel>
+
+        <ItemsControl Style="{StaticResource PageHeader}" />
+
+        <Grid Margin="20,0"
+              Height="616">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="add account"
+                       Style="{StaticResource PhoneTextTitle1Style}"
+                       Margin="0" />
+
+            <StackPanel Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Margin="0,30,0,0">
+
+                <TextBlock Text="account name"
+                           Style="{StaticResource SubHeaderBold}" />
+                <TextBlock x:Name="EditAccountClickerName"
+                           Style="{StaticResource ClickableText}">
+                  <i:Interaction.Triggers>
+    	               <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <cal:ActionMessage MethodName="NavigateToEditAccountNameView" />
+                     </i:EventTrigger>
+                  </i:Interaction.Triggers>
+                </TextBlock>
+
+                <TextBlock Text="provider"
+                           Style="{StaticResource SubHeaderBold}" />
+                <TextBlock x:Name="ChooseProviderClickerName"
+                           Style="{StaticResource ClickableText}">
+                  <i:Interaction.Triggers>
+    	               <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <cal:ActionMessage MethodName="NavigateToChooseProviderView" />
+                     </i:EventTrigger>
+                  </i:Interaction.Triggers>
+                </TextBlock>
+
+                <TextBlock Text="username"
+                           Style="{StaticResource SubHeaderBold}" />
+                <TextBox x:Name="Username"
+                         Margin="-10,-5,-10,8"
+                         InputScope="Number" />
+
+                <TextBlock Text="password"
+                           Style="{StaticResource SubHeaderBold}" />
+                <PasswordBox x:Name="Password"
+                             Margin="-10,-5,-10,8" />
+
+            </StackPanel>
+        </Grid>
+
+    </StackPanel>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="False">
+            <shell:ApplicationBar.Buttons>
+                <cal:AppBarButton IconUri="/Resources/Iconography/appbar.save.rest.png"
+                                  Text="Save"
+                                  Message="SaveAndNavigateToComposeView" />
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

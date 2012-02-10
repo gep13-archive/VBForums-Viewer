@@ -85,6 +85,9 @@
     <Reference Include="TombstoneHelper">
       <HintPath>..\packages\WP7TombstoneHelper.2.5\lib\TombstoneHelper.dll</HintPath>
     </Reference>
+    <Reference Include="WinPhoneKit.Storage">
+      <HintPath>..\SharedBinaries\WinPhoneKit\Current\WinPhoneKit.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="YourLastAboutDialog">
       <HintPath>..\packages\YLAD.1.3\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
     </Reference>
@@ -97,10 +100,18 @@
     <Compile Include="MainPageViewModel.cs" />
     <Compile Include="MetroGridHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\InitialViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Views\AddAccountView.xaml.cs">
+      <DependentUpon>AddAccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InitialView.xaml.cs">
       <DependentUpon>InitialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -151,7 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InitialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
