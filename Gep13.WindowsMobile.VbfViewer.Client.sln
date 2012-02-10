@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gep13.WindowsMobile.VbfView
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gep13.WindowsMobile.VbfViewer.Core", "Gep13.WindowsMobile.VbfViewer.Core\Gep13.WindowsMobile.VbfViewer.Core.csproj", "{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2D830FF9-0030-4AD0-8C4B-011F5F2AA336}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
