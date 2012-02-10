@@ -9,8 +9,8 @@
 					<Grid HorizontalAlignment="Left" 
 						VerticalAlignment="Center"
 						Height="60"
-						Width="100" >
-						<TextBlock Text="SENDU" 
+						Width="228" >
+						<TextBlock Text="VBForums Viewer" 
 								VerticalAlignment="Center" 
 								HorizontalAlignment="Center" 
 								FontFamily="Segoe WP Bold"/>

@@ -1,16 +1,20 @@
-﻿// (c) Copyright Microsoft Corporation.
-// This source is subject to the Microsoft Public License (Ms-PL).
-// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
-// All other rights reserved.
-
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MetroGridHelper.cs" company="Microsoft Corporation">
+//      (c) Copyright Microsoft Corporation.
+//      This source is subject to the Microsoft Public License (Ms-PL).
+//      Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+//      All other rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace System.Windows
 {
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+
     /// <summary>
     /// A utility class that overlays a designer-friendly grid on top of the 
     /// application frame, for use similar to the performance counters in
@@ -20,11 +24,30 @@ namespace System.Windows
     /// </summary>
     public static class MetroGridHelper
     {
-        private static bool _visible;
-        private static double _opacity = 0.15;
-        private static Color _color = Colors.Red;
-        private static List<Rectangle> _squares;
-        private static Grid _grid;
+        /// <summary>
+        /// Should the helper grid be visible or not?
+        /// </summary>
+        private static bool visible;
+
+        /// <summary>
+        /// The default opactiy value for the helper Grid is set to 0.15
+        /// </summary>
+        private static double opacity = 0.15;
+
+        /// <summary>
+        /// The default color for the helper Grid squares in Colors.Red
+        /// </summary>
+        private static Color color = Colors.Red;
+
+        /// <summary>
+        /// The collection of squares that are displayed on the screen
+        /// </summary>
+        private static List<Rectangle> squares;
+
+        /// <summary>
+        /// Reference to the Grid that is created
+        /// </summary>
+        private static Grid grid;
 
         /// <summary>
         /// Gets or sets a value indicating whether the designer grid is 
@@ -34,11 +57,12 @@ namespace System.Windows
         {
             get
             {
-                return _visible;
+                return visible;
             }
+
             set
             {
-                _visible = value;
+                visible = value;
                 UpdateGrid();
             }
         }
@@ -48,10 +72,14 @@ namespace System.Windows
         /// </summary>
         public static Color Color
         {
-            get { return _color; }
+            get 
+            { 
+                return color; 
+            }
+
             set
             {
-                _color = value;
+                color = value;
                 UpdateGrid();
             }
         }
@@ -61,10 +89,14 @@ namespace System.Windows
         /// </summary>
         public static double Opacity
         {
-            get { return _opacity; }
+            get 
+            { 
+                return opacity; 
+            }
+
             set
             {
-                _opacity = value;
+                opacity = value;
                 UpdateGrid();
             }
         }
@@ -75,17 +107,19 @@ namespace System.Windows
         /// </summary>
         private static void UpdateGrid()
         {
-            if (_squares != null)
+            if (squares != null)
             {
-                var brush = new SolidColorBrush(_color);
-                foreach (var square in _squares)
+                var brush = new SolidColorBrush(color);
+
+                foreach (var square in squares)
                 {
                     square.Fill = brush;
                 }
-                if (_grid != null)
+
+                if (grid != null)
                 {
-                    _grid.Visibility = _visible ? Visibility.Visible : Visibility.Collapsed;
-                    _grid.Opacity = _opacity;
+                    grid.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+                    grid.Opacity = opacity;
                 }
             }
             else
@@ -99,7 +133,7 @@ namespace System.Windows
         /// </summary>
         private static void BuildGrid()
         {
-            _squares = new List<Rectangle>();
+            squares = new List<Rectangle>();
 
             var frame = Application.Current.RootVisual as Frame;
             if (frame == null || VisualTreeHelper.GetChildrenCount(frame) == 0)
@@ -116,11 +150,13 @@ namespace System.Windows
                 // Not a pretty way to control the root visual, but I did not
                 // want to implement using a popup.
                 var content = childAsBorder.Child;
+
                 if (content == null)
                 {
                     Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
                     return;
                 }
+
                 childAsBorder.Child = null;
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
@@ -152,10 +188,10 @@ namespace System.Windows
         /// <param name="parent">The parent grid to insert the sub-grid into.</param>
         private static void PrepareGrid(Frame frame, Grid parent)
         {
-            var brush = new SolidColorBrush(_color);
+            var brush = new SolidColorBrush(color);
 
-            _grid = new Grid();
-            _grid.IsHitTestVisible = false;
+            grid = new Grid();
+            grid.IsHitTestVisible = false;
 
             // To support both orientations, unfortunately more visuals need to
             // be used. An alternate implementation would be to react to the
@@ -178,21 +214,21 @@ namespace System.Windows
                         IsHitTestVisible = false,
                         Fill = brush,
                     };
-                    _grid.Children.Add(rect);
-                    _squares.Add(rect);
+                    grid.Children.Add(rect);
+                    squares.Add(rect);
                 }
             }
 
-            _grid.Visibility = _visible ? Visibility.Visible : Visibility.Collapsed;
-            _grid.Opacity = _opacity;
+            grid.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+            grid.Opacity = opacity;
 
             // For performance reasons a single surface should ideally be used
             // for the grid.
-            _grid.CacheMode = new BitmapCache();
+            grid.CacheMode = new BitmapCache();
 
             // Places the grid into the visual tree. It is never removed once
             // being added.
-            parent.Children.Add(_grid);
+            parent.Children.Add(grid);
         }
     }
 }

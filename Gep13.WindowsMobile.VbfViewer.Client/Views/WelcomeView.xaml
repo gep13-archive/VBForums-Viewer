@@ -26,7 +26,7 @@
 
             <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="0,30,0,0">
                 <TextBox Template="{StaticResource TextboxClicker}" 
-                     Text="Sendu webtexting client allows you to access and send free messages via your service provider. You will need to obtain your login details for this service from &#xd;&#xa;your provider.&#xa;&#xa;If you already have those details tap the proceed button to get started." 
+                     Text="The VBForums Viewer allows you to access your VBForums profile on your Windows Phone handset.  You will need to provide your username and password for the site.&#xa;&#xa;If you know what your username and password is tap the proceed button to get started." 
                      AcceptsReturn="True" 
                      TextWrapping="Wrap" 
                      FontSize="21.333" 
