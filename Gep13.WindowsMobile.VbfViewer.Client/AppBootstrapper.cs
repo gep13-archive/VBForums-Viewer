@@ -85,6 +85,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
 
             this.container.PerRequest<InitialViewModel>();
             this.container.PerRequest<WelcomeViewModel>();
+            this.container.PerRequest<AddAccountViewModel>();
+            this.container.PerRequest<ProfileViewModel>();
 
             this.container.PerRequest<Account>();
 

@@ -36,33 +36,11 @@
                         VerticalAlignment="Top"
                         Margin="0,30,0,0">
 
-                <TextBlock Text="account name"
-                           Style="{StaticResource SubHeaderBold}" />
-                <TextBlock x:Name="EditAccountClickerName"
-                           Style="{StaticResource ClickableText}">
-                  <i:Interaction.Triggers>
-    	               <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <cal:ActionMessage MethodName="NavigateToEditAccountNameView" />
-                     </i:EventTrigger>
-                  </i:Interaction.Triggers>
-                </TextBlock>
-
-                <TextBlock Text="provider"
-                           Style="{StaticResource SubHeaderBold}" />
-                <TextBlock x:Name="ChooseProviderClickerName"
-                           Style="{StaticResource ClickableText}">
-                  <i:Interaction.Triggers>
-    	               <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <cal:ActionMessage MethodName="NavigateToChooseProviderView" />
-                     </i:EventTrigger>
-                  </i:Interaction.Triggers>
-                </TextBlock>
-
                 <TextBlock Text="username"
                            Style="{StaticResource SubHeaderBold}" />
                 <TextBox x:Name="Username"
                          Margin="-10,-5,-10,8"
-                         InputScope="Number" />
+                         InputScope="EmailUserName" />
 
                 <TextBlock Text="password"
                            Style="{StaticResource SubHeaderBold}" />
@@ -80,7 +58,7 @@
             <shell:ApplicationBar.Buttons>
                 <cal:AppBarButton IconUri="/Resources/Iconography/appbar.save.rest.png"
                                   Text="Save"
-                                  Message="SaveAndNavigateToComposeView" />
+                                  Message="SaveAndNavigateToProfileView" />
             </shell:ApplicationBar.Buttons>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
