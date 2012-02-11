@@ -84,24 +84,6 @@
     <milliseconds>449</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="AddAccountViewModel.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>02/11/2012 08:01:22</timestamp>
-      <milliseconds>434</milliseconds>
-    </settings>
-    <timestamp>02/11/2012 08:01:22</timestamp>
-    <milliseconds>449</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="WelcomeViewModel.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>02/11/2012 08:01:22</timestamp>
-      <milliseconds>434</milliseconds>
-    </settings>
-    <timestamp>02/11/2012 08:01:22</timestamp>
-    <milliseconds>449</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="Silverlight,Version=v4.0,Profile=WindowsPhone71.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>02/11/2012 08:01:22</timestamp>
@@ -145,15 +127,6 @@
     </settings>
     <timestamp>02/11/2012 08:01:22</timestamp>
     <milliseconds>465</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AddAccountView.g.i.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>02/11/2012 08:01:22</timestamp>
-      <milliseconds>434</milliseconds>
-    </settings>
-    <timestamp>02/11/2012 08:01:22</timestamp>
-    <milliseconds>449</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="InitialView.g.i.cs" parser="StyleCop.CSharp.CsParser">
@@ -210,9 +183,6 @@
     <milliseconds>897</milliseconds>
     <violations />
   </sourcecode>
-  <project key="283653518">
-    <configuration>CODE_ANALYSIS;DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</configuration>
-  </project>
   <sourcecode name="InitialViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>02/11/2012 08:01:22</timestamp>
@@ -220,6 +190,36 @@
     </settings>
     <timestamp>02/11/2012 15:40:45</timestamp>
     <milliseconds>482</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="WelcomeViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/11/2012 08:01:22</timestamp>
+      <milliseconds>434</milliseconds>
+    </settings>
+    <timestamp>02/11/2012 15:44:03</timestamp>
+    <milliseconds>930</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AddAccountViewModel.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/11/2012 08:01:22</timestamp>
+      <milliseconds>434</milliseconds>
+    </settings>
+    <timestamp>02/11/2012 15:46:02</timestamp>
+    <milliseconds>420</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="283653518">
+    <configuration>CODE_ANALYSIS;DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</configuration>
+  </project>
+  <sourcecode name="AddAccountView.g.i.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/11/2012 08:01:22</timestamp>
+      <milliseconds>434</milliseconds>
+    </settings>
+    <timestamp>02/11/2012 15:46:49</timestamp>
+    <milliseconds>606</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

@@ -57,22 +57,22 @@
     <milliseconds>70</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IoC.cs" parser="StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>07/06/2011 12:29:50</timestamp>
-      <milliseconds>0</milliseconds>
-    </settings>
-    <timestamp>02/11/2012 15:31:13</timestamp>
-    <milliseconds>413</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="IoCRegistration.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>07/06/2011 12:29:50</timestamp>
       <milliseconds>0</milliseconds>
     </settings>
-    <timestamp>02/11/2012 15:31:51</timestamp>
-    <milliseconds>288</milliseconds>
+    <timestamp>02/11/2012 15:42:05</timestamp>
+    <milliseconds>828</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IoC.cs" parser="StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/06/2011 12:29:50</timestamp>
+      <milliseconds>0</milliseconds>
+    </settings>
+    <timestamp>02/11/2012 15:44:03</timestamp>
+    <milliseconds>946</milliseconds>
     <violations />
   </sourcecode>
   <project key="517904999">

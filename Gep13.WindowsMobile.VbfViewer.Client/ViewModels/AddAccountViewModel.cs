@@ -52,7 +52,17 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
             this.navigationService = navigationService;
             this.PurgeNavigationalBackStack();
             this.RetriveAccountFromStorage();
+
+#if DEBUG
+            this.account.Username = "gep13";
+            this.account.Password = "testtest";
+#endif
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether an account is being added or edited.
+        /// </summary>
+        public bool IsEditMode { get; set; }
 
         /// <summary>
         /// Gets or sets the username of the person logging into VBForums
@@ -87,6 +97,17 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
                 this.account.Password = value;
                 NotifyOfPropertyChange(() => this.Password);
                 NotifyOfPropertyChange(() => this.CanSaveAndNavigateToProfileView);
+            }
+        }
+
+        /// <summary>
+        /// Gets the title for the page
+        /// </summary>
+        public string PageTitle
+        {
+            get
+            {
+                return this.IsEditMode ? "edit account" : "add account";
             }
         }
 

@@ -51,7 +51,9 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
 
-            this.navigationService.UriFor<AddAccountViewModel>().Navigate();
+            this.navigationService.UriFor<AddAccountViewModel>()
+                .WithParam(x => x.IsEditMode, false)
+                .Navigate();
         }
     }
 }

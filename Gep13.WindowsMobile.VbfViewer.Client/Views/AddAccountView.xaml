@@ -13,7 +13,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             mc:Ignorable="d"
-                            d:DesignHeight="696"
+                            d:DesignHeight="728"
                             d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
 
@@ -28,7 +28,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="add account"
+            <TextBlock x:Name="PageTitle"
+                       Text="add account"
                        Style="{StaticResource PhoneTextTitle1Style}"
                        Margin="0" />
 
