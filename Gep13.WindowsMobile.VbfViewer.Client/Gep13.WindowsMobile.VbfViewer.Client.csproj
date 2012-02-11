@@ -138,6 +138,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\About\Data.xml" />
+    <Content Include="Resources\Iconography\appbar.check.rest.png" />
+    <Content Include="Resources\Iconography\appbar.feature.email.rest.png" />
+    <Content Include="Resources\Iconography\appbar.feature.settings.rest.png" />
+    <Content Include="Resources\Iconography\appbar.save.rest.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -146,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Resources\Iconography\" />
     <Folder Include="Resources\Tiles\" />
   </ItemGroup>
   <ItemGroup>

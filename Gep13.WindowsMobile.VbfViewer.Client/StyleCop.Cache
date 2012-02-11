@@ -210,9 +210,6 @@
     <milliseconds>420</milliseconds>
     <violations />
   </sourcecode>
-  <project key="283653518">
-    <configuration>CODE_ANALYSIS;DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</configuration>
-  </project>
   <sourcecode name="AddAccountView.g.i.cs" parser="StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>02/11/2012 08:01:22</timestamp>
@@ -222,4 +219,7 @@
     <milliseconds>606</milliseconds>
     <violations />
   </sourcecode>
+  <project key="283653518">
+    <configuration>CODE_ANALYSIS;DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</configuration>
+  </project>
 </stylecopresultscache>
