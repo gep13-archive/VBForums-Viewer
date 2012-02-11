@@ -104,7 +104,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void NavigateToComposeView()
         {
-            // _navigationService.UriFor<ComposeViewModel>().Navigate();
+            this.navigationService.UriFor<ProfileViewModel>().Navigate();
         }
     }
 }
