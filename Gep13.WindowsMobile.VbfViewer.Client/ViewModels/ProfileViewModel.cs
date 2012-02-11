@@ -17,7 +17,10 @@
 
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
+    using System.Linq;
+    using System.Windows;
     using Caliburn.Micro;
+    using Microsoft.Phone.Controls;
 
     /// <summary>
     /// The ViewModel class for the Profile page
@@ -41,6 +44,38 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         public ProfileViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+            this.PurgeNavigationalBackStack();
+        }
+
+        /// <summary>
+        /// Allow the user to edit his/her account details
+        /// </summary>
+        public void NavigateToAddAccountView()
+        {
+            this.navigationService.UriFor<AddAccountViewModel>()
+                .WithParam(x => x.IsEditMode, true)
+                .Navigate();
+        }
+
+        /// <summary>
+        /// Navigate to the Settings Page
+        /// </summary>
+        public void SaveAndNavigateToSettingsView()
+        {
+            MessageBox.Show("Not quite there yet :)");
+        }
+
+        /// <summary>
+        /// Worker method to handle the correct use of the back button
+        /// </summary>
+        private void PurgeNavigationalBackStack()
+        {
+            var navEntry = (App.Current.RootVisual as PhoneApplicationFrame).BackStack.ElementAt(0);
+
+            if (navEntry.Source.ToString().Contains("InitialView"))
+            {
+                (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
+            }
         }
     }
 }
