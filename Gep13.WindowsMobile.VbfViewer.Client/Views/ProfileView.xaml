@@ -28,7 +28,12 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel>
+                <Button x:Name="ToggleProgressBar"
+                        Content="Show/Hide Progress" />
+            </StackPanel>
+        </Grid>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

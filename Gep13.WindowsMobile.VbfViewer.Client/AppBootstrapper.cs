@@ -23,6 +23,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
     using Gep13.WindowsMobile.VbfViewer.Core.Containers;
+    using Gep13.WindowsMobile.VbfViewer.Core.Progress;
     using Microsoft.Phone.Controls;
 
     /// <summary>
@@ -89,6 +90,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
             this.container.PerRequest<ProfileViewModel>();
 
             this.container.PerRequest<Account>();
+
+            this.container.Instance<IProgressService>(new ProgressService(RootFrame));
 
             AddCustomConventions();
         }

@@ -20,6 +20,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
     using System.Linq;
     using System.Windows;
     using Caliburn.Micro;
+    using Gep13.WindowsMobile.VbfViewer.Core.Progress;
     using Microsoft.Phone.Controls;
 
     /// <summary>
@@ -38,13 +39,35 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         private readonly INavigationService navigationService;
 
         /// <summary>
+        /// Local instance of the ProgressService class to handle showing and hiding of the ProgressIndicator
+        /// </summary>
+        private readonly IProgressService progressService;
+
+        /// <summary>
         /// Initializes a new instance of the ProfileViewModel class
         /// </summary>
         /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        public ProfileViewModel(INavigationService navigationService)
+        /// <param name="progressService">The Progress Interface used by the Application</param>
+        public ProfileViewModel(INavigationService navigationService, IProgressService progressService)
         {
             this.navigationService = navigationService;
+            this.progressService = progressService;
             this.PurgeNavigationalBackStack();
+        }
+
+        /// <summary>
+        /// Temporary method to prove the use of the ProgressIndicator
+        /// </summary>
+        public void ToggleProgressBar()
+        {
+            if (this.progressService.IsEnabled)
+            {
+                this.progressService.Hide();
+            }
+            else
+            {
+                this.progressService.Show();
+            }
         }
 
         /// <summary>
