@@ -6,3 +6,4 @@ deploy
 *.orig
 output
 packages
+StyleCop.Cache
