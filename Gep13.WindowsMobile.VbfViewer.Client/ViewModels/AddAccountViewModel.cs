@@ -18,52 +18,33 @@
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using System.Linq;
-    using Caliburn.Micro;
+    using Gep13.WindowsMobile.VbfViewer.Client.Workers;
     using Gep13.WindowsMobile.VbfViewer.Core.Containers;
-    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
     using Microsoft.Phone.Controls;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
     /// </summary>
-    public class AddAccountViewModel : PropertyChangedBase
+    public class AddAccountViewModel : ScreenPageViewModelBase
     {
         /// <summary>
-        /// The NavigationService is an object built into
-        /// Caliburn.Micro to enable ViewModel to ViewModel
-        /// navigation. We are going to get this via IOC
-        /// from the container we made in the bootstrapper. I
-        /// think this is added to the container from register
-        /// phone services. Either way we get it for free.
+        /// Local variable for the userName
         /// </summary>
-        private readonly INavigationService navigationService;
+        private string userName;
 
         /// <summary>
-        /// This is the handler for reading and writing to Isolated Storage
+        /// Local variale for the password
         /// </summary>
-        private IStorageService storageService;
-
-        /// <summary>
-        /// Local instance of the Account class which is persisted into Isolated Storage
-        /// </summary>
-        private Account account;
+        private string password;
 
         /// <summary>
         /// Initializes a new instance of the AddAccountViewModel class
         /// </summary>
-        /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        /// <param name="storageService">The Storage Interface used by the Application</param>
-        public AddAccountViewModel(INavigationService navigationService, IStorageService storageService)
+        /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
+        public AddAccountViewModel(ViewModelWorker viewModelWorker)
+            : base(viewModelWorker)
         {
-            this.navigationService = navigationService;
-            this.storageService = storageService;
             this.PurgeNavigationalBackStack();
-            this.RetriveAccountFromStorage();
-
-#if DEBUG
-            this.account.Username = "gep13";
-            this.account.Password = "testtest";
-#endif
         }
 
         /// <summary>
@@ -78,12 +59,12 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             get
             {
-                return this.account.Username;
+                return this.userName;
             }
 
             set
             {
-                this.account.Username = value;
+                this.userName = value;
                 NotifyOfPropertyChange(() => this.Username);
                 NotifyOfPropertyChange(() => this.CanSaveAndNavigateToProfileView);
             }
@@ -96,12 +77,12 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             get
             {
-                return this.account.Password;
+                return this.password;
             }
 
             set
             {
-                this.account.Password = value;
+                this.password = value;
                 NotifyOfPropertyChange(() => this.Password);
                 NotifyOfPropertyChange(() => this.CanSaveAndNavigateToProfileView);
             }
@@ -140,25 +121,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         public void SaveAndNavigateToProfileView()
         {
-            this.CommitAccountToStorage();
-            this.SetFirstRunFlag();
-            this.navigationService.UriFor<ProfileViewModel>().Navigate();
-        }
-
-        /// <summary>
-        /// Worker method to go and grab the Account details from Isolated Storage
-        /// </summary>
-        private void RetriveAccountFromStorage()
-        {
-            this.account = this.storageService.Get<Account>("UserAccount");
-        }
-
-        /// <summary>
-        /// Worker method to save the Account details to Isolated Storage
-        /// </summary>
-        private void CommitAccountToStorage()
-        {
-            this.storageService.Add("UserAccount", this.account);
+            ////this.CommitAccountToStorage();
+            ////this.SetFirstRunFlag();
         }
 
         /// <summary>
@@ -166,7 +130,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void SetFirstRunFlag()
         {
-            this.storageService.Add("FirstRunFlag", true);
+            ////this.storageService.Add("FirstRunFlag", true);
         }
 
         /// <summary>

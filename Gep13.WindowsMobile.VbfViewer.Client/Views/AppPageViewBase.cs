@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="WelcomeView.xaml.cs" company="GEP13">
+// <copyright file="AppPageViewBase.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -17,19 +17,48 @@
 
 namespace Gep13.WindowsMobile.VbfViewer.Client.Views
 {
+    using System.Reflection;
+    using System.Windows.Navigation;
     using Microsoft.Phone.Controls;
-    
+    using Microsoft.Phone.Shell;
+
     /// <summary>
-    /// After the InitialView, if this is the first time the application has been accessed, this View is shown
+    /// The base class for all views
     /// </summary>
-    public partial class WelcomeView : PhoneApplicationPage
+    public class AppPageViewBase : PhoneApplicationPage
     {
         /// <summary>
-        /// Initializes a new instance of the WelcomeView class
+        /// Initializes a new instance of the AppPageViewBase class
         /// </summary>
-        public WelcomeView()
+        public AppPageViewBase()
         {
-            this.InitializeComponent();
+            var initializeComponentMethod = GetType().GetMethod("InitializeComponent", BindingFlags.Public | BindingFlags.Instance);
+            if (initializeComponentMethod != null)
+            {
+                initializeComponentMethod.Invoke(this, new object[0]);
+            }
+            ////if (!(this is VideoView))
+            ////{
+            ////    SupportedOrientations = SupportedPageOrientation.Portrait;
+            ////}
+        }
+
+        /// <summary>
+        /// Override the OnNavigatedTo Method
+        /// </summary>
+        /// <param name="e">The NavigationEventArgs</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SystemTray.IsVisible = false;
+        }
+
+        /// <summary>
+        /// Override the OnNavigatedFrom Method
+        /// </summary>
+        /// <param name="e">The NavigationEventArgs</param>
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
         }
     }
 }

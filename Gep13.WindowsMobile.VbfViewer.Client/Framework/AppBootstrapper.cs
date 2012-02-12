@@ -15,17 +15,19 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsMobile.VbfViewer.Client 
+namespace Gep13.WindowsMobile.VbfViewer.Client.Framework 
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
+    using Gep13.WindowsMobile.VbfViewer.Client.Workers;
     using Gep13.WindowsMobile.VbfViewer.Core.Containers;
     using Gep13.WindowsMobile.VbfViewer.Core.Progress;
-    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
     using Microsoft.Phone.Controls;
+    using Microsoft.Phone.Shell;
 
     /// <summary>
     /// This is the main class which is used by Caliburn.Micro
@@ -85,15 +87,19 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
             this.container = new PhoneContainer(RootFrame);
             this.container.RegisterPhoneServices();
 
-            this.container.PerRequest<InitialViewModel>();
-            this.container.PerRequest<WelcomeViewModel>();
-            this.container.PerRequest<AddAccountViewModel>();
-            this.container.PerRequest<ProfileViewModel>();
+            this.container.Singleton<InitialViewModel>();
+            this.container.Singleton<WelcomeViewModel>();
+            this.container.Singleton<AddAccountViewModel>();
+            this.container.Singleton<ProfileViewModel>();
 
-            this.container.PerRequest<Account>();
+            this.container.Singleton<Account>();
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
-            this.container.Instance<IStorageService>(new StorageService());
+            this.container.Singleton<ViewModelWorker>();
+
+            var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
+            phoneService.Resurrecting += new System.Action(this.PhoneService_Resurrecting);
+            phoneService.Continuing += new System.Action(this.PhoneService_Continuing);
 
             AddCustomConventions();
         }
@@ -126,6 +132,88 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
         protected override void BuildUp(object instance)
         {
             this.container.BuildUp(instance);
+        }
+
+        /// <summary>
+        /// OnLaunch event fires when the application first starts up
+        /// </summary>
+        /// <param name="sender">Responsible party</param>
+        /// <param name="e">The arguments coming in with the Event</param>
+        protected override void OnLaunch(object sender, LaunchingEventArgs e)
+        {
+            base.OnLaunch(sender, e);
+            MessageBox.Show("we are launching!");
+
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+
+                // Display the metro grid helper.
+                MetroGridHelper.IsVisible = true;
+
+                PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+            }
+        }
+
+        /// <summary>
+        /// Method that fires when the application is Deactivating
+        /// </summary>
+        /// <param name="sender">Responsible party</param>
+        /// <param name="e">The arguments coming in with the Event</param>
+        protected override void OnDeactivate(object sender, DeactivatedEventArgs e)
+        {
+            base.OnDeactivate(sender, e);
+            MessageBox.Show("we are deactivating!");
+        }
+
+        /// <summary>
+        /// Method that fires when the application is Closing
+        /// </summary>
+        /// <param name="sender">Responsible party</param>
+        /// <param name="e">The arguments coming in with the Event</param>
+        protected override void OnClose(object sender, ClosingEventArgs e)
+        {
+            base.OnClose(sender, e);
+            MessageBox.Show("we are closing!");
+        }
+
+        /// <summary>
+        /// Something bad has happened in the applicaiton
+        /// </summary>
+        /// <param name="sender">Responsible party</param>
+        /// <param name="e">The arguments coming in with the Event</param>
+        protected override void OnUnhandledException(object sender, System.Windows.ApplicationUnhandledExceptionEventArgs e)
+        {
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                // An unhandled exception has occurred; break into the debugger
+                System.Diagnostics.Debugger.Break();
+            }
+            else
+            {
+#if DEBUG
+                MessageBox.Show(e.ExceptionObject.Message + " " + e.ExceptionObject.StackTrace);
+#else
+                // do something sensible for production
+#endif
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Tap into the Continuing Event from the IPhoneService
+        /// </summary>
+        private void PhoneService_Continuing()
+        {
+            MessageBox.Show("we are continuing!");
+        }
+
+        /// <summary>
+        /// Tap into the Resurrecting Event from the IPhoneService
+        /// </summary>
+        private void PhoneService_Resurrecting()
+        {
+            MessageBox.Show("we are resurrecting!");
         }
     }
 }

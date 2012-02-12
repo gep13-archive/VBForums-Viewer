@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="InitialView.xaml.cs" company="GEP13">
+// <copyright file="AppControlViewBase.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -17,19 +17,25 @@
 
 namespace Gep13.WindowsMobile.VbfViewer.Client.Views
 {
-    using Microsoft.Phone.Controls;
+    using System.Reflection;
+    using System.Windows.Controls;
 
     /// <summary>
-    /// The first page that is opened when the application starts
+    /// The base class for all Views that are contained views
     /// </summary>
-    public partial class InitialView : PhoneApplicationPage
+    public class AppControlViewBase : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the InitialView class
+        /// Initializes a new instance of the AppControlViewBase class
         /// </summary>
-        public InitialView()
+        public AppControlViewBase()
         {
-            this.InitializeComponent();
+            var initializeComponentMethod = GetType().GetMethod("InitializeComponent", BindingFlags.Public | BindingFlags.Instance);
+
+            if (initializeComponentMethod != null)
+            {
+                initializeComponentMethod.Invoke(this, new object[0]);
+            }
         }
     }
 }

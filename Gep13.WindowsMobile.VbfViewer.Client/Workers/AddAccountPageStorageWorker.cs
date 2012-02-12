@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ProfileView.xaml.cs" company="GEP13">
+// <copyright file="AddAccountPageStorageWorker.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -15,21 +15,28 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsMobile.VbfViewer.Client.Views
+namespace Gep13.WindowsMobile.VbfViewer.Client.Workers
 {
-    using Microsoft.Phone.Controls;
+    using Caliburn.Micro;
+    using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
 
     /// <summary>
-    /// After the WelcomeView, or the InitialView, this is what the user sees
+    /// A worker class to handle all storage needs of the AddAccountPage
     /// </summary>
-    public partial class ProfileView : PhoneApplicationPage
+    public class AddAccountPageStorageWorker : StorageHandler<AddAccountViewModel>
     {
         /// <summary>
-        /// Initializes a new instance of the ProfileView class
+        /// Override the Configure Method to save the state that we need
         /// </summary>
-        public ProfileView()
+        public override void Configure()
         {
-            this.InitializeComponent();
+            this.Property(vm => vm.Username)
+                .InAppSettings()
+                .RestoreAfterActivation();
+
+            this.Property(vm => vm.Password)
+                .InAppSettings()
+                .RestoreAfterActivation();
         }
     }
 }

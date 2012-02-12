@@ -18,46 +18,25 @@
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using Caliburn.Micro;
-    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
+    using Gep13.WindowsMobile.VbfViewer.Client.Workers;
 
     /// <summary>
     /// The ViewModel class for the Initial page
     /// </summary>
-    public class InitialViewModel : PropertyChangedBase
+    public class InitialViewModel : ScreenPageViewModelBase
     {
-        /// <summary>
-        /// The NavigationService is an object built into
-        /// Caliburn.Micro to enable ViewModel to ViewModel
-        /// navigation. We are going to get this via IOC
-        /// from the container we made in the bootstrapper. I
-        /// think this is added to the container from register
-        /// phone services. Either way we get it for free.
-        /// </summary>
-        private readonly INavigationService navigationService;
-
-        /// <summary>
-        /// This is the handler for reading and writing to Isolated Storage
-        /// </summary>
-        private IStorageService storageService;
-
         /// <summary>
         /// Initializes a new instance of the InitialViewModel class
         /// </summary>
-        /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        /// <param name="storageService">The Storage Interface used by the Application</param>
-        public InitialViewModel(INavigationService navigationService, IStorageService storageService)
-        {
-            // Constructor asks for an INavigationService, Container
-            // obliges. We don't need to worry how it gets here :)
-            this.navigationService = navigationService;
-
-            this.storageService = storageService;
+        /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
+        public InitialViewModel(ViewModelWorker viewModelWorker) : base(viewModelWorker) 
+        { 
         }
 
         /// <summary>
-        ///     Bound to the loaded event of the view. Caliburn.Micro
-        ///     has a concept called Event Triggers that allow you
-        ///     to fire methods in response to events.
+        /// Bound to the loaded event of the view. Caliburn.Micro
+        /// has a concept called Event Triggers that allow you
+        /// to fire methods in response to events.
         /// </summary>
         public void DetermineNavigationPath()
         {
@@ -70,7 +49,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 
                 default:
 
-                    this.NavigateToComposeView();
+                    this.NavigateToProfileView();
                     break;
             }
         }
@@ -84,7 +63,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// <returns>A bool, indicating whether the app have been run before.</returns>
         private bool ObtainFirstRunFlag()
         {
-            return this.storageService.Get<bool>("FirstRunFlag");
+            ////return this.storageService.Get<bool>("FirstRunFlag");
+            return false;
         }
 
         /// <summary>
@@ -94,7 +74,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void NavigateToWelcomeView()
         {
-            this.navigationService.UriFor<WelcomeViewModel>().Navigate();
+            this.VMWorker.NavigationService.UriFor<WelcomeViewModel>().Navigate();
         }
 
         /// <summary>
@@ -102,9 +82,9 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// navigate to the ComposeViewModel and don't take them
         /// through account creation.
         /// </summary>
-        private void NavigateToComposeView()
+        private void NavigateToProfileView()
         {
-            this.navigationService.UriFor<ProfileViewModel>().Navigate();
+            this.VMWorker.NavigationService.UriFor<ProfileViewModel>().Navigate();
         }
     }
 }
