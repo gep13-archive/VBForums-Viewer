@@ -21,6 +21,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Navigation;
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
     using Gep13.WindowsMobile.VbfViewer.Client.Workers;
@@ -101,6 +102,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
             phoneService.Resurrecting += new System.Action(this.PhoneService_Resurrecting);
             phoneService.Continuing += new System.Action(this.PhoneService_Continuing);
 
+            RootFrame.Navigated += new NavigatedEventHandler(this.RootFrame_Navigated);
+
             AddCustomConventions();
         }
 
@@ -142,7 +145,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnLaunch(object sender, LaunchingEventArgs e)
         {
             base.OnLaunch(sender, e);
-            MessageBox.Show("we are launching!");
+            ////MessageBox.Show("we are launching!");
 
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -163,7 +166,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnDeactivate(object sender, DeactivatedEventArgs e)
         {
             base.OnDeactivate(sender, e);
-            MessageBox.Show("we are deactivating!");
+            ////MessageBox.Show("we are deactivating!");
         }
 
         /// <summary>
@@ -174,7 +177,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnClose(object sender, ClosingEventArgs e)
         {
             base.OnClose(sender, e);
-            MessageBox.Show("we are closing!");
+            ////MessageBox.Show("we are closing!");
         }
 
         /// <summary>
@@ -197,6 +200,20 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
                 // do something sensible for production
 #endif
                 e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Global handler for when a Navigation happens
+        /// </summary>
+        /// <param name="sender">The object causing the navigation</param>
+        /// <param name="e">Arguments pased in as part of navigation</param>
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var navigationService = this.GetInstance(typeof(INavigationService), null) as INavigationService;
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New && e.Uri.ToString().Contains("BackNavSkipOne=True"))
+            {
+                RootFrame.RemoveBackEntry();
             }
         }
 

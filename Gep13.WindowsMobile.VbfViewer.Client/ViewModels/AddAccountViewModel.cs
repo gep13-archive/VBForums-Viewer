@@ -44,7 +44,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         public AddAccountViewModel(ViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
-            this.PurgeNavigationalBackStack();
         }
 
         /// <summary>
@@ -131,19 +130,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         private void SetFirstRunFlag()
         {
             ////this.storageService.Add("FirstRunFlag", true);
-        }
-
-        /// <summary>
-        /// In order to adhere to Marketplace rules, clear the back stack so that application will exit correctly
-        /// </summary>
-        private void PurgeNavigationalBackStack()
-        {
-            var navEntry = (App.Current.RootVisual as PhoneApplicationFrame).BackStack.ElementAt(0);
-
-            if (navEntry.Source.ToString().Contains("WelcomeView"))
-            {
-                (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
-            }
         }
     }
 }

@@ -40,7 +40,7 @@
                      BorderThickness="0" 
                      Foreground="{StaticResource PhoneSubtleBrush}"/>
 
-                <Button x:Name="NavigateToAddAccountView" 
+                <Button x:Name="GoToAddAccountPage" 
                     Content="proceed" 
                     HorizontalAlignment="Right"/>
             </StackPanel>

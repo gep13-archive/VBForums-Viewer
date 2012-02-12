@@ -44,6 +44,11 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether or not to remove the source page from the back stack
+        /// </summary>
+        public bool BackNavSkipOne { get; set; }
+
+        /// <summary>
         /// Gets a utility class to provide access to common workers to view models
         /// </summary>
         protected ViewModelWorker VMWorker
@@ -64,8 +69,9 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         public void GoToSettingsPage()
         {
-            MessageBox.Show("Not quite there yet :)");
-            ////VMWorker.NavigationService.UriFor<SettingsViewModel>().Navigate();
+            this.VMWorker.NavigationService.UriFor<SettingsViewModel>()
+                .WithParam(vm => vm.BackNavSkipOne, true)
+                .Navigate();
         }
 
         /// <summary>
@@ -73,7 +79,19 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         public void GoToProfilePage()
         {
-            this.VMWorker.NavigationService.UriFor<ProfileViewModel>().Navigate();
+            this.VMWorker.NavigationService.UriFor<ProfileViewModel>()
+                .WithParam(vm => vm.BackNavSkipOne, true)
+                .Navigate();
+        }
+
+        /// <summary>
+        /// Helper Method to navigate to the WelcomePage
+        /// </summary>
+        public void GoToWelcomePage()
+        {
+            this.VMWorker.NavigationService.UriFor<WelcomeViewModel>()
+                .WithParam(vm => vm.BackNavSkipOne, true)
+                .Navigate();
         }
 
         /// <summary>
@@ -83,6 +101,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             this.VMWorker.NavigationService.UriFor<AddAccountViewModel>()
                 .WithParam(x => x.IsEditMode, true)
+                .WithParam(vm => vm.BackNavSkipOne, true)
                 .Navigate();
         }
 
@@ -93,6 +112,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             this.VMWorker.NavigationService.UriFor<AddAccountViewModel>()
                 .WithParam(x => x.IsEditMode, false)
+                .WithParam(vm => vm.BackNavSkipOne, true)
                 .Navigate();
         }
 

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="WelcomeViewModel.cs" company="GEP13">
+// <copyright file="SettingsViewModel.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -20,15 +20,15 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
     using Gep13.WindowsMobile.VbfViewer.Client.Workers;
 
     /// <summary>
-    /// The ViewModel class for the Welcome page
+    /// The ViewModel class for the Settings page
     /// </summary>
-    public class WelcomeViewModel : ScreenPageViewModelBase
+    public class SettingsViewModel : ScreenPageViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the WelcomeViewModel class
+                /// <summary>
+        /// Initializes a new instance of the SettingsViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public WelcomeViewModel(ViewModelWorker viewModelWorker)
+        public SettingsViewModel(ViewModelWorker viewModelWorker)
             : base(viewModelWorker) 
         {
         }
