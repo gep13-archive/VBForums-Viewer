@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="IIsolatedStorage.cs" company="GEP13">
+// <copyright file="StorageService.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -17,11 +17,19 @@
 
 namespace Gep13.WindowsMobile.VbfViewer.Core.Storage
 {
+    using System;
+    using System.IO.IsolatedStorage;
+
     /// <summary>
-    /// Interface for Storage information in Isolated Storage
+    /// Concrete implementation of the IIsolatedStorage class
     /// </summary>
-    public interface IIsolatedStorage
+    public class StorageService : IStorageService
     {
+        /// <summary>
+        /// A Reference to the Phones IsolatedStorageSettings.
+        /// </summary>
+        private static readonly IsolatedStorageSettings isolatedStorage = IsolatedStorageSettings.ApplicationSettings;
+
         /// <summary>
         /// Adds an entity to the phones isolated
         /// storage using the key supplied for reference.
@@ -35,7 +43,16 @@ namespace Gep13.WindowsMobile.VbfViewer.Core.Storage
         /// <param name="entity">
         /// The entity to store.
         /// </param>
-        void Add<TEntity>(string key, TEntity entity);
+        public void Add<TEntity>(string key, TEntity entity)
+        {
+            if (isolatedStorage.Contains(key))
+            {
+                isolatedStorage[key] = entity;
+                return;
+            }
+
+            isolatedStorage.Add(key, entity);
+        }
 
         /// <summary>
         /// Gets the entity stored against
@@ -48,7 +65,25 @@ namespace Gep13.WindowsMobile.VbfViewer.Core.Storage
         /// <returns>
         /// The entity if found otherwise new, 0 or false.
         /// </returns>
-        TEntity Get<TEntity>(string key);
+        public TEntity Get<TEntity>(string key)
+        {
+            if (isolatedStorage.Contains(key))
+            { 
+                return (TEntity)isolatedStorage[key];
+            }
+
+            if (typeof(TEntity) == typeof(string))
+            { 
+                return (TEntity)(object)string.Empty;
+            }
+
+            if (typeof(TEntity).IsValueType)
+            { 
+                return default(TEntity);
+            }
+
+            return Activator.CreateInstance<TEntity>();
+        }
 
         /// <summary>
         /// Removes the entity stored against
@@ -59,6 +94,12 @@ namespace Gep13.WindowsMobile.VbfViewer.Core.Storage
         /// <param name="key">
         /// The key of the entity to remove.
         /// </param>
-        void Remove(string key);
+        public void Remove(string key)
+        {
+            if (isolatedStorage.Contains(key))
+            { 
+                isolatedStorage.Remove(key);
+            }
+        }
     }
 }

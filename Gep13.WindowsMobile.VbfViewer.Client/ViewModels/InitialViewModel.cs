@@ -19,7 +19,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Core.Storage;
-    using IoC = Gep13.WindowsMobile.VbfViewer.Core.IoC;
 
     /// <summary>
     /// The ViewModel class for the Initial page
@@ -39,19 +38,20 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// <summary>
         /// This is the handler for reading and writing to Isolated Storage
         /// </summary>
-        private IIsolatedStorage isolatedStorage;
+        private IStorageService storageService;
 
         /// <summary>
         /// Initializes a new instance of the InitialViewModel class
         /// </summary>
         /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        public InitialViewModel(INavigationService navigationService)
+        /// <param name="storageService">The Storage Interface used by the Application</param>
+        public InitialViewModel(INavigationService navigationService, IStorageService storageService)
         {
             // Constructor asks for an INavigationService, Container
             // obliges. We don't need to worry how it gets here :)
             this.navigationService = navigationService;
 
-            this.isolatedStorage = IoC.Resolve<IIsolatedStorage>();
+            this.storageService = storageService;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// <returns>A bool, indicating whether the app have been run before.</returns>
         private bool ObtainFirstRunFlag()
         {
-            return this.isolatedStorage.Get<bool>("FirstRunFlag");
+            return this.storageService.Get<bool>("FirstRunFlag");
         }
 
         /// <summary>

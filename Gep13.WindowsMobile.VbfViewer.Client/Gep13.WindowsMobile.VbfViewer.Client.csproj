@@ -85,9 +85,6 @@
     <Reference Include="TombstoneHelper">
       <HintPath>..\packages\WP7TombstoneHelper.2.5\lib\TombstoneHelper.dll</HintPath>
     </Reference>
-    <Reference Include="WinPhoneKit.Storage">
-      <HintPath>..\SharedBinaries\WinPhoneKit\Current\WinPhoneKit.Storage.dll</HintPath>
-    </Reference>
     <Reference Include="YourLastAboutDialog">
       <HintPath>..\packages\YLAD.1.3\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
     </Reference>

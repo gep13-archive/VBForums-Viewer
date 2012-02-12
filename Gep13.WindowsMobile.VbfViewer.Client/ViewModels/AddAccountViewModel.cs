@@ -20,8 +20,8 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
     using System.Linq;
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Core.Containers;
+    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
     using Microsoft.Phone.Controls;
-    using WinPhoneKit.Storage;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
@@ -39,6 +39,11 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         private readonly INavigationService navigationService;
 
         /// <summary>
+        /// This is the handler for reading and writing to Isolated Storage
+        /// </summary>
+        private IStorageService storageService;
+
+        /// <summary>
         /// Local instance of the Account class which is persisted into Isolated Storage
         /// </summary>
         private Account account;
@@ -47,9 +52,11 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// Initializes a new instance of the AddAccountViewModel class
         /// </summary>
         /// <param name="navigationService">The Navigation Interface used by the Application</param>
-        public AddAccountViewModel(INavigationService navigationService)
+        /// <param name="storageService">The Storage Interface used by the Application</param>
+        public AddAccountViewModel(INavigationService navigationService, IStorageService storageService)
         {
             this.navigationService = navigationService;
+            this.storageService = storageService;
             this.PurgeNavigationalBackStack();
             this.RetriveAccountFromStorage();
 
@@ -143,7 +150,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void RetriveAccountFromStorage()
         {
-            this.account = IsolatedStorage.Get<Account>("UserAccount");
+            this.account = this.storageService.Get<Account>("UserAccount");
         }
 
         /// <summary>
@@ -151,7 +158,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void CommitAccountToStorage()
         {
-            IsolatedStorage.Add("UserAccount", this.account);
+            this.storageService.Add("UserAccount", this.account);
         }
 
         /// <summary>
@@ -159,7 +166,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         private void SetFirstRunFlag()
         {
-            IsolatedStorage.Add("FirstRunFlag", true);
+            this.storageService.Add("FirstRunFlag", true);
         }
 
         /// <summary>

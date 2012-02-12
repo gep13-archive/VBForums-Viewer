@@ -24,6 +24,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
     using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
     using Gep13.WindowsMobile.VbfViewer.Core.Containers;
     using Gep13.WindowsMobile.VbfViewer.Core.Progress;
+    using Gep13.WindowsMobile.VbfViewer.Core.Storage;
     using Microsoft.Phone.Controls;
 
     /// <summary>
@@ -92,6 +93,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client
             this.container.PerRequest<Account>();
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
+            this.container.Instance<IStorageService>(new StorageService());
 
             AddCustomConventions();
         }

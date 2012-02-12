@@ -58,13 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Containers\Account.cs" />
-    <Compile Include="IoC.cs" />
-    <Compile Include="IoCRegistration.cs" />
     <Compile Include="Progress\IProgressService.cs" />
     <Compile Include="Progress\ProgressService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\IIsolatedStorage.cs" />
-    <Compile Include="Storage\IsolatedStorage.cs" />
+    <Compile Include="Storage\IStorageService.cs" />
+    <Compile Include="Storage\StorageService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
