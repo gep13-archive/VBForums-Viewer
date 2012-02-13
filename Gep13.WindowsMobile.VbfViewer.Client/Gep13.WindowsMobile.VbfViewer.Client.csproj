@@ -94,7 +94,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Framework\AppBootstrapper.cs" />
-    <Compile Include="MainPageViewModel.cs" />
     <Compile Include="Framework\MetroGridHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />

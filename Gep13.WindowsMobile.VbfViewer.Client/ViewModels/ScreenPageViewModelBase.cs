@@ -57,20 +57,11 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         }
 
         /// <summary>
-        /// Helper Method to navigate to the MainPage
-        /// </summary>
-        public void GoToMainPage()
-        {
-            this.VMWorker.NavigationService.UriFor<MainPageViewModel>().Navigate();
-        }
-
-        /// <summary>
         /// Helper Method to navigatr to the Settings Page
         /// </summary>
         public void GoToSettingsPage()
         {
             this.VMWorker.NavigationService.UriFor<SettingsViewModel>()
-                .WithParam(vm => vm.BackNavSkipOne, true)
                 .Navigate();
         }
 
@@ -89,9 +80,9 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         /// </summary>
         public void GoToWelcomePage()
         {
-            this.VMWorker.NavigationService.UriFor<WelcomeViewModel>()
-                .WithParam(vm => vm.BackNavSkipOne, true)
-                .Navigate();
+            this.VMWorker.NavigationService.UriFor<WelcomeViewModel>().Navigate();
+                ////.WithParam(vm => vm.BackNavSkipOne, true)
+                ////.Navigate();
         }
 
         /// <summary>
@@ -101,7 +92,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         {
             this.VMWorker.NavigationService.UriFor<AddAccountViewModel>()
                 .WithParam(x => x.IsEditMode, true)
-                .WithParam(vm => vm.BackNavSkipOne, true)
                 .Navigate();
         }
 
@@ -114,6 +104,14 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
                 .WithParam(x => x.IsEditMode, false)
                 .WithParam(vm => vm.BackNavSkipOne, true)
                 .Navigate();
+        }
+
+        /// <summary>
+        /// Help method to navigate to the About Page
+        /// </summary>
+        public void GoToAboutPage()
+        {
+            this.VMWorker.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
 
         /// <summary>
@@ -134,8 +132,10 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
                     var appBar = new ApplicationBar();
                     var button1 = new AppBarButton() { Message = "GoToSettingsPage", Text = "settings", IconUri = new Uri("/Resources/Iconography/appbar.feature.settings.rest.png", UriKind.Relative) };
                     appBar.Buttons.Add(button1);
-                    var menuitem1 = new AppBarMenuItem() { Message = "GoToEditAccountPage", Text = "update account" };
-                    appBar.MenuItems.Add(menuitem1);
+                    var menuItem1 = new AppBarMenuItem() { Message = "GoToEditAccountPage", Text = "update account" };
+                    appBar.MenuItems.Add(menuItem1);
+                    var menuItem2 = new AppBarMenuItem() { Message = "GoToAboutPage", Text = "about" };
+                    appBar.MenuItems.Add(menuItem2);
                     pageView.ApplicationBar = appBar;
                 }
                 else if (this is AddAccountViewModel)
