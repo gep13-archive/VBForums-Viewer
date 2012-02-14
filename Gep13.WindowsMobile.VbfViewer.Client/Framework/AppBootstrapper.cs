@@ -215,10 +215,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
             {
                 RootFrame.RemoveBackEntry();
             }
-            else if (e.Uri.ToString().Contains("InitialView"))
-            {
-                RootFrame.RemoveBackEntry();
-            }
         }
 
         /// <summary>

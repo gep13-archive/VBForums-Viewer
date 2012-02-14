@@ -17,7 +17,9 @@
 
 namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
+    using System.Linq;
     using Gep13.WindowsMobile.VbfViewer.Client.Workers;
+    using Microsoft.Phone.Controls;
 
     /// <summary>
     /// The ViewModel class for the Welcome page
@@ -31,6 +33,20 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
         public WelcomeViewModel(ViewModelWorker viewModelWorker)
             : base(viewModelWorker) 
         {
+            this.PurgeNavigationalBackStack();
+        }
+
+        /// <summary>
+        /// Remove the previous page from teh BackStack
+        /// </summary>
+        private void PurgeNavigationalBackStack()
+        {
+            var navEntry = (App.Current.RootVisual as PhoneApplicationFrame).BackStack.ElementAt(0);
+
+            if (navEntry.Source.ToString().Contains("InitialView"))
+            {
+                (App.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
+            }
         }
     }
 }
