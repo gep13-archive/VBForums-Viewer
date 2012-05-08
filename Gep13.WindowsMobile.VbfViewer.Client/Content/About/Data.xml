@@ -18,9 +18,12 @@
   <!-- The App element allows you to override the values that are extracted from the WMAppManifest.xml file automatically -->
   <!-- The AdditionalNotes attribute has no equivalent in the WMAppManifest.xml; you can only define its content here -->
   <!-- Explicitly set any of the attributes to an empty string to remove it (including its label) from the dialog -->
-  <App Author="[Your name here]"
-       Publisher="[Publisher]"       
-       AdditionalNotes="[Fill in additional info here]" />
+  <App Title="VBForumsMetro"
+    Author="@gep13"
+    Description="A client application to monitor your VBForums account on your Windows Phone 7."
+       Publisher="gep13"
+       Version="1.0.0.0"
+       AdditionalNotes="In order to get the most up to date information about this application, make sure to follow @VBForumsMetro on Twitter."/>
   <Items>
     <!-- Create a MainItem entry to configure the front page -->
     <!-- The Titel attribute defines the title of the pivot item -->
@@ -32,20 +35,22 @@
               AppDescriptionLabel="Description:"
               AppPublisherLabel="Publisher:"
               AppVersionLabel="Version:"
-              AppAdditionalNotesLabel="Additional Notes:"
-              AppReviewButtonContent="Review this app!"
-              AppBuyButtonContent="Buy this app!">
+              AppAdditionalNotesLabel="Updates:"
+              AppReviewButtonContent="Review this app!">
       <Links>
         <!-- A collection of links presented on the front page. -->
         <!-- By using different protocols like http or mailto you can invoke the respective applications -->
         <!-- The Label attribute defines an additional label placed in front of the hyperlink -->
         <!-- Use this to provide contact/support details for your app -->
-        <Link NavigateUri="http://www.example.com"
-              Content="http://www.example.com"
+        <Link NavigateUri="http://www.vbforumsmetro.co.uk"
+              Content="http://www.vbforumsmetro.co.uk"
               Label="Web:" />
-        <Link NavigateUri="mailto:support@example.com"
-              Content="support@example.com"
+        <Link NavigateUri="mailto:support@vbforumsmetro.co.uk"
+              Content="support@vbforumsmetro.co.uk"
               Label="Support:" />
+        <Link NavigateUri="http://twitter.com/#!/VBForumsMetro"
+              Content="@VBForumsMetro"
+              Label="Twitter:" />
       </Links>
     </MainItem>
     <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
@@ -53,9 +58,25 @@
     <!-- Each Item can be a remote item (fetched from a Uri) or a local item (using its content), or both (local content is the fallback value if fetching the network content fails) -->
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
-          Type="text">
-      1.0.0.0
-      This is the initial public version.      
+           Type="xaml">
+      <pages:AboutPageHistoryView xmlns="http://schemas.microsoft.com/winfx/2006xaml/presentation"
+                                  xmlns:pages="clr-namespace:Gep13.WindowsMobile.VbfViewer.Client.Views;assembly=Gep13.WindowsMobile.VbfViewer.Client"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top"/>
+    </Item>
+
+    <Item Title="license" Type="xaml">
+      <pages:AboutPageLicenseView xmlns="http://schemas.microsoft.com/winfx/2006xaml/presentation"
+                                  xmlns:pages="clr-namespace:Gep13.WindowsMobile.VbfViewer.Client.Views;assembly=Gep13.WindowsMobile.VbfViewer.Client"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top"/>
+    </Item>
+
+    <Item Title="credits" Type="xaml">
+      <pages:AboutPageCreditsView xmlns="http://schemas.microsoft.com/winfx/2006xaml/presentation"
+                                  xmlns:pages="clr-namespace:Gep13.WindowsMobile.VbfViewer.Client.Views;assembly=Gep13.WindowsMobile.VbfViewer.Client"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top"/>
     </Item>
   </Items>
 </About>

@@ -17,7 +17,7 @@
         
         <!-- Use the following setter to enable/disable the system tray on the about page -->
         <Setter Property="shell:SystemTray.IsVisible"
-                Value="False" />
+                Value="True" />
         
         <!-- You can use setters like the following to add transitions to your about page. 
              To make this work, you have to add:
