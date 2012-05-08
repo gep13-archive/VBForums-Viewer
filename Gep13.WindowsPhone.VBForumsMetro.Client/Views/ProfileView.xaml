@@ -35,16 +35,6 @@
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <StackPanel>
-                <Button x:Name="ToggleProgressBar"
-                        Content="Show/Hide Progress" />
-            </StackPanel>
-        </Grid>
     </Grid>
 
 </pages:AppPageViewBase>

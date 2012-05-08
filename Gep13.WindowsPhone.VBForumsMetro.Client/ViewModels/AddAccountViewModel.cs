@@ -192,6 +192,10 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         public void AuthenticateUser()
         {
             this.StatusLabel = string.Empty;
+
+            // TODO: Need to replace this with actual code.
+            this.IsUserAuthenticated = true;
+            this.StatusLabel = "user authenticated successfully";
         }
 
         /// <summary>

@@ -20,6 +20,7 @@ namespace Gep13.WindowsPhone.Core.Workers
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Rating;
     using Gep13.WindowsPhone.Core.Storage;
 
     /// <summary>
@@ -53,20 +54,27 @@ namespace Gep13.WindowsPhone.Core.Workers
         private INavigationHelperService navigationHelperService;
 
         /// <summary>
+        /// Local instnace of the Shared IRatingService
+        /// </summary>
+        private IRatingService ratingService;
+
+        /// <summary>
         /// Initializes a new instance of the ViewModelWorker class
         /// </summary>
         /// <param name="navigationService">NavigationService provided by Caliburn.Micro</param>
         /// <param name="progressService">ProgressService provided by Caliburn.Micro</param>
         /// <param name="eventAggregator">EventAggregator provided by Caliburn.Micro</param>
         /// <param name="storageService">StorageService provided by Caliburn.Micro</param>
-        /// /// <param name="navigationHelperService">NavigationHelperService provided by Caliburn.Micro</param>
-        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService)
+        /// <param name="navigationHelperService">NavigationHelperService provided by Caliburn.Micro</param>
+        /// <param name="ratingService">RatingService provided by Caliburn.Micro</param>
+        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService, IRatingService ratingService)
         {
             this.navigationService = navigationService;
             this.progressService = progressService;
             this.eventAggregator = eventAggregator;
             this.storageService = storageService;
             this.navigationHelperService = navigationHelperService;
+            this.ratingService = ratingService;
         }
 
         /// <summary>
@@ -107,6 +115,14 @@ namespace Gep13.WindowsPhone.Core.Workers
         public INavigationHelperService NavigationHelperService
         {
             get { return this.navigationHelperService; }
+        }
+
+        /// <summary>
+        /// Gets the shard RatingService
+        /// </summary>
+        public IRatingService RatingService
+        {
+            get { return this.ratingService; }
         }
     }
 }

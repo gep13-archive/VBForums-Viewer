@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ProfileViewModel.cs" company="GEP13">
+// <copyright file="IRatingService.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -15,36 +15,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
+namespace Gep13.WindowsPhone.Core.Rating
 {
-    using System.Linq;
-    using Gep13.WindowsPhone.Core.Workers;
-    using Microsoft.Phone.Controls;
-
     /// <summary>
-    /// The ViewModel class for the Profile page
+    /// Interface to provide the ability to rate the application
     /// </summary>
-    public class ProfileViewModel : VBForumsMetroScreenPageViewModelBase
+    public interface IRatingService
     {
         /// <summary>
-        /// Initializes a new instance of the ProfileViewModel class
+        /// Check to see whehter the user needs to rate the application
         /// </summary>
-        /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public ProfileViewModel(ViewModelWorker viewModelWorker)
-            : base(viewModelWorker)
-        {
-        }
-
-        /// <summary>
-        /// An overridden implemenation of the OnViewLoaded method to do specific functionality within this view
-        /// </summary>
-        /// <param name="view">The current view</param>
-        protected override void OnViewLoaded(object view)
-        {
-            this.VMWorker.RatingService.CheckWhetherUserWantsToRateApplication();
-            this.VMWorker.NavigationHelperService.PurgeNavigationalBackStack(App.Current.RootVisual as PhoneApplicationFrame); 
-            
-            base.OnViewLoaded(view);
-        }
+        void CheckWhetherUserWantsToRateApplication();
     }
 }

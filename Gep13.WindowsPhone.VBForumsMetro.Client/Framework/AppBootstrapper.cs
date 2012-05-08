@@ -25,11 +25,13 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Rating;
     using Gep13.WindowsPhone.Core.Storage;
     using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
+    using Telerik.Windows.Controls;
 
     /// <summary>
     /// This is the main class which is used by Caliburn.Micro
@@ -97,6 +99,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
             this.container.Instance<IStorageService>(new StorageService());
             this.container.Instance<INavigationHelperService>(new NavigationHelperService());
+            this.container.Instance<IRatingService>(new RatingService("VBForumsMetro"));
             this.container.Singleton<ViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
@@ -147,12 +150,17 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         {
             base.OnLaunch(sender, e);
 
+            ApplicationUsageHelper.Init("1.0");
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
+            // Added an imposed delay to allow the Splash Screen to show properly
+            System.Threading.Thread.Sleep(750);
         }
 
         /// <summary>
