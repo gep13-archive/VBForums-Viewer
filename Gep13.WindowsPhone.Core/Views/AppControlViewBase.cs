@@ -15,7 +15,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsPhone.VBForumsMetro.Client.Views
+namespace Gep13.WindowsPhone.Core.Views
 {
     using System.Reflection;
     using System.Windows.Controls;

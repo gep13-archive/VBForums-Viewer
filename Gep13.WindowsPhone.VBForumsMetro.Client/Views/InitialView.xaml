@@ -1,5 +1,5 @@
 ﻿<pages:AppPageViewBase x:Class="Gep13.WindowsPhone.VBForumsMetro.Client.Views.InitialView"
-                       xmlns:pages="clr-namespace:Gep13.WindowsPhone.VBForumsMetro.Client.Views"
+                       xmlns:pages="clr-namespace:Gep13.WindowsPhone.Core.Views;assembly=Gep13.WindowsPhone.Core"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"

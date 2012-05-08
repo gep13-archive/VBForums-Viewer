@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -94,8 +94,6 @@
     <Compile Include="ViewModels\ScreenPageViewModelBase.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
-    <Compile Include="Views\AppControlViewBase.cs" />
-    <Compile Include="Views\AppPageViewBase.cs" />
     <Compile Include="Workers\ViewModelWorker.cs" />
   </ItemGroup>
   <ItemGroup>
