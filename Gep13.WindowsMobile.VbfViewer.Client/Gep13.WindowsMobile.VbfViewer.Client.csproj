@@ -63,16 +63,7 @@
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit">
-      <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="NorthernLights">
-      <HintPath>..\packages\NorthernLightsWP7Toolkit.1.0.0\lib\sl4-windowsphone71\NorthernLights.dll</HintPath>
-    </Reference>
-    <Reference Include="NorthernLights.Controls">
-      <HintPath>..\packages\NorthernLightsWP7Toolkit.1.0.0\lib\sl4-windowsphone71\NorthernLights.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -85,8 +76,9 @@
     <Reference Include="TombstoneHelper">
       <HintPath>..\packages\WP7TombstoneHelper.2.5\lib\TombstoneHelper.dll</HintPath>
     </Reference>
-    <Reference Include="YourLastAboutDialog">
-      <HintPath>..\packages\YLAD.1.3\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
+    <Reference Include="YourLastAboutDialog, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +86,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Framework\AppBootstrapper.cs" />
-    <Compile Include="Framework\MetroGridHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\InitialViewModel.cs" />
@@ -104,7 +95,6 @@
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Views\AppControlViewBase.cs" />
     <Compile Include="Views\AppPageViewBase.cs" />
-    <Compile Include="Workers\AddAccountPageStorageWorker.cs" />
     <Compile Include="Workers\ViewModelWorker.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,16 +123,15 @@
     <Content Include="Resources\Iconography\appbar.feature.settings.rest.png" />
     <Content Include="Resources\Iconography\appbar.save.rest.png" />
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
-    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Resources\Tiles\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About\AboutStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Page Include="Resources\StylesAndTemplates\PageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

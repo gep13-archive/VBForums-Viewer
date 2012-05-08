@@ -145,14 +145,10 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnLaunch(object sender, LaunchingEventArgs e)
         {
             base.OnLaunch(sender, e);
-            ////MessageBox.Show("we are launching!");
 
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
-
-                // Display the metro grid helper.
-                MetroGridHelper.IsVisible = true;
 
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
@@ -166,7 +162,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnDeactivate(object sender, DeactivatedEventArgs e)
         {
             base.OnDeactivate(sender, e);
-            ////MessageBox.Show("we are deactivating!");
         }
 
         /// <summary>
@@ -177,7 +172,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         protected override void OnClose(object sender, ClosingEventArgs e)
         {
             base.OnClose(sender, e);
-            ////MessageBox.Show("we are closing!");
         }
 
         /// <summary>
@@ -222,7 +216,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         /// </summary>
         private void PhoneService_Continuing()
         {
-            MessageBox.Show("we are continuing!");
         }
 
         /// <summary>
@@ -230,7 +223,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
         /// </summary>
         private void PhoneService_Resurrecting()
         {
-            MessageBox.Show("we are resurrecting!");
         }
     }
 }
