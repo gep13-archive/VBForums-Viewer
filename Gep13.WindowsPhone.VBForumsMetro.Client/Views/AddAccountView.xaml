@@ -1,5 +1,6 @@
 ﻿<pages:AppPageViewBase x:Class="Gep13.WindowsPhone.VBForumsMetro.Client.Views.AddAccountView"
                        xmlns:pages="clr-namespace:Gep13.WindowsPhone.Core.Views;assembly=Gep13.WindowsPhone.Core"
+                       xmlns:gep13="clr-namespace:Gep13.WindowsPhone.Core.Controls;assembly=Gep13.WindowsPhone.Core"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
@@ -11,7 +12,7 @@
                        SupportedOrientations="Portrait"
                        Orientation="Portrait"
                        mc:Ignorable="d"
-                       d:DesignHeight="728"
+                       d:DesignHeight="800"
                        d:DesignWidth="480"
                        shell:SystemTray.IsVisible="True">
 
@@ -58,9 +59,19 @@
                     <TextBlock Text="username"
                                Style="{StaticResource LabelStyle}"
                                Margin="0" />
-                    <TextBox x:Name="Username"
+                    <!--<TextBox x:Name="Username"
                              Margin="-10,-5,-10,8"
-                             InputScope="EmailUserName" />
+                             InputScope="EmailUserName" />-->
+                    <gep13:ClearableTextBox Text="{Binding Username, Mode=TwoWay}"
+                                            Margin="-10,-5,-10,8" >
+                    	<gep13:ClearableTextBox.Resources>
+                    		<ResourceDictionary>
+                    			<ResourceDictionary.MergedDictionaries>
+                    				<ResourceDictionary Source="/Gep13.WindowsPhone.Core;component/Themes/ClearableTextBoxStyle.xaml"/>
+                    			</ResourceDictionary.MergedDictionaries>
+                    		</ResourceDictionary>
+                    	</gep13:ClearableTextBox.Resources>
+                    </gep13:ClearableTextBox>
 
                     <TextBlock Text="password"
                                Style="{StaticResource LabelStyle}"
