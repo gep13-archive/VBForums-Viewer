@@ -3,7 +3,9 @@ bin
 deploy
 *.csproj.user
 *.suo
+*ReSharper*
 *.orig
 output
+*DotSettings*
 packages
 StyleCop.Cache
