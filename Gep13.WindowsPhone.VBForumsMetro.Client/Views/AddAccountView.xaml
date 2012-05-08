@@ -1,11 +1,15 @@
-﻿<pages:AppPageViewBase x:Class="Gep13.WindowsPhone.VBForumsMetro.Client.Views.AddAccountView"
+﻿<pages:AppPageViewBase xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                       x:Class="Gep13.WindowsPhone.VBForumsMetro.Client.Views.AddAccountView"
                        xmlns:pages="clr-namespace:Gep13.WindowsPhone.Core.Views;assembly=Gep13.WindowsPhone.Core"
-                       xmlns:gep13="clr-namespace:Gep13.WindowsPhone.Core.Controls;assembly=Gep13.WindowsPhone.Core"
+                       xmlns:local="clr-namespace:Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels"
+                       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                       xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
                        FontSize="{StaticResource PhoneFontSizeNormal}"
                        Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,6 +19,11 @@
                        d:DesignHeight="800"
                        d:DesignWidth="480"
                        shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <local:VisibilityConveter x:Key="VisibilityConveter" />
+        <local:PasswordVisibilityConveter x:Key="PasswordVisibilityConveter" />
+    </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
@@ -59,25 +68,42 @@
                     <TextBlock Text="username"
                                Style="{StaticResource LabelStyle}"
                                Margin="0" />
-                    <!--<TextBox x:Name="Username"
-                             Margin="-10,-5,-10,8"
-                             InputScope="EmailUserName" />-->
-                    <gep13:ClearableTextBox Text="{Binding Username, Mode=TwoWay}"
-                                            Margin="-10,-5,-10,8" >
-                    	<gep13:ClearableTextBox.Resources>
-                    		<ResourceDictionary>
-                    			<ResourceDictionary.MergedDictionaries>
-                    				<ResourceDictionary Source="/Gep13.WindowsPhone.Core;component/Themes/ClearableTextBoxStyle.xaml"/>
-                    			</ResourceDictionary.MergedDictionaries>
-                    		</ResourceDictionary>
-                    	</gep13:ClearableTextBox.Resources>
-                    </gep13:ClearableTextBox>
+
+                    <toolkit:PhoneTextBox x:Name="Username"
+                                          LengthIndicatorVisible="False"
+                                          Margin="-10,-5,-10,8"
+                                          InputScope="EmailUserName"
+                                          ActionIcon="/Resources/Images/clearboxicon.png">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ActionIconTapped">
+                                <cal:ActionMessage MethodName="UsernameActionIconTapped" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </toolkit:PhoneTextBox>
 
                     <TextBlock Text="password"
                                Style="{StaticResource LabelStyle}"
                                Margin="0" />
-                    <PasswordBox x:Name="Password"
-                                 Margin="-10,-5,-10,8" />
+                    <toolkit:PhoneTextBox x:Name="PasswordText"
+                                          LengthIndicatorVisible="False"
+                                          Margin="-10,-5,-10,8"
+                                          InputScope="EmailUserName"
+                                          ActionIcon="/Resources/Images/clearboxicon.png"
+                                          Text="{Binding Password, Mode=TwoWay}"
+                                          Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource VisibilityConveter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ActionIconTapped">
+                                <cal:ActionMessage MethodName="PasswordActionIconTapped" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </toolkit:PhoneTextBox>
+                    <PasswordBox Margin="-10,-5,-10,8"
+                                 Password="{Binding Password, Mode=TwoWay}"
+                                 Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource PasswordVisibilityConveter}}" />
+                    <CheckBox Content="Show Password"
+                              Grid.Row="1"
+                              IsChecked="False"
+                              x:Name="ShowCheck" />
 
                     <TextBlock x:Name="StatusLabel"
                                HorizontalAlignment="Center" />

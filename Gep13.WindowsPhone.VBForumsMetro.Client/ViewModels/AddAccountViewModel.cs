@@ -17,7 +17,9 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
+    using System.Windows;
     using Gep13.WindowsPhone.Core.Workers;
+using System.Windows.Data;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
@@ -178,6 +180,22 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         }
 
         /// <summary>
+        /// Helper method to do the work when the ActionIcon is tapped on the Username TextBox
+        /// </summary>
+        public void UsernameActionIconTapped()
+        {
+            Username = string.Empty;
+        }
+
+        /// <summary>
+        /// Helper method to do the work when the ActionIcon is tapped on the Password Textbox
+        /// </summary>
+        public void PasswordActionIconTapped()
+        {
+            Password = string.Empty;
+        }
+
+        /// <summary>
         /// Helper method to populate some demo credentials
         /// </summary>
         public void PopulateDemoCredentials()
@@ -243,6 +261,46 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             }
 
             base.OnViewLoaded(view);
+        }
+    }
+
+    public class VisibilityConveter : IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return Visibility.Collapsed;
+            }
+
+            bool isChecked = (bool) value;
+
+            return (isChecked) ? Visibility.Visible : Visibility.Collapsed;    
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    public class PasswordVisibilityConveter : IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return Visibility.Collapsed;
+            }
+
+            bool isChecked = (bool)value;
+
+            return (isChecked) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
