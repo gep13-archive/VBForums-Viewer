@@ -65,6 +65,8 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Navigation\INavigationHelperService.cs" />
+    <Compile Include="Navigation\NavigationHelperService.cs" />
     <Compile Include="Progress\IProgressService.cs" />
     <Compile Include="Progress\ProgressService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,6 +18,7 @@
 namespace Gep13.WindowsPhone.Core.Workers
 {
     using Caliburn.Micro;
+    using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
     using Gep13.WindowsPhone.Core.Storage;
 
@@ -47,18 +48,25 @@ namespace Gep13.WindowsPhone.Core.Workers
         private IStorageService storageService;
 
         /// <summary>
+        /// Local instance of the Shared INavigationHelperService
+        /// </summary>
+        private INavigationHelperService navigationHelperService;
+
+        /// <summary>
         /// Initializes a new instance of the ViewModelWorker class
         /// </summary>
         /// <param name="navigationService">NavigationService provided by Caliburn.Micro</param>
         /// <param name="progressService">ProgressService provided by Caliburn.Micro</param>
         /// <param name="eventAggregator">EventAggregator provided by Caliburn.Micro</param>
         /// <param name="storageService">StorageService provided by Caliburn.Micro</param>
-        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService)
+        /// /// <param name="navigationHelperService">NavigationHelperService provided by Caliburn.Micro</param>
+        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService)
         {
             this.navigationService = navigationService;
             this.progressService = progressService;
             this.eventAggregator = eventAggregator;
             this.storageService = storageService;
+            this.navigationHelperService = navigationHelperService;
         }
 
         /// <summary>
@@ -91,6 +99,14 @@ namespace Gep13.WindowsPhone.Core.Workers
         public IStorageService StorageService
         {
             get { return this.storageService; }
+        }
+
+        /// <summary>
+        /// Gets the shared NavigationHelperService
+        /// </summary>
+        public INavigationHelperService NavigationHelperService
+        {
+            get { return this.navigationHelperService; }
         }
     }
 }

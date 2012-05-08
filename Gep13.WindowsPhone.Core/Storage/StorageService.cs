@@ -21,8 +21,7 @@ namespace Gep13.WindowsPhone.Core.Storage
     using System.IO.IsolatedStorage;
 
     /// <summary>
-    /// Provides an object for working with the
-    /// IsolatedStorageSettings in a generic context.
+    /// Concrete implemenation of the IStorageService to provide ability to access IsolatedStorage
     /// </summary>
     public class StorageService : IStorageService
     {
