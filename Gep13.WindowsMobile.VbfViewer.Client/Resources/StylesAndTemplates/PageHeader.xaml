@@ -10,7 +10,7 @@
                           VerticalAlignment="Center"
                           Height="60"
                           Width="212">
-                        <TextBlock Text="TEAMCITYMETRO"
+                        <TextBlock Text="VBFORUMSMETRO"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    FontFamily="Segoe WP Bold" />

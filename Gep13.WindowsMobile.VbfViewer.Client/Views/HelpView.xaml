@@ -28,7 +28,7 @@
                     Grid.Row="0"
                     Style="{StaticResource PhoneTitlePanelStyle}">
             <TextBlock x:Name="ApplicationTitle"
-                       Text="TEAMCITYMETRO"
+                       Text="VBFORUMSMETRO"
                        Style="{StaticResource PhoneTextTitle0Style}" />
             <TextBlock Text="help"
                        Style="{StaticResource PhoneTextTitle1Style}"
