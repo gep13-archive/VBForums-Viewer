@@ -88,6 +88,7 @@
     <Compile Include="Framework\AppBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
+    <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\InitialViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\ScreenPageViewModelBase.cs" />
@@ -119,14 +120,15 @@
     </Content>
     <Content Include="Content\About\Data.xml" />
     <Content Include="Resources\Iconography\appbar.check.rest.png" />
+    <Resource Include="Resources\Iconography\appbar.delete.rest.png" />
     <Content Include="Resources\Iconography\appbar.feature.email.rest.png" />
     <Content Include="Resources\Iconography\appbar.feature.settings.rest.png" />
     <Content Include="Resources\Iconography\appbar.save.rest.png" />
+    <Resource Include="Resources\Images\Icon_External_Link.png" />
+    <Resource Include="Resources\Images\lock.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Tiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\About\AboutStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
