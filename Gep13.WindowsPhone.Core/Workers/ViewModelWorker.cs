@@ -19,6 +19,7 @@ namespace Gep13.WindowsPhone.Core.Workers
 {
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Storage;
 
     /// <summary>
     /// Injected into every view model, access to most required objects
@@ -41,16 +42,23 @@ namespace Gep13.WindowsPhone.Core.Workers
         private IEventAggregator eventAggregator;
 
         /// <summary>
+        /// Local instance of the Shared IStorageService
+        /// </summary>
+        private IStorageService storageService;
+
+        /// <summary>
         /// Initializes a new instance of the ViewModelWorker class
         /// </summary>
         /// <param name="navigationService">NavigationService provided by Caliburn.Micro</param>
         /// <param name="progressService">ProgressService provided by Caliburn.Micro</param>
         /// <param name="eventAggregator">EventAggregator provided by Caliburn.Micro</param>
-        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator)
+        /// <param name="storageService">StorageService provided by Caliburn.Micro</param>
+        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService)
         {
             this.navigationService = navigationService;
             this.progressService = progressService;
             this.eventAggregator = eventAggregator;
+            this.storageService = storageService;
         }
 
         /// <summary>
@@ -75,6 +83,14 @@ namespace Gep13.WindowsPhone.Core.Workers
         public IEventAggregator EventAggregator
         {
             get { return this.eventAggregator; }
+        }
+
+        /// <summary>
+        /// Gets the shared StorageService
+        /// </summary>
+        public IStorageService StorageService
+        {
+            get { return this.storageService; }
         }
     }
 }

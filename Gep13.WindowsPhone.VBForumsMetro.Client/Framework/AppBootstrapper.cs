@@ -24,6 +24,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using System.Windows.Navigation;
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Storage;
     using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
     using Microsoft.Phone.Controls;
@@ -93,6 +94,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Singleton<ProfileViewModel>();
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
+            this.container.Instance<IStorageService>(new StorageService());
             this.container.Singleton<ViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
