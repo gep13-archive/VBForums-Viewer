@@ -25,7 +25,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
     using Caliburn.Micro;
     using Gep13.WindowsMobile.VbfViewer.Client.ViewModels;
     using Gep13.WindowsMobile.VbfViewer.Client.Workers;
-    using Gep13.WindowsMobile.VbfViewer.Core.Containers;
     using Gep13.WindowsMobile.VbfViewer.Core.Progress;
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
@@ -92,8 +91,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Framework
             this.container.Singleton<WelcomeViewModel>();
             this.container.Singleton<AddAccountViewModel>();
             this.container.Singleton<ProfileViewModel>();
-
-            this.container.Singleton<Account>();
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
             this.container.Singleton<ViewModelWorker>();

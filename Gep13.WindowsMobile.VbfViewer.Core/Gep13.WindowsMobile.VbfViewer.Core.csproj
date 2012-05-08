@@ -57,7 +57,6 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Containers\Account.cs" />
     <Compile Include="Progress\IProgressService.cs" />
     <Compile Include="Progress\ProgressService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

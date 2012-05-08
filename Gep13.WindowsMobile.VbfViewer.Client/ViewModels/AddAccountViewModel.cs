@@ -19,7 +19,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.ViewModels
 {
     using System.Linq;
     using Gep13.WindowsMobile.VbfViewer.Client.Workers;
-    using Gep13.WindowsMobile.VbfViewer.Core.Containers;
     using Microsoft.Phone.Controls;
 
     /// <summary>
