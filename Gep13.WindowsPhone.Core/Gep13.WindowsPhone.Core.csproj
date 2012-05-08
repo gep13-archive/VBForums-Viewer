@@ -65,6 +65,9 @@
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="Telerik.Windows.Controls.Primitives, Version=2012.1.321.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="TombstoneHelper">
+      <HintPath>..\packages\WP7TombstoneHelper.2.5\lib\TombstoneHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ClearableTextBox.cs" />

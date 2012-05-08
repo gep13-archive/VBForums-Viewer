@@ -20,6 +20,7 @@ namespace Gep13.WindowsPhone.Core.Views
     using System.Reflection;
     using System.Windows.Navigation;
     using Microsoft.Phone.Controls;
+    using TombstoneHelper;
 
     /// <summary>
     /// The base class for all views
@@ -44,7 +45,7 @@ namespace Gep13.WindowsPhone.Core.Views
         /// <param name="e">The NavigationEventArgs</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            this.RestoreState();
         }
 
         /// <summary>
@@ -54,6 +55,15 @@ namespace Gep13.WindowsPhone.Core.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+        }
+
+        /// <summary>
+        /// Override the OnNavigatingFrom Method
+        /// </summary>
+        /// <param name="e">The NavigatingCancelEventArgs</param>
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            this.SaveState(e);
         }
     }
 }
