@@ -17,12 +17,12 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Help page
     /// </summary>
-    public class HelpViewModel : ScreenPageViewModelBase
+    public class HelpViewModel : VBForumsMetroScreenPageViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the HelpViewModel class

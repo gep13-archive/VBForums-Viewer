@@ -91,10 +91,9 @@
     <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\InitialViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\ScreenPageViewModelBase.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\VBForumsMetroScreenPageViewModelBase.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
-    <Compile Include="Workers\ViewModelWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

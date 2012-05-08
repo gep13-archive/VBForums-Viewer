@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ViewModelWorker.cs" company="GEP13">
+// <copyright file="ScreenPageViewModelBase.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -15,66 +15,62 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsPhone.VBForumsMetro.Client.Workers
+namespace Gep13.WindowsPhone.Core.ViewModels
 {
     using Caliburn.Micro;
-    using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
-    /// Injected into every view model, access to most required objects
+    /// The base class for all screens of the application
     /// </summary>
-    public class ViewModelWorker
+    public class ScreenPageViewModelBase : Screen
     {
         /// <summary>
-        /// Local instance of the Shared INavigationService
+        /// Local instance of the shared ViewModelWorker class
         /// </summary>
-        private INavigationService navigationService;
+        private readonly ViewModelWorker viewModelWorker;
 
         /// <summary>
-        /// Local instance of the Shared IProgressService
+        /// Initializes a new instance of the ScreenPageViewModelBase class
         /// </summary>
-        private IProgressService progressService;
-
-        /// <summary>
-        /// Local instance of the Shared IEventAggregator
-        /// </summary>
-        private IEventAggregator eventAggregator;
-
-        /// <summary>
-        /// Initializes a new instance of the ViewModelWorker class
-        /// </summary>
-        /// <param name="navigationService">NavigationService provided by Caliburn.Micro</param>
-        /// <param name="progressService">ProgressService provided by Caliburn.Micro</param>
-        /// <param name="eventAggregator">EventAggregator provided by Caliburn.Micro</param>
-        public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator)
+        /// <param name="viewModelWorker">Incoming ViewModelWorker provided by Caliburn.Micro</param>
+        public ScreenPageViewModelBase(ViewModelWorker viewModelWorker)
         {
-            this.navigationService = navigationService;
-            this.progressService = progressService;
-            this.eventAggregator = eventAggregator;
+            this.viewModelWorker = viewModelWorker;
         }
 
         /// <summary>
-        /// Gets the shared NavigationService
+        /// Gets or sets a value indicating whether or not to remove the source page from the back stack
         /// </summary>
-        public INavigationService NavigationService
+        public bool BackNavSkipOne { get; set; }
+
+        /// <summary>
+        /// Gets a utility class to provide access to common workers to view models
+        /// </summary>
+        protected ViewModelWorker VMWorker
         {
-            get { return this.navigationService; }
+            get { return this.viewModelWorker; }
         }
 
         /// <summary>
-        /// Gets the shared ProgressService
+        /// An overridable method to setup the Application Bar that is placed on each page
         /// </summary>
-        public IProgressService ProgressService
+        /// <param name="view">The View that the Application Bar should be created on</param>
+        public virtual void InitialiseAppBar(object view)
         {
-            get { return this.progressService; }
         }
 
         /// <summary>
-        /// Gets the shared EventAggregator
+        /// Fired after the view gets attached to the view model
         /// </summary>
-        public IEventAggregator EventAggregator
+        /// <param name="view">The incoming View</param>
+        /// <param name="context">The incoming Context</param>
+        protected override void OnViewAttached(object view, object context)
         {
-            get { return this.eventAggregator; }
+            base.OnViewAttached(view, context);
+
+            // ensure the app bar is initialised
+            this.InitialiseAppBar(view);
         }
     }
 }

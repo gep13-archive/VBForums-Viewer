@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ScreenPageViewModelBase.cs" company="GEP13">
+// <copyright file="VBForumsMetroScreenPageViewModelBase.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -19,40 +19,23 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
     using System;
     using Caliburn.Micro;
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.ViewModels;
+    using Gep13.WindowsPhone.Core.Workers;
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
 
     /// <summary>
-    /// The base class for all screens of the application
+    /// The base class specifically for the VBForumsMetro application for all screens of the application
     /// </summary>
-    public class ScreenPageViewModelBase : Screen
+    public class VBForumsMetroScreenPageViewModelBase : ScreenPageViewModelBase
     {
         /// <summary>
-        /// Local instance of the shared ViewModelWorker class
-        /// </summary>
-        private ViewModelWorker viewModelWorker;
-
-        /// <summary>
-        /// Initializes a new instance of the ScreenPageViewModelBase class
+        /// Initializes a new instance of the VBForumsMetroScreenPageViewModelBase class
         /// </summary>
         /// <param name="viewModelWorker">Incoming ViewModelWorker provided by Caliburn.Micro</param>
-        public ScreenPageViewModelBase(ViewModelWorker viewModelWorker)
+        public VBForumsMetroScreenPageViewModelBase(ViewModelWorker viewModelWorker)
+            : base(viewModelWorker) 
         {
-            this.viewModelWorker = viewModelWorker;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether or not to remove the source page from the back stack
-        /// </summary>
-        public bool BackNavSkipOne { get; set; }
-
-        /// <summary>
-        /// Gets a utility class to provide access to common workers to view models
-        /// </summary>
-        protected ViewModelWorker VMWorker
-        {
-            get { return this.viewModelWorker; }
         }
 
         /// <summary>
@@ -80,8 +63,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         public void GoToWelcomePage()
         {
             this.VMWorker.NavigationService.UriFor<WelcomeViewModel>().Navigate();
-                ////.WithParam(vm => vm.BackNavSkipOne, true)
-                ////.Navigate();
+            ////.WithParam(vm => vm.BackNavSkipOne, true)
+            ////.Navigate();
         }
 
         /// <summary>
@@ -120,7 +103,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// <remarks>
         /// We can't databind so we have to do this programmatically
         /// </remarks>
-        public void InitialiseAppBar(object view)
+        public override void InitialiseAppBar(object view)
         {
             // sets up the app bar, use CM Buttons so we can have Action Messages included
             var pageView = view as PhoneApplicationPage;
@@ -145,19 +128,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
                     pageView.ApplicationBar = appBar;
                 }
             }
-        }
-
-        /// <summary>
-        /// Fired after the view gets attached to the view model
-        /// </summary>
-        /// <param name="view">The incoming View</param>
-        /// <param name="context">The incoming Context</param>
-        protected override void OnViewAttached(object view, object context)
-        {
-            base.OnViewAttached(view, context);
-
-            // ensure the app bar is initialised
-            this.InitialiseAppBar(view);
         }
     }
 }

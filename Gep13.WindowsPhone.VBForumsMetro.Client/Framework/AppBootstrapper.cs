@@ -24,8 +24,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using System.Windows.Navigation;
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.Progress;
+    using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
 

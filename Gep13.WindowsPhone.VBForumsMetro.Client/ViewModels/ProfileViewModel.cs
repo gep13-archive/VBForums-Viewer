@@ -18,13 +18,13 @@
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
     using System.Linq;
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
     using Microsoft.Phone.Controls;
 
     /// <summary>
     /// The ViewModel class for the Profile page
     /// </summary>
-    public class ProfileViewModel : ScreenPageViewModelBase
+    public class ProfileViewModel : VBForumsMetroScreenPageViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the ProfileViewModel class

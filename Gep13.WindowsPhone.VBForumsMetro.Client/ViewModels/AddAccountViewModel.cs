@@ -17,12 +17,12 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
     /// </summary>
-    public class AddAccountViewModel : ScreenPageViewModelBase
+    public class AddAccountViewModel : VBForumsMetroScreenPageViewModelBase
     {
         /// <summary>
         /// Local variable for the userName

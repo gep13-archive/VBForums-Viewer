@@ -17,12 +17,12 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Settings page
     /// </summary>
-    public class SettingsViewModel : ScreenPageViewModelBase
+    public class SettingsViewModel : VBForumsMetroScreenPageViewModelBase
     {
                 /// <summary>
         /// Initializes a new instance of the SettingsViewModel class

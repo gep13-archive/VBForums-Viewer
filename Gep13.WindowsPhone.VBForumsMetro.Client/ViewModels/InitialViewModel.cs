@@ -18,12 +18,12 @@
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
     using Caliburn.Micro;
-    using Gep13.WindowsPhone.VBForumsMetro.Client.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Initial page
     /// </summary>
-    public class InitialViewModel : ScreenPageViewModelBase
+    public class InitialViewModel : VBForumsMetroScreenPageViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the InitialViewModel class
