@@ -35,6 +35,16 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         private string password;
 
         /// <summary>
+        /// Local variable for whether the user is authenticated
+        /// </summary>
+        private bool isAuthenticated;
+
+        /// <summary>
+        /// Local variable for displaying the status of the user authentication to the user
+        /// </summary>
+        private string statusLabel;
+
+        /// <summary>
         /// Initializes a new instance of the AddAccountViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
@@ -62,7 +72,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             {
                 this.userName = value;
                 NotifyOfPropertyChange(() => this.Username);
-                NotifyOfPropertyChange(() => this.CanSaveAndNavigateToProfileView);
+                NotifyOfPropertyChange(() => this.CanAuthenticateUser);
             }
         }
 
@@ -80,7 +90,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             {
                 this.password = value;
                 NotifyOfPropertyChange(() => this.Password);
-                NotifyOfPropertyChange(() => this.CanSaveAndNavigateToProfileView);
+                NotifyOfPropertyChange(() => this.CanAuthenticateUser);
             }
         }
 
@@ -96,37 +106,139 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         }
 
         /// <summary>
-        /// Gets a value indicating whether all details have been entered. Used by Caliburn.Micro
+        /// Gets or sets the contents of the StatusLabel displayed on the page
         /// </summary>
-        public bool CanSaveAndNavigateToProfileView
+        public string StatusLabel
         {
             get
             {
-                if (string.IsNullOrEmpty(this.Username) == true ||
-                    string.IsNullOrEmpty(this.Password))
-                {
-                    return false;
-                }
+                return this.statusLabel;
+            }
 
-                return true;
+            set
+            {
+                this.statusLabel = value;
+                NotifyOfPropertyChange(() => this.StatusLabel);
             }
         }
 
         /// <summary>
-        /// Store the account details and move to the ProfileView
+        /// Gets or sets a value indicating whether the specified user credentials are authenticated.
         /// </summary>
-        public void SaveAndNavigateToProfileView()
+        public bool IsUserAuthenticated
         {
-            ////this.CommitAccountToStorage();
-            ////this.SetFirstRunFlag();
+            get
+            {
+                return this.isAuthenticated;
+            }
+
+            set
+            {
+                this.isAuthenticated = value;
+                NotifyOfPropertyChange(() => this.IsUserAuthenticated);
+                NotifyOfPropertyChange(() => this.CanGoToProfilePage);
+                NotifyOfPropertyChange(() => this.CanDeleteAccount);
+            }
         }
 
         /// <summary>
-        /// Worker method to set the FirstRunFlag to indicate that the user have set the account details
+        /// Gets a value indicating whether the current account can be deleted.
         /// </summary>
-        private void SetFirstRunFlag()
+        public bool CanDeleteAccount
         {
-            ////this.storageService.Add("FirstRunFlag", true);
+            get { return this.IsUserAuthenticated || this.IsEditMode; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether it is possible to Authenticate a user
+        /// </summary>
+        public bool CanAuthenticateUser
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Username) && !string.IsNullOrEmpty(this.Password);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether it is possible to navigate to the ProfilePage
+        /// </summary>
+        public bool CanGoToProfilePage
+        {
+            get
+            {
+                if (this.IsUserAuthenticated)
+                {
+                    this.VMWorker.StorageService.Add("firstrunflag", true);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Helper method to populate some demo credentials
+        /// </summary>
+        public void PopulateDemoCredentials()
+        {
+            this.Username = "test";
+            this.Password = "password";
+        }
+
+        /// <summary>
+        /// A helper method to go off to the VBForums site and Authenticate the current user credentials
+        /// </summary>
+        public void AuthenticateUser()
+        {
+            this.StatusLabel = string.Empty;
+        }
+
+        /// <summary>
+        /// A helper method to delete the current credentials
+        /// </summary>
+        public void DeleteAccount()
+        {
+            ////_isolatedStorage.ClearUserCredentials();
+            this.VMWorker.StorageService.Add("firstrunflag", false);
+            this.Username = string.Empty;
+            this.Password = string.Empty;
+            this.IsUserAuthenticated = false;
+        }
+
+        /// <summary>
+        /// An overridden implemenation of the OnViewAttahced method to do specific functionality within this view
+        /// </summary>
+        /// <param name="view">The current view</param>
+        /// <param name="context">The incoming context</param>
+        protected override void OnViewAttached(object view, object context)
+        {
+            this.StatusLabel = string.Empty;
+            this.IsUserAuthenticated = false;
+
+            base.OnViewAttached(view, context);
+        }
+
+        /// <summary>
+        /// An overridden implemenation of the OnViewLoaded method to do specific functionality within this view
+        /// </summary>
+        /// <param name="view">The current view</param>
+        protected override void OnViewLoaded(object view)
+        {
+            if (this.IsEditMode)
+            {
+                if (string.IsNullOrEmpty(this.Username))
+                {
+                    this.Username = this.VMWorker.StorageService.Get<string>("username");
+                }
+
+                if (string.IsNullOrEmpty(this.Password))
+                {
+                    this.Password = this.VMWorker.StorageService.Get<string>("password");
+                }
+            }
+
+            base.OnViewLoaded(view);
         }
     }
 }

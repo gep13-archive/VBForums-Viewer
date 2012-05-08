@@ -15,42 +15,49 @@
                        d:DesignWidth="480"
                        shell:SystemTray.IsVisible="True">
 
-    <StackPanel>
-        <ItemsControl Style="{StaticResource PageHeader}" />
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <Grid Margin="20,0"
-              Height="616">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
+        <!-- Grid Row 0 Column 0 -->
+        <!-- The standard header -->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Style="{StaticResource PhoneTitlePanelStyle}">
+            <TextBlock x:Name="ApplicationTitle"
+                       Text="VBFORUMSMETRO"
+                       Style="{StaticResource PhoneTextTitle0Style}" />
             <TextBlock Text="welcome"
                        Style="{StaticResource PhoneTextTitle1Style}"
                        Margin="0" />
+        </StackPanel>
 
-            <StackPanel Grid.Row="1"
-                        VerticalAlignment="Top"
-                        Margin="0,30,0,0">
-                <TextBox Template="{StaticResource TextboxClicker}"
-                         Text="The VBForums Viewer allows you to access your VBForums profile on your Windows Phone handset.  You will need to provide your username and password for the site.&#xa;&#xa;If you know what your username and password is tap the proceed button to get started."
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         FontSize="21.333"
-                         IsEnabled="False"
-                         Background="{StaticResource PhoneBackgroundBrush}"
-                         SelectionBackground="{x:Null}"
-                         BorderBrush="{x:Null}"
-                         FontFamily="Segoe WP"
-                         SelectionForeground="{x:Null}"
-                         BorderThickness="0"
-                         Foreground="{StaticResource PhoneSubtleBrush}" />
+        <!-- Grid Row 1 Column 0 -->
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Top"
+                    Margin="24,16,12,0">
+            <TextBox Template="{StaticResource TextboxClicker}"
+                     Text="VBForumsMetro allows you to access your VBForums profile on your Windows Phone handset.  You will need to provide your username and password for the site.  If you know what your username and password is tap the proceed button to get started."
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     FontSize="21.333"
+                     IsEnabled="False"
+                     Background="{StaticResource PhoneBackgroundBrush}"
+                     SelectionBackground="{x:Null}"
+                     BorderBrush="{x:Null}"
+                     FontFamily="Segoe WP"
+                     SelectionForeground="{x:Null}"
+                     BorderThickness="0"
+                     Foreground="{StaticResource PhoneSubtleBrush}"
+                     Margin="0" />
 
-                <Button x:Name="GoToAddAccountPage"
-                        Content="proceed"
-                        HorizontalAlignment="Right" />
-            </StackPanel>
-        </Grid>
-    </StackPanel>
+            <Button x:Name="GoToAddAccountPage"
+                    Content="proceed"
+                    HorizontalAlignment="Right" />
+        </StackPanel>
+    </Grid>
 
 </pages:AppPageViewBase>

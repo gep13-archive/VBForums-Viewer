@@ -117,12 +117,12 @@
     </Content>
     <Content Include="Content\About\Data.xml" />
     <Content Include="Resources\Iconography\appbar.check.rest.png" />
-    <Resource Include="Resources\Iconography\appbar.delete.rest.png" />
+    <Content Include="Resources\Iconography\appbar.delete.rest.png" />
     <Content Include="Resources\Iconography\appbar.feature.email.rest.png" />
     <Content Include="Resources\Iconography\appbar.feature.settings.rest.png" />
     <Content Include="Resources\Iconography\appbar.save.rest.png" />
-    <Resource Include="Resources\Images\Icon_External_Link.png" />
-    <Resource Include="Resources\Images\lock.png" />
+    <Content Include="Resources\Images\Icon_External_Link.png" />
+    <Content Include="Resources\Images\lock.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

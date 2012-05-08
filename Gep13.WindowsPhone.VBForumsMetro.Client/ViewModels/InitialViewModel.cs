@@ -43,13 +43,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             switch (this.ObtainFirstRunFlag())
             {
                 case false:
-
-                    this.NavigateToWelcomeView();
+                    GoToWelcomePage();
                     break;
 
                 default:
-
-                    this.NavigateToProfileView();
+                    GoToProfilePage();
                     break;
             }
         }
@@ -63,28 +61,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// <returns>A bool, indicating whether the app have been run before.</returns>
         private bool ObtainFirstRunFlag()
         {
-            ////return this.storageService.Get<bool>("FirstRunFlag");
-            return false;
-        }
-
-        /// <summary>
-        /// Use the NavigationService to navigate to the WelcomeView.
-        /// This view allows the user to set up an account if it
-        /// is the first time they have ran the app on their device.
-        /// </summary>
-        private void NavigateToWelcomeView()
-        {
-            this.VMWorker.NavigationService.UriFor<WelcomeViewModel>().Navigate();
-        }
-
-        /// <summary>
-        /// If it is not the first time the app has been ran then
-        /// navigate to the ComposeViewModel and don't take them
-        /// through account creation.
-        /// </summary>
-        private void NavigateToProfileView()
-        {
-            this.VMWorker.NavigationService.UriFor<ProfileViewModel>().Navigate();
+            return this.VMWorker.StorageService.Get<bool>("firstrunflag");
         }
     }
 }
