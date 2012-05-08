@@ -89,6 +89,21 @@ namespace Gep13.WindowsPhone.Core.Progress
         }
 
         /// <summary>
+        /// Toggles the current state of the ProgressIndicator on the page
+        /// </summary>
+        public void Toggle()
+        {
+            if (this.IsEnabled)
+            {
+                this.Hide();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
+
+        /// <summary>
         /// Handle the OnNavigated event to this page, in order to assign our instance of the ProgressIndicator to this page
         /// </summary>
         /// <param name="sender">The object that raised the Navigation Event</param>

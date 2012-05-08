@@ -45,5 +45,10 @@ namespace Gep13.WindowsPhone.Core.Progress
         /// Hide the ProgressIndicator on the page
         /// </summary>
         void Hide();
+
+        /// <summary>
+        /// Toggles the current state of the ProgressIndicator on the page
+        /// </summary>
+        void Toggle();
     }
 }
