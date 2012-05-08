@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{f8bfaae9-a09e-486b-8257-b4665aabaac4}" Title="VBForumsMetro" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="gep13" Description="A Windows Phone 7 Client for VBForums website." Publisher="gep13">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="/Views/InitialView.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="Gep13.WindowsPhone.VBForumsMetro.ClientToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>VBForumsMetro</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
