@@ -23,6 +23,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using System.Windows.Controls;
     using System.Windows.Navigation;
     using Caliburn.Micro;
+    using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
     using Gep13.WindowsPhone.Core.Storage;
     using Gep13.WindowsPhone.Core.Workers;
@@ -95,6 +96,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
             this.container.Instance<IStorageService>(new StorageService());
+            this.container.Instance<INavigationHelperService>(new NavigationHelperService());
             this.container.Singleton<ViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
