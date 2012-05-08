@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gep13.WindowsPhone.Core.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gep13.WindowsPhone.VBForumsMetro.Core.Tests", "Gep13.WindowsPhone.VBForumsMetro.Core.Tests\Gep13.WindowsPhone.VBForumsMetro.Core.Tests.csproj", "{12576430-65BE-4CBC-81BE-995B89AA4290}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gep13.WindowsPhone.Core", "Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj", "{35D496EF-840B-4EA7-8250-E09A8CF9209C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{12576430-65BE-4CBC-81BE-995B89AA4290}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12576430-65BE-4CBC-81BE-995B89AA4290}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12576430-65BE-4CBC-81BE-995B89AA4290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D496EF-840B-4EA7-8250-E09A8CF9209C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D496EF-840B-4EA7-8250-E09A8CF9209C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D496EF-840B-4EA7-8250-E09A8CF9209C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D496EF-840B-4EA7-8250-E09A8CF9209C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

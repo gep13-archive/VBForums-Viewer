@@ -18,7 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsMobile.VbfViewer.Core.Progress
+namespace Gep13.WindowsPhone.Core.Progress
 {
     /// <summary>
     /// Interface to provide the ability to Show/Hide a ProgressIndicator on the page

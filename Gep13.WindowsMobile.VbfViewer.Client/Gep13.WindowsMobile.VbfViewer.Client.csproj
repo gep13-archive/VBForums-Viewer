@@ -188,6 +188,10 @@
       <Project>{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}</Project>
       <Name>Gep13.WindowsMobile.VbfViewer.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj">
+      <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
+      <Name>Gep13.WindowsPhone.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

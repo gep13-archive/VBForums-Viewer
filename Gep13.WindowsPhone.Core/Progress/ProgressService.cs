@@ -18,7 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Gep13.WindowsMobile.VbfViewer.Core.Progress
+namespace Gep13.WindowsPhone.Core.Progress
 {
     using System.Windows.Navigation;
     using Microsoft.Phone.Controls;

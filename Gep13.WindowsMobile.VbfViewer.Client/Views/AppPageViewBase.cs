@@ -37,10 +37,6 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Views
             {
                 initializeComponentMethod.Invoke(this, new object[0]);
             }
-            ////if (!(this is VideoView))
-            ////{
-            ////    SupportedOrientations = SupportedPageOrientation.Portrait;
-            ////}
         }
 
         /// <summary>
@@ -49,7 +45,7 @@ namespace Gep13.WindowsMobile.VbfViewer.Client.Views
         /// <param name="e">The NavigationEventArgs</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SystemTray.IsVisible = false;
+            base.OnNavigatedTo(e);
         }
 
         /// <summary>

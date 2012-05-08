@@ -18,7 +18,7 @@
 namespace Gep13.WindowsMobile.VbfViewer.Client.Workers
 {
     using Caliburn.Micro;
-    using Gep13.WindowsMobile.VbfViewer.Core.Progress;
+    using Gep13.WindowsPhone.Core.Progress;
 
     /// <summary>
     /// Injected into every view model, access to most required objects
