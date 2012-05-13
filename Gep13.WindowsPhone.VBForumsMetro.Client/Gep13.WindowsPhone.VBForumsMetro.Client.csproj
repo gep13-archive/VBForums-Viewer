@@ -61,22 +61,56 @@
     <Reference Include="Caliburn.Micro.Extensions">
       <HintPath>..\packages\Caliburn.Micro.1.3.1\lib\sl4-windowsphone71\Caliburn.Micro.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+    <Reference Include="Microsoft.Phone">
+      <HintPath>..\SharedBinaries\WP7Lib\Microsoft.Phone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL">
+      <HintPath>..\SharedBinaries\WP7Lib\Microsoft.Phone.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Interop">
+      <HintPath>..\SharedBinaries\WP7Lib\Microsoft.Phone.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="System.Windows" />
-    <Reference Include="system" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
+    <Reference Include="mscorlib">
+      <HintPath>..\SharedBinaries\WP7Lib\mscorlib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib.Extensions">
+      <HintPath>..\SharedBinaries\WP7Lib\mscorlib.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\SharedBinaries\WP7Lib\System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>..\SharedBinaries\WP7Lib\System.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>..\SharedBinaries\WP7Lib\System.Net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows">
+      <HintPath>..\SharedBinaries\WP7Lib\System.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.1.3.1\lib\sl4-windowsphone71\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="mscorlib.extensions" />
-    <Reference Include="Telerik.Windows.Core, Version=2012.1.321.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml">
+      <HintPath>..\SharedBinaries\WP7Lib\System.Xml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Core">
+      <HintPath>..\SharedBinaries\Telerik\Current\Telerik.Windows.Core.dll</HintPath>
+    </Reference>
     <Reference Include="YourLastAboutDialog, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
@@ -131,7 +165,16 @@
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj">
+      <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
+      <Name>Gep13.WindowsPhone.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.Core\Gep13.WindowsPhone.VBForumsMetro.Core.csproj">
+      <Project>{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}</Project>
+      <Name>Gep13.WindowsPhone.VBForumsMetro.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\About\AboutStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -186,18 +229,37 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.Core\Gep13.WindowsPhone.VBForumsMetro.Core.csproj">
-      <Project>{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}</Project>
-      <Name>Gep13.WindowsPhone.VBForumsMetro.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj">
-      <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
-      <Name>Gep13.WindowsPhone.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <PropertyGroup>
+    <WindowsPhoneBuildResources>..\SharedBinaries\Build\MSBuild_WP7</WindowsPhoneBuildResources>
+    <SilverlightBuildResources>..\SharedBinaries\Silverlight\v4.0</SilverlightBuildResources>
+    <TargetFrameworkDirectory>$(WindowsPhoneBuildResources)\Reference Assemblies</TargetFrameworkDirectory>
+    <TargetFrameworkSDKDirectory>$(WindowsPhoneBuildResources)\Libraries</TargetFrameworkSDKDirectory>
+    <_FullFrameworkReferenceAssemblyPaths>$(WindowsPhoneBuildResources)\Reference Assemblies</_FullFrameworkReferenceAssemblyPaths>
+    <UseCustomWindowsPhoneSDKFolder>true</UseCustomWindowsPhoneSDKFolder>
+    <SilverlightRuntimeVersion>4.0</SilverlightRuntimeVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CIBuild|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CIBuild\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>Bin\Debug\TeamCity.WP7.Web.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Silverlight.CSharp.targets" />
+  <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Silverlight.Common.OverridesForBuild.targets" />
+  <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Xna.GameStudio.Content.targets" />
   <Import Project="$(ProjectDir)..\SharedBinaries\StyleCop\Current\StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
