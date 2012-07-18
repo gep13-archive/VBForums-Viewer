@@ -20,11 +20,6 @@
                        d:DesignWidth="480"
                        shell:SystemTray.IsVisible="True">
 
-    <phone:PhoneApplicationPage.Resources>
-        <local:VisibilityConveter x:Key="VisibilityConveter" />
-        <local:PasswordVisibilityConveter x:Key="PasswordVisibilityConveter" />
-    </phone:PhoneApplicationPage.Resources>
-
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
         <Rectangle Fill="{StaticResource PhoneAccentBrush}"
@@ -90,7 +85,7 @@
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"
                                           Text="{Binding Password, Mode=TwoWay}"
-                                          Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource VisibilityConveter}}">
+                                          Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityConverter}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
                                 <cal:ActionMessage MethodName="PasswordActionIconTapped" />
@@ -99,7 +94,7 @@
                     </toolkit:PhoneTextBox>
                     <PasswordBox Margin="-10,-5,-10,8"
                                  Password="{Binding Password, Mode=TwoWay}"
-                                 Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource PasswordVisibilityConveter}}" />
+                                 Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityInvertedConverter}}" />
                     <CheckBox Content="Show Password"
                               Grid.Row="1"
                               IsChecked="False"

@@ -8,6 +8,7 @@
                 <ResourceDictionary Source="\Resources\StylesAndTemplates\PageHeader.xaml"/>
                 <ResourceDictionary Source="\Resources\StylesAndTemplates\TextStyles.xaml"/>
                 <ResourceDictionary Source="\Resources\StylesAndTemplates\TextboxClicker.xaml"/>
+                <ResourceDictionary Source="\Resources\Converters.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <local:AppBootstrapper x:Key="bootstrapper" />

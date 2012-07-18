@@ -18,8 +18,8 @@
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
     using System.Windows;
+    using System.Windows.Data;
     using Gep13.WindowsPhone.Core.Workers;
-using System.Windows.Data;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
@@ -184,7 +184,7 @@ using System.Windows.Data;
         /// </summary>
         public void UsernameActionIconTapped()
         {
-            Username = string.Empty;
+            this.Username = string.Empty;
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ using System.Windows.Data;
         /// </summary>
         public void PasswordActionIconTapped()
         {
-            Password = string.Empty;
+            this.Password = string.Empty;
         }
 
         /// <summary>
@@ -261,46 +261,6 @@ using System.Windows.Data;
             }
 
             base.OnViewLoaded(view);
-        }
-    }
-
-    public class VisibilityConveter : IValueConverter
-    {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value == null)
-            {
-                return Visibility.Collapsed;
-            }
-
-            bool isChecked = (bool) value;
-
-            return (isChecked) ? Visibility.Visible : Visibility.Collapsed;    
-        }
-
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public class PasswordVisibilityConveter : IValueConverter
-    {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value == null)
-            {
-                return Visibility.Collapsed;
-            }
-
-            bool isChecked = (bool)value;
-
-            return (isChecked) ? Visibility.Collapsed : Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
