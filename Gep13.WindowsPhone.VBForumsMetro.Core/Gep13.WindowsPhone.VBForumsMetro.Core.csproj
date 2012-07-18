@@ -73,9 +73,26 @@
       <HintPath>..\SharedBinaries\WP7Lib\System.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Wintellect.Sterling.WindowsPhone">
+      <HintPath>..\packages\SterlingPhone.1.5.0.1\lib\SL3-WP\Wintellect.Sterling.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wintellect.Sterling.WindowsPhone.IsolatedStorage">
+      <HintPath>..\packages\SterlingPhone.1.5.0.1\lib\SL3-WP\Wintellect.Sterling.WindowsPhone.IsolatedStorage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\VBForumsMetroSterlingService.cs" />
+    <Compile Include="Model\VBForumsMetroDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj">
+      <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
+      <Name>Gep13.WindowsPhone.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <WindowsPhoneBuildResources>..\SharedBinaries\Build\MSBuild_WP7</WindowsPhoneBuildResources>

@@ -23,6 +23,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using System.Windows.Controls;
     using System.Windows.Navigation;
     using Caliburn.Micro;
+
+    using Gep13.WindowsPhone.Core.Database;
     using Gep13.WindowsPhone.Core.Diagnostics;
     using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
@@ -30,6 +32,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using Gep13.WindowsPhone.Core.Storage;
     using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Database;
+
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
     using Telerik.Windows.Controls;
@@ -102,6 +106,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Instance<INavigationHelperService>(new NavigationHelperService());
             this.container.Instance<IRatingService>(new RatingService("VBForumsMetro"));
             this.container.Instance<IDiagnosticsService>(new DiagnosticsService("VBForumsMetro.txt", "VBForumsMetro", "support@vbforumsmetro.co.uk"));
+            this.container.Instance<ISterlingService>(new VBForumsMetroSterlingService());
             this.container.Singleton<ViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
