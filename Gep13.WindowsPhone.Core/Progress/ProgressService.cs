@@ -60,7 +60,7 @@ namespace Gep13.WindowsPhone.Core.Progress
         /// </summary>
         public void Show()
         {
-            Show(DefaultIndicatorText);
+            this.Show(DefaultIndicatorText);
             this.IsEnabled = true;
         }
 
