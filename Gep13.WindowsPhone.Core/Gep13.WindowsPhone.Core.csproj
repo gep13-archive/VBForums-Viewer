@@ -150,7 +150,6 @@
   <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Silverlight.CSharp.targets" />
   <Import Project="$(WindowsPhoneBuildResources)\Microsoft.Silverlight.Common.OverridesForBuild.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <Import Project="$(ProjectDir)..\SharedBinaries\StyleCop\Current\StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
