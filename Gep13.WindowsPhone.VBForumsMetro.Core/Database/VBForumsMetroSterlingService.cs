@@ -17,17 +17,18 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Core.Database
 {
+    using System;
     using System.ComponentModel;
     using System.Diagnostics;
     using Gep13.WindowsPhone.Core.Database;
     using Gep13.WindowsPhone.VBForumsMetro.Database;
-
     using Wintellect.Sterling;
     using Wintellect.Sterling.IsolatedStorage;
 
     /// <summary>
     /// A concrete implementation of the ISterlingService specifically for the VBForumsMetro application
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "This is handled in the Deactivate method")]
     public class VBForumsMetroSterlingService : ISterlingService
     {
         /// <summary>
