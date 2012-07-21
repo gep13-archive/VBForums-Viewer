@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="IdentityTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeSerializer.cs" />
+    <Compile Include="VBForumsMetroDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

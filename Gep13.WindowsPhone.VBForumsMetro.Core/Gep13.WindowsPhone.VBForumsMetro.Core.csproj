@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\VBForumsMetroSterlingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,10 @@
     <ProjectReference Include="..\Gep13.WindowsPhone.Core\Gep13.WindowsPhone.Core.csproj">
       <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
       <Name>Gep13.WindowsPhone.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.Database\Gep13.WindowsPhone.VBForumsMetro.Database.csproj">
+      <Project>{2EA7F823-D19F-4CE9-B277-5020D3B412AD}</Project>
+      <Name>Gep13.WindowsPhone.VBForumsMetro.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
