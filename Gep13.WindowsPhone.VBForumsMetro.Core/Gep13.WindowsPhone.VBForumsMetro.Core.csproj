@@ -82,6 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\VBForumsMetroSterlingService.cs" />
+    <Compile Include="Entities\Reputation.cs" />
+    <Compile Include="Entities\VBForumsCredentials.cs" />
     <Compile Include="Model\VBForumsMetroDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
