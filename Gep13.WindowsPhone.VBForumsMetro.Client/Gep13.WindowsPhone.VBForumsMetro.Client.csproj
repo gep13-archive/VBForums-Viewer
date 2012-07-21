@@ -84,6 +84,9 @@
       <HintPath>..\SharedBinaries\WP7Lib\mscorlib.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Ree7.TileToolkit">
+      <HintPath>..\packages\Ree7.WPTileToolkit.1.0.1\lib\sl4-wp71\Ree7.TileToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\SharedBinaries\WP7Lib\System.dll</HintPath>
       <Private>False</Private>
