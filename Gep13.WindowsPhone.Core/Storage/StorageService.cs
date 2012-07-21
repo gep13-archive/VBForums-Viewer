@@ -28,7 +28,7 @@ namespace Gep13.WindowsPhone.Core.Storage
         /// <summary>
         /// A Reference to the Phones IsolatedStorageSettings.
         /// </summary>
-        private static readonly IsolatedStorageSettings isolatedStorage = IsolatedStorageSettings.ApplicationSettings;
+        private static readonly IsolatedStorageSettings StorageSettings = IsolatedStorageSettings.ApplicationSettings;
 
         /// <summary>
         /// Adds an entity to the phones isolated
@@ -45,13 +45,13 @@ namespace Gep13.WindowsPhone.Core.Storage
         /// </param>
         public void Add<TEntity>(string key, TEntity entity)
         {
-            if (isolatedStorage.Contains(key))
+            if (StorageSettings.Contains(key))
             {
-                isolatedStorage[key] = entity;
+                StorageSettings[key] = entity;
                 return;
             }
 
-            isolatedStorage.Add(key, entity);
+            StorageSettings.Add(key, entity);
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace Gep13.WindowsPhone.Core.Storage
         /// </returns>
         public TEntity Get<TEntity>(string key)
         {
-            if (isolatedStorage.Contains(key))
+            if (StorageSettings.Contains(key))
             {
-                return (TEntity)isolatedStorage[key];
+                return (TEntity)StorageSettings[key];
             }
 
             if (typeof(TEntity) == typeof(string))
@@ -96,9 +96,9 @@ namespace Gep13.WindowsPhone.Core.Storage
         /// </param>
         public void Remove(string key)
         {
-            if (isolatedStorage.Contains(key))
+            if (StorageSettings.Contains(key))
             {
-                isolatedStorage.Remove(key);
+                StorageSettings.Remove(key);
             }
         }
     }

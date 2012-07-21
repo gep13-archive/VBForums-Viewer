@@ -43,11 +43,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             switch (this.ObtainFirstRunFlag())
             {
                 case false:
-                    GoToWelcomePage();
+                    this.GoToWelcomePage();
                     break;
 
                 default:
-                    GoToProfilePage();
+                    this.GoToProfilePage();
                     break;
             }
         }

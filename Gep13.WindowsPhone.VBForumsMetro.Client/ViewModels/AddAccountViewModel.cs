@@ -73,8 +73,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             set
             {
                 this.userName = value;
-                NotifyOfPropertyChange(() => this.Username);
-                NotifyOfPropertyChange(() => this.CanAuthenticateUser);
+                this.NotifyOfPropertyChange(() => this.Username);
+                this.NotifyOfPropertyChange(() => this.CanAuthenticateUser);
             }
         }
 
@@ -91,8 +91,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             set
             {
                 this.password = value;
-                NotifyOfPropertyChange(() => this.Password);
-                NotifyOfPropertyChange(() => this.CanAuthenticateUser);
+                this.NotifyOfPropertyChange(() => this.Password);
+                this.NotifyOfPropertyChange(() => this.CanAuthenticateUser);
             }
         }
 
@@ -120,7 +120,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             set
             {
                 this.statusLabel = value;
-                NotifyOfPropertyChange(() => this.StatusLabel);
+                this.NotifyOfPropertyChange(() => this.StatusLabel);
             }
         }
 
@@ -137,9 +137,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             set
             {
                 this.isAuthenticated = value;
-                NotifyOfPropertyChange(() => this.IsUserAuthenticated);
-                NotifyOfPropertyChange(() => this.CanGoToProfilePage);
-                NotifyOfPropertyChange(() => this.CanDeleteAccount);
+                this.NotifyOfPropertyChange(() => this.IsUserAuthenticated);
+                this.NotifyOfPropertyChange(() => this.CanGoToProfilePage);
+                this.NotifyOfPropertyChange(() => this.CanDeleteAccount);
             }
         }
 
