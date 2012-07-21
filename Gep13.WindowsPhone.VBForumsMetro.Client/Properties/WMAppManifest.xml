@@ -7,6 +7,9 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="/Views/InitialView.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent" Source="Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent" Type="Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent.ScheduledAgent" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="Gep13.WindowsPhone.VBForumsMetro.ClientToken" TaskName="_default">

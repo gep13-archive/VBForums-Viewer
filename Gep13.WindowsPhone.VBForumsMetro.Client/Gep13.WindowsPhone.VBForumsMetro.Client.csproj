@@ -174,6 +174,10 @@
       <Project>{35D496EF-840B-4EA7-8250-E09A8CF9209C}</Project>
       <Name>Gep13.WindowsPhone.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent\Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent.csproj">
+      <Project>{EB32311D-E5A7-4DDA-B501-15B71D28E301}</Project>
+      <Name>Gep13.WindowsPhone.VBForumsMetro.BackgroundAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.Core\Gep13.WindowsPhone.VBForumsMetro.Core.csproj">
       <Project>{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}</Project>
       <Name>Gep13.WindowsPhone.VBForumsMetro.Core</Name>
