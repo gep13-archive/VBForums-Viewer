@@ -99,6 +99,7 @@
       <HintPath>..\SharedBinaries\WP7Lib\System.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows">
       <HintPath>..\SharedBinaries\WP7Lib\System.Windows.dll</HintPath>
       <Private>False</Private>
