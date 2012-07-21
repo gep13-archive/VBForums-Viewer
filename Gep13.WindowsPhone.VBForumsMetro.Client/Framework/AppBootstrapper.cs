@@ -32,7 +32,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using Gep13.WindowsPhone.Core.Storage;
     using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
-    
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Database;
+
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
     using Telerik.Windows.Controls;
@@ -105,6 +106,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Instance<INavigationHelperService>(new NavigationHelperService());
             this.container.Instance<IRatingService>(new RatingService("VBForumsMetro"));
             this.container.Instance<IDiagnosticsService>(new DiagnosticsService("VBForumsMetro.txt", "VBForumsMetro", "support@vbforumsmetro.co.uk"));
+            this.container.Instance<ISterlingService>(new VBForumsMetroSterlingService());
             this.container.Singleton<ViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
@@ -155,6 +157,12 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         {
             base.OnLaunch(sender, e);
 
+            var sterlingService = this.GetInstance(typeof(ISterlingService), null) as ISterlingService;
+            if (sterlingService != null)
+            {
+                sterlingService.Activate();
+            }
+
             ApplicationUsageHelper.Init("1.0");
 
             if (System.Diagnostics.Debugger.IsAttached)
@@ -169,6 +177,22 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         }
 
         /// <summary>
+        /// Method that fires when the application is activating
+        /// </summary>
+        /// <param name="sender">Responsible party</param>
+        /// <param name="e">The arguments coming in with the Event</param>
+        protected override void OnActivate(object sender, ActivatedEventArgs e)
+        {
+            base.OnActivate(sender, e);
+
+            var sterlingService = this.GetInstance(typeof(ISterlingService), null) as ISterlingService;
+            if (sterlingService != null)
+            {
+                sterlingService.Activate();
+            }
+        }
+
+        /// <summary>
         /// Method that fires when the application is Deactivating
         /// </summary>
         /// <param name="sender">Responsible party</param>
@@ -176,6 +200,12 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         protected override void OnDeactivate(object sender, DeactivatedEventArgs e)
         {
             base.OnDeactivate(sender, e);
+
+            var sterlingService = this.GetInstance(typeof(ISterlingService), null) as ISterlingService;
+            if (sterlingService != null)
+            {
+                sterlingService.Deactivate();
+            }
         }
 
         /// <summary>
@@ -186,6 +216,12 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         protected override void OnClose(object sender, ClosingEventArgs e)
         {
             base.OnClose(sender, e);
+
+            var sterlingService = this.GetInstance(typeof(ISterlingService), null) as ISterlingService;
+            if (sterlingService != null)
+            {
+                sterlingService.Deactivate();
+            }
         }
 
         /// <summary>
