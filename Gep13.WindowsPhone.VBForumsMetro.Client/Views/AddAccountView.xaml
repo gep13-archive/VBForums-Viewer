@@ -67,7 +67,7 @@
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"
-                                          Text="{Binding LoginDetails_UserName, Mode=TwoWay}">
+                                          Text="{Binding UserName, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
                                 <cal:ActionMessage MethodName="UsernameActionIconTapped" />
@@ -83,7 +83,7 @@
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"
-                                          Text="{Binding LoginDetails_Password, Mode=TwoWay}"
+                                          Text="{Binding Password, Mode=TwoWay}"
                                           Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityConverter}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
@@ -92,7 +92,7 @@
                         </i:Interaction.Triggers>
                     </toolkit:PhoneTextBox>
                     <PasswordBox Margin="-10,-5,-10,8"
-                                 Password="{Binding LoginDetails_Password, Mode=TwoWay}"
+                                 Password="{Binding Password, Mode=TwoWay}"
                                  Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityInvertedConverter}}" />
                     <CheckBox Content="Show Password"
                               Grid.Row="1"

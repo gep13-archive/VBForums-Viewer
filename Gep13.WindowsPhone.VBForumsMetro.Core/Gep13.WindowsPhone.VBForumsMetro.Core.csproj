@@ -98,6 +98,7 @@
       <Name>Gep13.WindowsPhone.VBForumsMetro.Database</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <WindowsPhoneBuildResources>..\SharedBinaries\Build\MSBuild_WP7</WindowsPhoneBuildResources>
     <SilverlightBuildResources>..\SharedBinaries\Silverlight\v4.0</SilverlightBuildResources>
