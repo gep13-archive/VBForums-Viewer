@@ -20,7 +20,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
     using System;
     using Caliburn.Micro;
     using Gep13.WindowsPhone.Core.ViewModels;
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
+
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
 
@@ -33,7 +34,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the VBForumsMetroScreenPageViewModelBase class
         /// </summary>
         /// <param name="viewModelWorker">Incoming ViewModelWorker provided by Caliburn.Micro</param>
-        public VBForumsMetroScreenPageViewModelBase(ViewModelWorker viewModelWorker)
+        public VBForumsMetroScreenPageViewModelBase(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
         }

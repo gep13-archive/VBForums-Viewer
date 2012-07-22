@@ -17,7 +17,7 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Settings page
@@ -28,7 +28,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the SettingsViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public SettingsViewModel(ViewModelWorker viewModelWorker)
+        public SettingsViewModel(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker) 
         {
         }

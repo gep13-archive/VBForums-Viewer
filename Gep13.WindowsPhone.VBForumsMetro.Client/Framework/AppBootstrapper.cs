@@ -33,6 +33,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
     using Gep13.WindowsPhone.VBForumsMetro.Core.Database;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Web;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
 
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
@@ -107,7 +109,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Instance<IRatingService>(new RatingService("VBForumsMetro"));
             this.container.Instance<IDiagnosticsService>(new DiagnosticsService("VBForumsMetro.txt", "VBForumsMetro", "support@vbforumsmetro.co.uk"));
             this.container.Instance<ISterlingService>(new VBForumsMetroSterlingService());
-            this.container.Singleton<ViewModelWorker>();
+            this.container.Instance<IVBForumsWebService>(new VBForumsWebService());
+            this.container.Singleton<VBForumsMetroViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
             phoneService.Resurrecting += new System.Action(this.PhoneService_Resurrecting);

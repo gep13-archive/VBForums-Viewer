@@ -17,7 +17,8 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Models;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
@@ -48,7 +49,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the AddAccountViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public AddAccountViewModel(ViewModelWorker viewModelWorker)
+        public AddAccountViewModel(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
         }
@@ -198,8 +199,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void PopulateDemoCredentials()
         {
-            this.UserName = "test";
-            this.Password = "password";
+            this.UserName = "gep31";
+            this.Password = "qwerty";
         }
 
         /// <summary>
@@ -207,11 +208,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void AuthenticateUser()
         {
-            this.StatusLabel = string.Empty;
-
-            // TODO: Need to replace this with actual code.
-            this.IsUserAuthenticated = true;
-            this.StatusLabel = "user authenticated successfully";
+            this.VMWorker.ProgressService.Show();
+            this.AuthenticateUserResponse();
         }
 
         /// <summary>
@@ -258,6 +256,31 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             }
 
             base.OnViewLoaded(view);
+        }
+
+        /// <summary>
+        /// The authenticate user response.
+        /// </summary>
+        private async void AuthenticateUserResponse()
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+            var result =
+                await
+                viewModelWorker.VBForumsWebService.IsValidLoginCredential(
+                    new LoginCredentialModel() { UserName = this.UserName, Password = this.Password });
+
+            viewModelWorker.ProgressService.Hide();
+
+            if (result)
+            {
+                this.StatusLabel = "user authenticated successfully";
+                this.IsUserAuthenticated = true;
+            }
+            else
+            {
+                this.StatusLabel = "unable to authenticate user, please check username and password";
+                this.IsUserAuthenticated = false;
+            }
         }
     }
 }

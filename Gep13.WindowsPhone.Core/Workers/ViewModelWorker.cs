@@ -73,7 +73,7 @@ namespace Gep13.WindowsPhone.Core.Workers
         /// <param name="storageService">StorageService provided by Caliburn.Micro</param>
         /// <param name="navigationHelperService">NavigationHelperService provided by Caliburn.Micro</param>
         /// <param name="ratingService">RatingService provided by Caliburn.Micro</param>
-        /// /// <param name="diagnosticsService">DiagnosticsService provided by Caliburn.Micro</param>
+        /// <param name="diagnosticsService">DiagnosticsService provided by Caliburn.Micro</param>
         public ViewModelWorker(INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService, IRatingService ratingService, IDiagnosticsService diagnosticsService)
         {
             this.navigationService = navigationService;

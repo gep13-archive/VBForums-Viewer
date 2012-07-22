@@ -17,7 +17,7 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Help page
@@ -28,7 +28,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the HelpViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public HelpViewModel(ViewModelWorker viewModelWorker)
+        public HelpViewModel(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
         }

@@ -17,8 +17,7 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using Caliburn.Micro;
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
 
     /// <summary>
     /// The ViewModel class for the Initial page
@@ -29,7 +28,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the InitialViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public InitialViewModel(ViewModelWorker viewModelWorker) : base(viewModelWorker) 
+        public InitialViewModel(VBForumsMetroViewModelWorker viewModelWorker)
+            : base(viewModelWorker) 
         { 
         }
 

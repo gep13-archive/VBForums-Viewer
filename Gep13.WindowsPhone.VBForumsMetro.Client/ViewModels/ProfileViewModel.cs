@@ -18,7 +18,8 @@
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
     using System;
-    using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
+
     using Microsoft.Phone.Controls;
 
     /// <summary>
@@ -30,7 +31,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Initializes a new instance of the ProfileViewModel class
         /// </summary>
         /// <param name="viewModelWorker">The View Model Worker from common access properties</param>
-        public ProfileViewModel(ViewModelWorker viewModelWorker)
+        public ProfileViewModel(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
         }
