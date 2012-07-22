@@ -51,26 +51,5 @@ namespace Gep13.WindowsPhone.Core.ViewModels
         {
             get { return this.viewModelWorker; }
         }
-
-        /// <summary>
-        /// An overridable method to setup the Application Bar that is placed on each page
-        /// </summary>
-        /// <param name="view">The View that the Application Bar should be created on</param>
-        public virtual void InitialiseAppBar(object view)
-        {
-        }
-
-        /// <summary>
-        /// Fired after the view gets attached to the view model
-        /// </summary>
-        /// <param name="view">The incoming View</param>
-        /// <param name="context">The incoming Context</param>
-        protected override void OnViewAttached(object view, object context)
-        {
-            base.OnViewAttached(view, context);
-
-            // ensure the app bar is initialised
-            this.InitialiseAppBar(view);
-        }
     }
 }

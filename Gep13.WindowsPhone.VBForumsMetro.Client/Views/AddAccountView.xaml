@@ -8,6 +8,7 @@
                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
                        FontSize="{StaticResource PhoneFontSizeNormal}"
                        Foreground="{StaticResource PhoneForegroundBrush}"
@@ -106,5 +107,26 @@
             </Grid>
         </ScrollViewer>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible='True'>
+            <shell:ApplicationBar.Buttons>
+                <cal:AppBarButton IconUri="/Resources/Iconography/appbar.check.rest.png"
+                                  Text="authenticate"
+                                  Message="AuthenticateUser" />
+                <cal:AppBarButton IconUri="/Resources/Iconography/appbar.save.rest.png"
+                                  Text="save"
+                                  Message="PersistUserCredentials" />
+            </shell:ApplicationBar.Buttons>
+            <shell:ApplicationBar.MenuItems>
+                <cal:AppBarMenuItem Text="use demo account"
+                                    Message="PopulateDemoCredentials" />
+                <cal:AppBarMenuItem Text="help"
+                                    Message="GoToHelpPage" />
+                <cal:AppBarMenuItem Text="about"
+                                    Message="GoToAboutPage" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </pages:AppPageViewBase>

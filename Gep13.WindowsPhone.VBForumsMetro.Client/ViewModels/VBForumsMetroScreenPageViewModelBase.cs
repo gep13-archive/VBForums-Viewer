@@ -22,9 +22,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
     using Gep13.WindowsPhone.Core.ViewModels;
     using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
 
-    using Microsoft.Phone.Controls;
-    using Microsoft.Phone.Shell;
-
     /// <summary>
     /// The base class specifically for the VBForumsMetro application for all screens of the application
     /// </summary>
@@ -105,50 +102,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         {
             VMWorker.NavigationService.UriFor<HelpViewModel>()
                 .Navigate();
-        }
-
-        /// <summary>
-        /// Initialises the application bar based on the view 
-        /// </summary>
-        /// <param name="view">The incoming View</param>
-        /// <remarks>
-        /// We can't databind so we have to do this programmatically
-        /// </remarks>
-        public override void InitialiseAppBar(object view)
-        {
-            // sets up the app bar, use CM Buttons so we can have Action Messages included
-            var pageView = view as PhoneApplicationPage;
-            if (pageView != null && pageView.ApplicationBar == null)
-            {
-                if (this is ProfileViewModel)
-                {
-                    var appBar = new ApplicationBar();
-                    var button1 = new AppBarButton() { Message = "GoToSettingsPage", Text = "settings", IconUri = new Uri("/Resources/Iconography/appbar.feature.settings.rest.png", UriKind.Relative) };
-                    appBar.Buttons.Add(button1);
-                    var menuItem1 = new AppBarMenuItem() { Message = "GoToEditAccountPage", Text = "update account" };
-                    appBar.MenuItems.Add(menuItem1);
-                    var menuItem2 = new AppBarMenuItem() { Message = "GoToAboutPage", Text = "about" };
-                    appBar.MenuItems.Add(menuItem2);
-                    pageView.ApplicationBar = appBar;
-                }
-                else if (this is AddAccountViewModel)
-                {
-                    var appBar = new ApplicationBar();
-                    var button1 = new AppBarButton() { Message = "AuthenticateUser", Text = "authenticate", IconUri = new Uri("/Resources/Iconography/appbar.check.rest.png", UriKind.Relative) };
-                    appBar.Buttons.Add(button1);
-                    var button2 = new AppBarButton() { Message = "GoToProfilePage", Text = "save", IconUri = new Uri("/Resources/Iconography/appbar.save.rest.png", UriKind.Relative) };
-                    appBar.Buttons.Add(button2);
-                    var button3 = new AppBarButton() { Message = "DeleteAccount", Text = "delete", IconUri = new Uri("/Resources/Iconography/appbar.delete.rest.png", UriKind.Relative) };
-                    appBar.Buttons.Add(button3);
-                    var menuItem1 = new AppBarMenuItem() { Message = "PopulateDemoCredentials", Text = "use demo account" };
-                    appBar.MenuItems.Add(menuItem1);
-                    var menuItem2 = new AppBarMenuItem() { Message = "GoToHelpPage", Text = "help" };
-                    appBar.MenuItems.Add(menuItem2);
-                    var menuItem3 = new AppBarMenuItem() { Message = "GoToAboutPage", Text = "about" };
-                    appBar.MenuItems.Add(menuItem3);
-                    pageView.ApplicationBar = appBar;
-                }
-            }
         }
     }
 }
