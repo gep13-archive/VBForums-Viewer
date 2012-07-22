@@ -62,8 +62,6 @@
     <Reference Include="Microsoft.Phone.Controls">
       <HintPath>..\SharedBinaries\WP7Lib\Microsoft.Phone.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Phone.Reactive" />
-    <Reference Include="System.Observable" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows">
       <HintPath>..\SharedBinaries\WP7Lib\System.Windows.dll</HintPath>

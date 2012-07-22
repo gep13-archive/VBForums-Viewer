@@ -79,7 +79,6 @@
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Phone.Reactive" />
     <Reference Include="mscorlib">
       <HintPath>..\SharedBinaries\WP7Lib\mscorlib.dll</HintPath>
       <Private>False</Private>
@@ -103,7 +102,6 @@
       <HintPath>..\SharedBinaries\WP7Lib\System.Net.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Observable" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows">
       <HintPath>..\SharedBinaries\WP7Lib\System.Windows.dll</HintPath>
