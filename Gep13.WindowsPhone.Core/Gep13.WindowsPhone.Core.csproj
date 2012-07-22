@@ -110,6 +110,7 @@
     <Compile Include="Database\ISterlingService.cs" />
     <Compile Include="Diagnostics\DiagnosticsService.cs" />
     <Compile Include="Diagnostics\IDiagnosticsService.cs" />
+    <Compile Include="DynamicLocalhost\DynamicLocalhost.cs" />
     <Compile Include="Helpers\IsolatedStorageHelper.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Http\HttpClient.cs" />
@@ -135,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DynamicLocalhost\LocalHostname.txt" />
   </ItemGroup>
   <PropertyGroup>
     <WindowsPhoneBuildResources>..\SharedBinaries\Build\MSBuild_WP7</WindowsPhoneBuildResources>
