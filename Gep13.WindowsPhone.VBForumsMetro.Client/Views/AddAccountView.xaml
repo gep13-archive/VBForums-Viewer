@@ -1,7 +1,6 @@
 ﻿<pages:AppPageViewBase xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                        x:Class="Gep13.WindowsPhone.VBForumsMetro.Client.Views.AddAccountView"
                        xmlns:pages="clr-namespace:Gep13.WindowsPhone.Core.Views;assembly=Gep13.WindowsPhone.Core"
-                       xmlns:local="clr-namespace:Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels"
                        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +8,6 @@
                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                       xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
                        FontSize="{StaticResource PhoneFontSizeNormal}"
                        Foreground="{StaticResource PhoneForegroundBrush}"
@@ -64,11 +62,12 @@
                                Style="{StaticResource LabelStyle}"
                                Margin="0" />
 
-                    <toolkit:PhoneTextBox x:Name="Username"
+                    <toolkit:PhoneTextBox x:Name="UsernameText"
                                           LengthIndicatorVisible="False"
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
-                                          ActionIcon="/Resources/Images/clearboxicon.png">
+                                          ActionIcon="/Resources/Images/clearboxicon.png"
+                                          Text="{Binding LoginDetails_UserName, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
                                 <cal:ActionMessage MethodName="UsernameActionIconTapped" />
@@ -84,7 +83,7 @@
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"
-                                          Text="{Binding Password, Mode=TwoWay}"
+                                          Text="{Binding LoginDetails_Password, Mode=TwoWay}"
                                           Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityConverter}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
@@ -93,7 +92,7 @@
                         </i:Interaction.Triggers>
                     </toolkit:PhoneTextBox>
                     <PasswordBox Margin="-10,-5,-10,8"
-                                 Password="{Binding Password, Mode=TwoWay}"
+                                 Password="{Binding LoginDetails_Password, Mode=TwoWay}"
                                  Visibility="{Binding IsChecked, ElementName=ShowCheck,Converter={StaticResource BooleanToVisibilityInvertedConverter}}" />
                     <CheckBox Content="Show Password"
                               Grid.Row="1"

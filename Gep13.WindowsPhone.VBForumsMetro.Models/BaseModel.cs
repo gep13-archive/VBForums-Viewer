@@ -17,11 +17,13 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Models
 {
+    using Caliburn.Micro;
+
     /// <summary>
     /// The Base Class definition that all Models will derive from
     /// </summary>
     /// <typeparam name="T">The type that derives from base model</typeparam>
-    public class BaseModel<T> : IBaseModel
+    public class BaseModel<T> : PropertyChangedBase, IBaseModel
         where T : BaseModel<T>
     {
         /// <summary>

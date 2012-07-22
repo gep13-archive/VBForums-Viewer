@@ -25,33 +25,135 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
     public class ReputationModel : BaseModel<ReputationModel>
     {
         /// <summary>
+        /// The thread name.
+        /// </summary>
+        private string threadName;
+
+        /// <summary>
+        /// The thread uri.
+        /// </summary>
+        private Uri threadUri;
+
+        /// <summary>
+        /// The creation date.
+        /// </summary>
+        private DateTime creationDate;
+
+        /// <summary>
+        /// The author name.
+        /// </summary>
+        private string authorName;
+
+        /// <summary>
+        /// The author uri.
+        /// </summary>
+        private Uri authorUri;
+
+        /// <summary>
+        /// The comment.
+        /// </summary>
+        private string comment;
+
+        /// <summary>
         /// Gets or sets the thread name.
         /// </summary>
-        public string ThreadName { get; set; }
+        public string ThreadName
+        {
+            get
+            {
+                return this.threadName;
+            }
+
+            set
+            {
+                this.threadName = value;
+                this.NotifyOfPropertyChange(() => this.ThreadName);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the thread uri.
         /// </summary>
-        public Uri ThreadUri { get; set; }
+        public Uri ThreadUri
+        {
+            get
+            {
+                return this.threadUri;
+            }
+
+            set
+            {
+                this.threadUri = value;
+                this.NotifyOfPropertyChange(() => this.ThreadUri);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the creation date.
         /// </summary>
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate
+        {
+            get
+            {
+                return this.creationDate;
+            }
+
+            set
+            {
+                this.creationDate = value;
+                this.NotifyOfPropertyChange(() => this.CreationDate);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the author name.
         /// </summary>
-        public string AuthorName { get; set; }
+        public string AuthorName
+        {
+            get
+            {
+                return this.authorName;
+            }
+
+            set
+            {
+                this.authorName = value;
+                this.NotifyOfPropertyChange(() => this.AuthorName);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the author uri.
         /// </summary>
-        public Uri AuthorUri { get; set; }
+        public Uri AuthorUri
+        {
+            get
+            {
+                return this.authorUri;
+            }
+
+            set
+            {
+                this.authorUri = value;
+                this.NotifyOfPropertyChange(() => this.AuthorUri);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the comment.
         /// </summary>
-        public string Comment { get; set; }
+        public string Comment
+        {
+            get
+            {
+                return this.comment;
+            }
+
+            set
+            {
+                this.comment = value;
+                this.NotifyOfPropertyChange(() => this.Comment);
+            }
+        }
     }
 }

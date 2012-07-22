@@ -181,6 +181,10 @@
       <Project>{E9780E55-E34C-49B7-8A01-B5E9D7E148B1}</Project>
       <Name>Gep13.WindowsPhone.VBForumsMetro.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gep13.WindowsPhone.VBForumsMetro.Models\Gep13.WindowsPhone.VBForumsMetro.Models.csproj">
+      <Project>{EE5DCBAE-8607-4445-9225-235715F92BA5}</Project>
+      <Name>Gep13.WindowsPhone.VBForumsMetro.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\About\AboutStyles.xaml">

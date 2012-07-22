@@ -23,13 +23,47 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
     public class LoginCredentialModel : BaseModel<LoginCredentialModel>
     {
         /// <summary>
+        /// The user name.
+        /// </summary>
+        private string userName;
+
+        /// <summary>
+        /// The password.
+        /// </summary>
+        private string password;
+
+        /// <summary>
         /// Gets or sets the user name.
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName
+        {
+            get
+            {
+                return this.userName;
+            }
+
+            set
+            {
+                this.userName = value;
+                this.NotifyOfPropertyChange(() => this.UserName);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the password.
         /// </summary>
-        public string Password { get; set; }
+        public string Password
+        {
+            get
+            {
+                return this.password;
+            }
+
+            set
+            {
+                this.password = value;
+                this.NotifyOfPropertyChange(() => this.Password);
+            }
+        }
     }
 }

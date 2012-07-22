@@ -17,9 +17,8 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using System.Windows;
-    using System.Windows.Data;
     using Gep13.WindowsPhone.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Models;
 
     /// <summary>
     /// The ViewModel class for the AddAccount page
@@ -27,14 +26,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
     public class AddAccountViewModel : VBForumsMetroScreenPageViewModelBase
     {
         /// <summary>
-        /// Local variable for the userName
+        /// The login credential.
         /// </summary>
-        private string userName;
-
-        /// <summary>
-        /// Local variale for the password
-        /// </summary>
-        private string password;
+        private LoginCredentialModel loginCredential;
 
         /// <summary>
         /// Local variable for whether the user is authenticated
@@ -61,37 +55,19 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         public bool IsEditMode { get; set; }
 
         /// <summary>
-        /// Gets or sets the username of the person logging into VBForums
+        /// Gets or sets the login details.
         /// </summary>
-        public string Username
+        public LoginCredentialModel LoginDetails
         {
             get
             {
-                return this.userName;
+                return this.loginCredential;
             }
 
             set
             {
-                this.userName = value;
-                this.NotifyOfPropertyChange(() => this.Username);
-                this.NotifyOfPropertyChange(() => this.CanAuthenticateUser);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the password for the person logging into VBForums
-        /// </summary>
-        public string Password
-        {
-            get
-            {
-                return this.password;
-            }
-
-            set
-            {
-                this.password = value;
-                this.NotifyOfPropertyChange(() => this.Password);
+                this.loginCredential = value;
+                this.NotifyOfPropertyChange(() => this.LoginDetails);
                 this.NotifyOfPropertyChange(() => this.CanAuthenticateUser);
             }
         }
@@ -158,7 +134,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         {
             get
             {
-                return !string.IsNullOrEmpty(this.Username) && !string.IsNullOrEmpty(this.Password);
+                return !string.IsNullOrEmpty(this.LoginDetails.UserName) && !string.IsNullOrEmpty(this.LoginDetails.Password);
             }
         }
 
@@ -184,7 +160,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void UsernameActionIconTapped()
         {
-            this.Username = string.Empty;
+            this.LoginDetails.UserName = string.Empty;
         }
 
         /// <summary>
@@ -192,7 +168,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void PasswordActionIconTapped()
         {
-            this.Password = string.Empty;
+            this.LoginDetails.Password = string.Empty;
         }
 
         /// <summary>
@@ -200,8 +176,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void PopulateDemoCredentials()
         {
-            this.Username = "test";
-            this.Password = "password";
+            this.LoginDetails.UserName = "test";
+            this.LoginDetails.Password = "password";
         }
 
         /// <summary>
@@ -221,10 +197,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// </summary>
         public void DeleteAccount()
         {
-            ////_isolatedStorage.ClearUserCredentials();
             this.VMWorker.StorageService.Add("firstrunflag", false);
-            this.Username = string.Empty;
-            this.Password = string.Empty;
+            this.LoginDetails.UserName = string.Empty;
+            this.LoginDetails.Password = string.Empty;
             this.IsUserAuthenticated = false;
         }
 
@@ -249,15 +224,16 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         {
             if (this.IsEditMode)
             {
-                if (string.IsNullOrEmpty(this.Username))
+                if (this.LoginDetails == null)
                 {
-                    this.Username = this.VMWorker.StorageService.Get<string>("username");
+                    this.LoginDetails = new LoginCredentialModel();
+                    this.LoginDetails.UserName = this.VMWorker.StorageService.Get<string>("username");
+                    this.LoginDetails.Password = this.VMWorker.StorageService.Get<string>("password");
                 }
-
-                if (string.IsNullOrEmpty(this.Password))
-                {
-                    this.Password = this.VMWorker.StorageService.Get<string>("password");
-                }
+            }
+            else
+            {
+                this.LoginDetails = new LoginCredentialModel();
             }
 
             base.OnViewLoaded(view);
