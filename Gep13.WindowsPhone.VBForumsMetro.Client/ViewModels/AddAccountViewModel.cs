@@ -137,7 +137,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             {
                 this.isAuthenticated = value;
                 this.NotifyOfPropertyChange(() => this.IsUserAuthenticated);
-                this.NotifyOfPropertyChange(() => this.CanGoToProfilePage);
+                this.NotifyOfPropertyChange(() => this.CanPersistUserCredentials);
                 this.NotifyOfPropertyChange(() => this.CanDeleteAccount);
             }
         }
@@ -164,7 +164,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// <summary>
         /// Gets a value indicating whether it is possible to navigate to the ProfilePage
         /// </summary>
-        public bool CanGoToProfilePage
+        public bool CanPersistUserCredentials
         {
             get
             {
@@ -176,6 +176,24 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 
                 return false;
             }
+        }
+
+        /// <summary>
+        /// The persist user credentials.
+        /// </summary>
+        public void PersistUserCredentials()
+        {
+            if (this.IsEditMode)
+            {
+                this.UpdateUserCredentials();
+            }
+            else
+            {
+                this.SaveUserCredentials();
+            }
+
+            this.ResetViewModel();
+            this.GoToProfilePage();
         }
 
         /// <summary>
@@ -281,6 +299,52 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
                 this.StatusLabel = "unable to authenticate user, please check username and password";
                 this.IsUserAuthenticated = false;
             }
+        }
+
+        /// <summary>
+        /// The reset view model.
+        /// </summary>
+        private void ResetViewModel()
+        {
+            // clear the values so that Tombstoning doesn't kick in
+            this.UserName = string.Empty;
+            this.Password = string.Empty;
+
+            this.IsEditMode = false;
+            this.IsUserAuthenticated = false;
+        }
+
+        /// <summary>
+        /// The save user credentials.
+        /// </summary>
+        private void SaveUserCredentials()
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+            viewModelWorker.VBForumsMetroSterlingService.Database.Save(
+                new LoginCredentialModel
+                {
+                    UserName = this.UserName,
+                    Password = this.Password,
+                });
+
+            viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
+        }
+
+        /// <summary>
+        /// The update user credentials.
+        /// </summary>
+        private void UpdateUserCredentials()
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+            viewModelWorker.VBForumsMetroSterlingService.Database.Save(
+                new LoginCredentialModel
+                {
+                    Id = 1, // TODO: Need to fix this!
+                    UserName = this.UserName,
+                    Password = this.Password,
+                });
+
+            viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
         }
     }
 }

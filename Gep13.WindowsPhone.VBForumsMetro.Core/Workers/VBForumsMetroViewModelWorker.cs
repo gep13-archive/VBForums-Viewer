@@ -19,6 +19,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Workers
 {
     using Caliburn.Micro;
 
+    using Gep13.WindowsPhone.Core.Database;
     using Gep13.WindowsPhone.Core.Diagnostics;
     using Gep13.WindowsPhone.Core.Navigation;
     using Gep13.WindowsPhone.Core.Progress;
@@ -38,9 +39,15 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Workers
         private IVBForumsWebService vbforumsWebService;
 
         /// <summary>
+        /// Local instance of the Shared ISterlingService
+        /// </summary>
+        private ISterlingService vbforumsSterlingService;
+
+        /// <summary>
         /// Initializes a new instance of the VBForumsMetroViewModelWorker class
         /// </summary>
         /// <param name="vbforumsWebService">VBForumsWebService provided by Caliburn.Micro</param>
+        /// <param name="vbforumsSterlingService">VBForumsMetroSterlingService provided by Caliburn.Micro</param>
         /// <param name="navigationService">NavigationService provided by Caliburn.Micro</param>
         /// <param name="progressService">ProgressService provided by Caliburn.Micro</param>
         /// <param name="eventAggregator">EventAggregator provided by Caliburn.Micro</param>
@@ -48,10 +55,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Workers
         /// <param name="navigationHelperService">NavigationHelperService provided by Caliburn.Micro</param>
         /// <param name="ratingService">RatingService provided by Caliburn.Micro</param>
         /// <param name="diagnosticsService">DiagnosticsService provided by Caliburn.Micro</param>
-        public VBForumsMetroViewModelWorker(IVBForumsWebService vbforumsWebService, INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService, IRatingService ratingService, IDiagnosticsService diagnosticsService)
+        public VBForumsMetroViewModelWorker(IVBForumsWebService vbforumsWebService, ISterlingService vbforumsSterlingService, INavigationService navigationService, IProgressService progressService, IEventAggregator eventAggregator, IStorageService storageService, INavigationHelperService navigationHelperService, IRatingService ratingService, IDiagnosticsService diagnosticsService)
             : base(navigationService, progressService, eventAggregator, storageService, navigationHelperService, ratingService, diagnosticsService)
         {
             this.vbforumsWebService = vbforumsWebService;
+            this.vbforumsSterlingService = vbforumsSterlingService;
         }
 
         /// <summary>
@@ -60,6 +68,14 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Workers
         public IVBForumsWebService VBForumsWebService
         {
             get { return this.vbforumsWebService; }
+        }
+
+        /// <summary>
+        /// Gets the shared VBForumsWebService
+        /// </summary>
+        public ISterlingService VBForumsMetroSterlingService
+        {
+            get { return this.vbforumsSterlingService; }
         }
     }
 }

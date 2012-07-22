@@ -15,7 +15,7 @@
                        SupportedOrientations="Portrait"
                        Orientation="Portrait"
                        mc:Ignorable="d"
-                       d:DesignHeight="800"
+                       d:DesignHeight="728"
                        d:DesignWidth="480"
                        shell:SystemTray.IsVisible="True">
 
@@ -117,6 +117,9 @@
                 <cal:AppBarButton IconUri="/Resources/Iconography/appbar.save.rest.png"
                                   Text="save"
                                   Message="PersistUserCredentials" />
+                <cal:AppBarButton IconUri="/Resources/Iconography/appbar.delete.rest.png"
+                                  Text="delete"
+                                  Message="DeleteAccount" />
             </shell:ApplicationBar.Buttons>
             <shell:ApplicationBar.MenuItems>
                 <cal:AppBarMenuItem Text="use demo account"

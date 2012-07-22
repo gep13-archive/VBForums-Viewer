@@ -117,6 +117,12 @@
     <Reference Include="Telerik.Windows.Core">
       <HintPath>..\SharedBinaries\Telerik\Current\Telerik.Windows.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Wintellect.Sterling.WindowsPhone, Version=1.5.4173.19703, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SterlingPhone.1.5.0.1\lib\SL3-WP\Wintellect.Sterling.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Wintellect.Sterling.WindowsPhone.IsolatedStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SterlingPhone.1.5.0.1\lib\SL3-WP\Wintellect.Sterling.WindowsPhone.IsolatedStorage.dll</HintPath>
+    </Reference>
     <Reference Include="YourLastAboutDialog, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
