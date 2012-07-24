@@ -64,6 +64,7 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="IBaseModel.cs" />
     <Compile Include="LoginCredentialModel.cs" />
+    <Compile Include="ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReputationModel.cs" />
   </ItemGroup>
