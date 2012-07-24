@@ -17,7 +17,6 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -41,5 +40,19 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
         /// <param name="loginCredential">The login credential.</param>
         /// <returns>The System.Collections.Generic.IEnumerable`1[T -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ReputationModel].</returns>
         Task<IEnumerable<ReputationModel>> GetReputationEntriesForUser(LoginCredentialModel loginCredential);
+
+        /// <summary>
+        /// The get profile for user.
+        /// </summary>
+        /// <param name="memberId">The member id for the profile.</param>
+        /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ProfileModel].</returns>
+        Task<ProfileModel> GetProfileForUser(int memberId);
+
+        /// <summary>
+        /// The get member id for user.
+        /// </summary>
+        /// <param name="loginCredential">The login credential.</param>
+        /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; System.Int32].</returns>
+        Task<int> GetMemberIdForUser(LoginCredentialModel loginCredential);
     }   
 }

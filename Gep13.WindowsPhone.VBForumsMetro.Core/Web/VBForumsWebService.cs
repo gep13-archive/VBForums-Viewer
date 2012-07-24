@@ -25,8 +25,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 
     using Gep13.WindowsPhone.VBForumsMetro.Models;
 
-    using Microsoft.Phone.Reactive;
-
     /// <summary>
     /// The vb forums web service.
     /// </summary>
@@ -80,7 +78,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
         /// </summary>
         /// <param name="loginCredential">The login credential.</param>
         /// <returns>The System.Collections.Generic.IEnumerable`1[T -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ReputationModel].</returns>
-        public async Task<IEnumerable<ReputationModel>> GetReputationEntriesForUser(Models.LoginCredentialModel loginCredential)
+        public async Task<IEnumerable<ReputationModel>> GetReputationEntriesForUser(LoginCredentialModel loginCredential)
         {
             var uri = new Uri("http://www.vbforums.com/usercp.php");
 
@@ -110,12 +108,12 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
             var repTable =
                 responseString.Substring(
                     responseString.IndexOf(
-                        "<tbody id=\"collapseobj_usercp_reputation\"", System.StringComparison.Ordinal));
+                        "<tbody id=\"collapseobj_usercp_reputation\"", StringComparison.Ordinal));
 
-            repTable = repTable.Substring(repTable.IndexOf("<tr>", System.StringComparison.Ordinal));
-            repTable = repTable.Substring(0, repTable.IndexOf("</tbody>", System.StringComparison.Ordinal) - 1);
+            repTable = repTable.Substring(repTable.IndexOf("<tr>", StringComparison.Ordinal));
+            repTable = repTable.Substring(0, repTable.IndexOf("</tbody>", StringComparison.Ordinal) - 1);
             repTable = repTable.Replace("\n", " ").Replace("\r", " ").Replace("\t", " ");
-            while (repTable.IndexOf("  ", System.StringComparison.Ordinal) > 0)
+            while (repTable.IndexOf("  ", StringComparison.Ordinal) > 0)
             {
                 repTable = repTable.Replace("  ", " ");
             }
@@ -136,6 +134,35 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
                 };
 
             return reputations;
+        }
+
+        /// <summary>
+        /// The get profile for user.
+        /// </summary>
+        /// <param name="memberId">The member id for the profile.</param>
+        /// <param name="loginCredential">The login credential.</param>
+        /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ProfileModel].</returns>
+        public async Task<ProfileModel> GetProfileForUser(int memberId, LoginCredentialModel loginCredential)
+        {
+            var uri = new Uri(string.Format("http://www.vbforums.com/member.php?u={0}", memberId));
+
+            var request = WebRequest.CreateHttp(uri);
+            request.Method = "GET";
+            request.Credentials = new NetworkCredential(loginCredential.UserName, loginCredential.Password);
+
+            var response = (HttpWebResponse)await request.GetResponseAsync();
+            var statusCode = response.StatusCode;
+
+            if ((int)statusCode >= 400)
+            {
+                return null;
+            }     
+
+            string responseString;
+            using (var responseStream = new StreamReader(response.GetResponseStream()))
+            {
+                responseString = await responseStream.ReadToEndAsync();
+            }       
         }
     }
 }
