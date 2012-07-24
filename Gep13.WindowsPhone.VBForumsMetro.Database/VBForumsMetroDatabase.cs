@@ -63,6 +63,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Database
             // register the triggers
             database.RegisterTrigger(new IdentityTrigger<ReputationModel>(database));
             database.RegisterTrigger(new IdentityTrigger<LoginCredentialModel>(database));
+            database.RegisterTrigger(new IdentityTrigger<ProfileModel>(database));
 
             // if any are here we've already set things up because users can't delete these
             if (database.Query<ReputationModel, int>().Any())
@@ -75,6 +76,15 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Database
             database.Truncate(typeof(LoginCredentialModel));
 
             database.Save(new LoginCredentialModel() { UserName = "gep31", Password = "qwerty" });
+            database.Save(
+                new ProfileModel()
+                    {
+                        UserName = "gep13",
+                        CustomUserTitle = "ASP.NET Moderator",
+                        JoinDate = new DateTime(2004, 11, 16),
+                        Posts = 21352,
+                        PostsPerDay = 7.6
+                    });
             database.Save(
                 new ReputationModel()
                     {
@@ -99,7 +109,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Database
             {
                 CreateTableDefinition<ReputationModel, int>(c => c.Id),
 
-                CreateTableDefinition<LoginCredentialModel, int>(i => i.Id)
+                CreateTableDefinition<LoginCredentialModel, int>(i => i.Id),
+
+                CreateTableDefinition<ProfileModel, int>(i => i.Id)
             };
         }
 
