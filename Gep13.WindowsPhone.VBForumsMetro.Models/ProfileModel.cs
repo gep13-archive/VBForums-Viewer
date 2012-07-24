@@ -25,6 +25,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
     public class ProfileModel : BaseModel<ProfileModel>
     {
         /// <summary>
+        /// The member id.
+        /// </summary>
+        private int memberId;
+
+        /// <summary>
         /// The user name.
         /// </summary>
         private string userName;
@@ -48,6 +53,23 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
         /// The posts per day.
         /// </summary>
         private double postsPerDay;
+
+        /// <summary>
+        /// Gets or sets the member id.
+        /// </summary>
+        public int MemberId
+        {
+            get
+            {
+                return this.memberId;
+            }
+
+            set
+            {
+                this.memberId = value;
+                this.NotifyOfPropertyChange(() => this.MemberId);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the user name.
