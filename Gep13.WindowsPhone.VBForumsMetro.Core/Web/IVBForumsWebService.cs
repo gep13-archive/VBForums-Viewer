@@ -45,8 +45,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
         /// The get profile for user.
         /// </summary>
         /// <param name="memberId">The member id for the profile.</param>
+        /// <param name="loginCredential">The login credential.</param>
         /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ProfileModel].</returns>
-        Task<ProfileModel> GetProfileForUser(int memberId);
+        Task<ProfileModel> GetProfileForUser(int memberId, LoginCredentialModel loginCredential);
 
         /// <summary>
         /// The get member id for user.

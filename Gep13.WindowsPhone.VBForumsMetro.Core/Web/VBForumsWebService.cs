@@ -163,6 +163,56 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
             {
                 responseString = await responseStream.ReadToEndAsync();
             }       
+
+            // Join Date:
+            // <li><span class="shade">Join Date:</span> Nov 16th, 2004</li>
+            // 
+            // Posts Per Day:
+            // <li><span class="shade">Posts Per Day:</span> 7.61</li>
+            //
+            // Total Posts:
+            // <li><span class="shade">Total Posts:</span> 21,358</li>
+            //
+            // Profile Pic:
+            // <td id="profilepic_cell" class="tborder alt2"><img src="image.php?u=53106&amp;dateline=1277553514&amp;type=profile"  width="64" height="64"  alt="gep13's Profile Picture" /></td>            //
+            // User Name:
+            // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
+            //
+            // Custom User Title:
+            // <td valign="top" width="100%" id="username_box" class="profilepic_adjacent">            //   <div id="reputation_rank">            //     <div id="reputation">            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //     </div>            //   </div>            //   <h1><font color=#FF0000>gep13</font>            //     <img class="inlineimg" src="images/statusicon/user_online.gif" alt="gep13 is online now" border="0" />            //   </h1>            //   <h2><b><font color=blue>ASP.NET</font> <font color="darkgreen">Moderator</font></b></h2>            // </td>
+            return null;
+        }
+
+        /// <summary>
+        /// The get member id for user.
+        /// </summary>
+        /// <param name="loginCredential">The login credential.</param>
+        /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; System.Int32].</returns>
+        public async Task<int> GetMemberIdForUser(LoginCredentialModel loginCredential)
+        {
+            var uri = new Uri("http://www.vbforums.com/usercp.php");
+
+            var request = WebRequest.CreateHttp(uri);
+            request.Method = "GET";
+            request.Credentials = new NetworkCredential(loginCredential.UserName, loginCredential.Password);
+
+            var response = (HttpWebResponse)await request.GetResponseAsync();
+            var statusCode = response.StatusCode;
+
+            if ((int)statusCode >= 400)
+            {
+                return 0;
+            }
+
+            string responseString;
+            using (var responseStream = new StreamReader(response.GetResponseStream()))
+            {
+                responseString = await responseStream.ReadToEndAsync();
+            }
+
+            // Need to figure out how to parse out the following:
+            // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
+            return 1;
         }
     }
 }
