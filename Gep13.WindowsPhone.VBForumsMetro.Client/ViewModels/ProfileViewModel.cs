@@ -17,15 +17,12 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using System;
     using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
-
-    using Microsoft.Phone.Controls;
 
     /// <summary>
     /// The ViewModel class for the Profile page
     /// </summary>
-    public class ProfileViewModel : VBForumsMetroScreenPageViewModelBase
+    public class ProfileViewModel : PivotItemViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the ProfileViewModel class
@@ -34,6 +31,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         public ProfileViewModel(VBForumsMetroViewModelWorker viewModelWorker)
             : base(viewModelWorker)
         {
+            this.DisplayName = "profile";
         }
 
         /// <summary>
@@ -42,13 +40,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// <param name="view">The current view</param>
         protected override void OnViewLoaded(object view)
         {
-            this.VMWorker.RatingService.CheckWhetherUserWantsToRateApplication();
-            this.VMWorker.NavigationHelperService.PurgeNavigationalBackStack(App.Current.RootVisual as PhoneApplicationFrame); 
-
-            this.VMWorker.DiagnosticsService.ReportException(new Exception("test"), "this is something extra");
-            this.VMWorker.DiagnosticsService.CheckForPreviousException();
-            
-            base.OnViewLoaded(view);
         }
     }
 }
