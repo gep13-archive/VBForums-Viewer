@@ -193,7 +193,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             }
 
             this.ResetViewModel();
-            this.GoToProfilePage();
+            this.GoToMainPage();
         }
 
         /// <summary>
