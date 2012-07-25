@@ -58,13 +58,29 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         }
 
         /// <summary>
-        /// Helper Method to navigate to the ProfilePage
+        /// Helper method to navigate to the Main Page
+        /// </summary>
+        public void GoToMainPage()
+        {
+            this.VMWorker.NavigationService.UriFor<MainPageViewModel>()
+                .Navigate();
+        }
+
+        /// <summary>
+        /// Helper method to navigate to the ProfilePage
         /// </summary>
         public void GoToProfilePage()
         {
             this.VMWorker.NavigationService.UriFor<ProfileViewModel>()
-                .WithParam(vm => vm.BackNavSkipOne, true)
-                ////.WithParam(vm => vm.IsProfileRefreshRequired, true)
+                .Navigate();
+        }
+
+        /// <summary>
+        /// Helper method to navigate to the ReputationListPage
+        /// </summary>
+        public void GoToReputationListPage()
+        {
+            this.VMWorker.NavigationService.UriFor<ReputationListViewModel>()
                 .Navigate();
         }
 
