@@ -30,7 +30,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
     using Gep13.WindowsPhone.Core.Progress;
     using Gep13.WindowsPhone.Core.Rating;
     using Gep13.WindowsPhone.Core.Storage;
-    using Gep13.WindowsPhone.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels;
     using Gep13.WindowsPhone.VBForumsMetro.Core.Database;
     using Gep13.WindowsPhone.VBForumsMetro.Core.Web;
@@ -101,7 +100,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Singleton<InitialViewModel>();
             this.container.Singleton<WelcomeViewModel>();
             this.container.Singleton<AddAccountViewModel>();
+            this.container.Singleton<MainPageViewModel>();
             this.container.Singleton<ProfileViewModel>();
+            this.container.Singleton<ReputationListViewModel>();
 
             this.container.Instance<IProgressService>(new ProgressService(RootFrame));
             this.container.Instance<IStorageService>(new StorageService());
@@ -113,10 +114,13 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
             this.container.Singleton<VBForumsMetroViewModelWorker>();
 
             var phoneService = this.container.GetInstance(typeof(IPhoneService), null) as IPhoneService;
-            phoneService.Resurrecting += new System.Action(this.PhoneService_Resurrecting);
-            phoneService.Continuing += new System.Action(this.PhoneService_Continuing);
+            if (phoneService != null)
+            {
+                phoneService.Resurrecting += new System.Action(PhoneServiceResurrecting);
+                phoneService.Continuing += new System.Action(PhoneServiceContinuing);
+            }
 
-            RootFrame.Navigated += new NavigatedEventHandler(this.RootFrame_Navigated);
+            RootFrame.Navigated += new NavigatedEventHandler(this.RootFrameNavigated);
 
             AddCustomConventions();
         }
@@ -251,31 +255,30 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.Framework
         }
 
         /// <summary>
-        /// Global handler for when a Navigation happens
-        /// </summary>
-        /// <param name="sender">The object causing the navigation</param>
-        /// <param name="e">Arguments pased in as part of navigation</param>
-        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-            var navigationService = this.GetInstance(typeof(INavigationService), null) as INavigationService;
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New && e.Uri.ToString().Contains("BackNavSkipOne=True"))
-            {
-                RootFrame.RemoveBackEntry();
-            }
-        }
-
-        /// <summary>
         /// Tap into the Continuing Event from the IPhoneService
         /// </summary>
-        private void PhoneService_Continuing()
+        private static void PhoneServiceContinuing()
         {
         }
 
         /// <summary>
         /// Tap into the Resurrecting Event from the IPhoneService
         /// </summary>
-        private void PhoneService_Resurrecting()
+        private static void PhoneServiceResurrecting()
         {
+        }
+
+        /// <summary>
+        /// Global handler for when a Navigation happens
+        /// </summary>
+        /// <param name="sender">The object causing the navigation</param>
+        /// <param name="e">Arguments pased in as part of navigation</param>
+        private void RootFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.New && e.Uri.ToString().Contains("BackNavSkipOne=True"))
+            {
+                RootFrame.RemoveBackEntry();
+            }
         }
     }
 }
