@@ -25,7 +25,7 @@ namespace Gep13.WindowsPhone.Core.Views
     /// <summary>
     /// The base class for all views
     /// </summary>
-    public class AppPageViewBase : PhoneApplicationPage
+    public partial class AppPageViewBase : PhoneApplicationPage
     {
         /// <summary>
         /// Initializes a new instance of the AppPageViewBase class
