@@ -55,6 +55,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
         private double postsPerDay;
 
         /// <summary>
+        /// The profile picture url.
+        /// </summary>
+        private Uri profilePictureUrl;
+
+        /// <summary>
         /// Gets or sets the member id.
         /// </summary>
         public int MemberId
@@ -153,6 +158,23 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
             {
                 this.postsPerDay = value;
                 this.NotifyOfPropertyChange(() => this.PostsPerDay);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the profile picture url.
+        /// </summary>
+        public Uri ProfilePictureUrl
+        {
+            get
+            {
+                return this.profilePictureUrl;
+            }
+
+            set
+            {
+                this.profilePictureUrl = value;
+                this.NotifyOfPropertyChange(() => this.ProfilePictureUrl);
             }
         }
     }
