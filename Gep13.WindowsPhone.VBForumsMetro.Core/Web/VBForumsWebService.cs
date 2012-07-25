@@ -21,8 +21,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-
     using Gep13.WindowsPhone.VBForumsMetro.Models;
 
     /// <summary>
@@ -162,25 +162,110 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
             using (var responseStream = new StreamReader(response.GetResponseStream()))
             {
                 responseString = await responseStream.ReadToEndAsync();
-            }       
+            }
 
-            // Join Date:
+            var profile = new ProfileModel();
+
+            // Example HTML that is being parsed at this point
             // <li><span class="shade">Join Date:</span> Nov 16th, 2004</li>
-            // 
-            // Posts Per Day:
+            var rx = new Regex("<li><span class=\"shade\">Join Date:</span> (.*)</li>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var matches = rx.Matches(responseString);
+            var joinDate = DateTime.MinValue;
+
+            if (matches.Count != 1)
+            {
+                joinDate = DateTime.MaxValue;
+            }
+            else
+            {
+                if (!DateTime.TryParse(matches[0].Groups[1].ToString(), out joinDate))
+                {
+                    joinDate = DateTime.MaxValue;
+                }
+            }
+
+            profile.JoinDate = joinDate;
+
+            // Example HTML that is being parsed at this point
             // <li><span class="shade">Posts Per Day:</span> 7.61</li>
-            //
-            // Total Posts:
+            rx = new Regex("<li><span class=\"shade\">Posts Per Day:</span> (.*)</li>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            matches = rx.Matches(responseString);
+            var postsPerDay = 0d;
+
+            if (matches.Count != 1)
+            {
+                postsPerDay = -1d;
+            }
+            else
+            {
+                if (!double.TryParse(matches[0].Groups[1].ToString(), out postsPerDay))
+                {
+                    postsPerDay = -1d;
+                }
+            }
+
+            profile.PostsPerDay = postsPerDay;
+
+            // Example HTML that is being parsed at this point
             // <li><span class="shade">Total Posts:</span> 21,358</li>
-            //
-            // Profile Pic:
-            // <td id="profilepic_cell" class="tborder alt2"><img src="image.php?u=53106&amp;dateline=1277553514&amp;type=profile"  width="64" height="64"  alt="gep13's Profile Picture" /></td>            //
-            // User Name:
+            rx = new Regex("<li><span class=\"shade\">Total Posts:</span> (.*)</li>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            matches = rx.Matches(responseString);
+            var posts = 0;
+
+            if (matches.Count != 1)
+            {
+                posts = -1;
+            }
+            else
+            {
+                if (!int.TryParse(matches[0].Groups[1].ToString(), out posts))
+                {
+                    posts = -1;
+                }
+            }
+
+            profile.Posts = posts;
+
+            // Example HTML that is being parsed at this point
+            // <td id="profilepic_cell" class="tborder alt2"><img src="image.php?u=53106&amp;dateline=1277553514&amp;type=profile"  width="64" height="64"  alt="gep13's Profile Picture" /></td>
+            rx = new Regex("<td id=\"profilepic_cell\" class=\"tborder alt2\"><img src=\"(.*)\"", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            matches = rx.Matches(responseString);
+
+            profile.ProfilePictureUrl = matches.Count != 1 ? null : new Uri(matches[0].ToString());
+
+            // Example HTML that is being parsed at this point
             // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
-            //
-            // Custom User Title:
-            // <td valign="top" width="100%" id="username_box" class="profilepic_adjacent">            //   <div id="reputation_rank">            //     <div id="reputation">            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />            //     </div>            //   </div>            //   <h1><font color=#FF0000>gep13</font>            //     <img class="inlineimg" src="images/statusicon/user_online.gif" alt="gep13 is online now" border="0" />            //   </h1>            //   <h2><b><font color=blue>ASP.NET</font> <font color="darkgreen">Moderator</font></b></h2>            // </td>
-            return null;
+            rx = new Regex("<strong>Welcome, <a href=\"member.php?u=(.*)\"", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            matches = rx.Matches(responseString);
+
+            profile.UserName = matches.Count != 1 ? string.Empty : matches[0].ToString();
+
+            // Example HTML that is being parsed at this point
+            // <td valign="top" width="100%" id="username_box" class="profilepic_adjacent">
+            //   <div id="reputation_rank">
+            //     <div id="reputation">
+            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
+            //     </div>
+            //   </div>
+            //   <h1><font color=#FF0000>gep13</font>
+            //     <img class="inlineimg" src="images/statusicon/user_online.gif" alt="gep13 is online now" border="0" />
+            //   </h1>
+            //   <h2><b><font color=blue>ASP.NET</font> <font color="darkgreen">Moderator</font></b></h2>
+            // </td>
+            // TODO: Need to find a nice way to parse the above
+            profile.CustomUserTitle = "meh!";
+
+            return profile;
         }
 
         /// <summary>
@@ -210,9 +295,25 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
                 responseString = await responseStream.ReadToEndAsync();
             }
 
-            // Need to figure out how to parse out the following:
+            // Example HTML that is being parsed at this point
             // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
-            return 1;
+            var rx = new Regex("<strong>Welcome, <a href=\"member.php?u=(.*)\"", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var matches = rx.Matches(responseString);
+            var memberId = 0;
+
+            if (matches.Count != 1)
+            {
+                memberId = -1;
+            }
+            else
+            {
+                if (!int.TryParse(matches[0].Groups[1].ToString(), out memberId))
+                {
+                    memberId = -1;
+                }
+            }
+            
+            return memberId;
         }
     }
 }
