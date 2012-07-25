@@ -23,7 +23,7 @@ namespace Gep13.WindowsPhone.Core.Views
     /// <summary>
     /// The base class for all Views that are contained views
     /// </summary>
-    public class AppControlViewBase : UserControl
+    public partial class AppControlViewBase : UserControl
     {
         /// <summary>
         /// Initializes a new instance of the AppControlViewBase class
