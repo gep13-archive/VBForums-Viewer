@@ -107,10 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ImageCacheConvertercs.cs" />
     <Compile Include="Database\ISterlingService.cs" />
     <Compile Include="Diagnostics\DiagnosticsService.cs" />
     <Compile Include="Diagnostics\IDiagnosticsService.cs" />
     <Compile Include="DynamicLocalhost\DynamicLocalhost.cs" />
+    <Compile Include="Helpers\EnvironmentHelper.cs" />
     <Compile Include="Helpers\IsolatedStorageHelper.cs" />
     <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Http\HttpClient.cs" />
