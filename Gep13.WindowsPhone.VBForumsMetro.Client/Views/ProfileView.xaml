@@ -12,8 +12,12 @@
 
     <Grid x:Name="LayoutRoot">
         <StackPanel>
-            <TextBlock Text="I'm the first pivot item!" />
-            <TextBlock x:Name="CurrentDateTimeText" />
+            <TextBlock x:Name="MemberId" />
+            <TextBlock x:Name="UserName" />
+            <TextBlock x:Name="JoinDate" />
+            <TextBlock x:Name="Posts" />
+            <TextBlock x:Name="PostsPerDay" />
+            <TextBlock x:Name="ProfilePictureUrl" />
         </StackPanel>
     </Grid>
 </pages:AppControlViewBase>
