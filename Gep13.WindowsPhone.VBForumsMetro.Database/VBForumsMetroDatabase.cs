@@ -80,7 +80,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Database
                 new ProfileModel()
                     {
                         UserName = "gep13",
-                        CustomUserTitle = "ASP.NET Moderator",
                         JoinDate = new DateTime(2004, 11, 16),
                         Posts = 21352,
                         PostsPerDay = 7.6
