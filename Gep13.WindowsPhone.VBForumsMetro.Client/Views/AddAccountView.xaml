@@ -101,7 +101,8 @@
                               x:Name="ShowCheck" />
 
                     <TextBlock x:Name="StatusLabel"
-                               HorizontalAlignment="Center" />
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap" />
 
                 </StackPanel>
             </Grid>
