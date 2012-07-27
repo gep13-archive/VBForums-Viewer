@@ -107,7 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\ImageCacheConvertercs.cs" />
+    <Compile Include="Converters\ImageCacheConverter.cs" />
     <Compile Include="Database\ISterlingService.cs" />
     <Compile Include="Diagnostics\DiagnosticsService.cs" />
     <Compile Include="Diagnostics\IDiagnosticsService.cs" />
@@ -121,6 +121,10 @@
     <Compile Include="Http\HttpResponse.cs" />
     <Compile Include="Http\HttpService.cs" />
     <Compile Include="Http\QueryString.cs" />
+    <Compile Include="Image\AsyncDataTransfer.cs" />
+    <Compile Include="Image\ImageCache.cs" />
+    <Compile Include="Image\ImageCacheItem.cs" />
+    <Compile Include="Image\ImageDownloader.cs" />
     <Compile Include="Models\ApplicationSettings.cs" />
     <Compile Include="Navigation\INavigationHelperService.cs" />
     <Compile Include="Navigation\NavigationHelperService.cs" />

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ImageCacheConvertercs.cs" company="GEP13">
+// <copyright file="ImageCacheConverter.cs" company="GEP13">
 //      Copyright (c) GEP13, 2012. All rights reserved.
 //      Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 //      files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -23,11 +23,12 @@ namespace Gep13.WindowsPhone.Core.Converters
     using System.Windows.Media.Imaging;
 
     using Gep13.WindowsPhone.Core.Helpers;
+    using Gep13.WindowsPhone.Core.Image;
 
     /// <summary>
     /// The image cache convertercs.
     /// </summary>
-    public class ImageCacheConvertercs : IValueConverter
+    public class ImageCacheConverter : IValueConverter
     {
         /// <summary>
         /// Provides the ability to convert a string version of a url to an image
