@@ -19,6 +19,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Text.RegularExpressions;
@@ -144,11 +145,35 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
         /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; Gep13.WindowsPhone.VBForumsMetro.Models.ProfileModel].</returns>
         public async Task<ProfileModel> GetProfileForUser(int memberId, LoginCredentialModel loginCredential)
         {
-            var uri = new Uri(string.Format("http://www.vbforums.com/member.php?u={0}", memberId));
+            var uri = new Uri("http://www.vbforums.com/login.php?do=login");
 
+            var postString =
+                string.Format(
+                    "do=login&url=%2Fusercp.php&vb_login_md5password=&vb_login_md5password_utf=&s=&securitytoken=guest&vb_login_username={0}&vb_login_password={1}",
+                    loginCredential.UserName,
+                    loginCredential.Password);
+
+            var cookieContainer = new CookieContainer();
             var request = WebRequest.CreateHttp(uri);
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.CookieContainer = cookieContainer;
+
+            var requestSteam = await request.GetRequestStreamAsync();
+
+            using (var writer = new StreamWriter(requestSteam))
+            {
+                writer.Write(postString);
+            }
+
+            var loginResponse = await request.GetResponseAsync();
+            loginResponse.Close();
+
+            uri = new Uri(string.Format("http://www.vbforums.com/member.php?u={0}", memberId));
+
+            request = WebRequest.CreateHttp(uri);
             request.Method = "GET";
-            request.Credentials = new NetworkCredential(loginCredential.UserName, loginCredential.Password);
+            request.CookieContainer = cookieContainer;
 
             var response = (HttpWebResponse)await request.GetResponseAsync();
             var statusCode = response.StatusCode;
@@ -168,8 +193,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 
             // Example HTML that is being parsed at this point
             // <li><span class="shade">Join Date:</span> Nov 16th, 2004</li>
-            var rx = new Regex("<li><span class=\"shade\">Join Date:</span> (.*)</li>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var rx = new Regex("<li><span class=\"shade\">Join Date:</span> (.* [0-9]{1,2}).*, ([0-9]{2,4})</li>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
             var matches = rx.Matches(responseString);
+            
             var joinDate = DateTime.MinValue;
 
             if (matches.Count != 1)
@@ -178,7 +204,10 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
             }
             else
             {
-                if (!DateTime.TryParse(matches[0].Groups[1].ToString(), out joinDate))
+                var dateTimeString = string.Format(
+                    "{0}, {1}", matches[0].Groups[1], matches[0].Groups[2]);
+
+                if (!DateTime.TryParseExact(dateTimeString, "MMM d, yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out joinDate))
                 {
                     joinDate = DateTime.MaxValue;
                 }
@@ -235,35 +264,12 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 
             // Example HTML that is being parsed at this point
             // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
-            rx = new Regex("<strong>Welcome, <a href=\"member.php?u=(.*)\"", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var pattern = string.Format("<strong>Welcome, <a href=\"member.php{0}u=.*\">(.*)</a>", Regex.Escape("?"));
+
+            rx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             matches = rx.Matches(responseString);
 
-            profile.UserName = matches.Count != 1 ? string.Empty : matches[0].ToString();
-
-            // Example HTML that is being parsed at this point
-            // <td valign="top" width="100%" id="username_box" class="profilepic_adjacent">
-            //   <div id="reputation_rank">
-            //     <div id="reputation">
-            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_pos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //       <img class="inlineimg" src="images/reputation/reputation_highpos.gif" alt="gep13 has much to be proud of (1500+)" border="0" />
-            //     </div>
-            //   </div>
-            //   <h1><font color=#FF0000>gep13</font>
-            //     <img class="inlineimg" src="images/statusicon/user_online.gif" alt="gep13 is online now" border="0" />
-            //   </h1>
-            //   <h2><b><font color=blue>ASP.NET</font> <font color="darkgreen">Moderator</font></b></h2>
-            // </td>
-            // TODO: Need to find a nice way to parse the above
-            profile.CustomUserTitle = "meh!";
+            profile.UserName = matches.Count != 1 ? string.Empty : matches[0].Groups[1].ToString();
 
             return profile;
         }
@@ -275,11 +281,35 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
         /// <returns>The System.Threading.Tasks.Task`1[TResult -&gt; System.Int32].</returns>
         public async Task<int> GetMemberIdForUser(LoginCredentialModel loginCredential)
         {
-            var uri = new Uri("http://www.vbforums.com/usercp.php");
+            var uri = new Uri("http://www.vbforums.com/login.php?do=login");
 
+            var postString =
+                string.Format(
+                    "do=login&url=%2Fusercp.php&vb_login_md5password=&vb_login_md5password_utf=&s=&securitytoken=guest&vb_login_username={0}&vb_login_password={1}",
+                    loginCredential.UserName,
+                    loginCredential.Password);
+
+            var cookieContainer = new CookieContainer();
             var request = WebRequest.CreateHttp(uri);
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.CookieContainer = cookieContainer;
+
+            var requestSteam = await request.GetRequestStreamAsync();
+
+            using (var writer = new StreamWriter(requestSteam))
+            {
+                writer.Write(postString);
+            }
+
+            var loginResponse = await request.GetResponseAsync();
+            loginResponse.Close();
+
+            uri = new Uri("http://www.vbforums.com/usercp.php");
+
+            request = WebRequest.CreateHttp(uri);
             request.Method = "GET";
-            request.Credentials = new NetworkCredential(loginCredential.UserName, loginCredential.Password);
+            request.CookieContainer = cookieContainer;
 
             var response = (HttpWebResponse)await request.GetResponseAsync();
             var statusCode = response.StatusCode;
@@ -297,7 +327,9 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Core.Web
 
             // Example HTML that is being parsed at this point
             // <strong>Welcome, <a href="member.php?u=53106">gep13</a>.</strong><br />
-            var rx = new Regex("<strong>Welcome, <a href=\"member.php?u=(.*)\"", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var pattern = string.Format("<strong>Welcome, <a href=\"member.php{0}u=(.*)\"", Regex.Escape("?"));
+
+            var rx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             var matches = rx.Matches(responseString);
             var memberId = 0;
 
