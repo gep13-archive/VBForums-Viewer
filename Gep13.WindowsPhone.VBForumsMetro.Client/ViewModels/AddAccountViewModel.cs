@@ -285,14 +285,16 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         {
             if (this.IsEditMode)
             {
+                var loginCredential = this.GetUserCredentials(this.MemberId);
+
                 if (string.IsNullOrEmpty(this.UserName))
                 {
-                    this.UserName = this.VMWorker.StorageService.Get<string>("username");
+                    this.UserName = loginCredential.UserName;
                 }
 
                 if (string.IsNullOrEmpty(this.Password))
                 {
-                    this.Password = this.VMWorker.StorageService.Get<string>("password");
+                    this.Password = loginCredential.Password;
                 }
             }
 
@@ -389,6 +391,23 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 
             viewModelWorker.VBForumsMetroSterlingService.Database.Delete(deleteUserCredentials);
             viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
+        }
+
+        /// <summary>
+        /// The get user credentials.
+        /// </summary>
+        /// <param name="id">The member id.</param>
+        /// <returns>The Gep13.WindowsPhone.VBForumsMetro.Models.LoginCredentialModel.</returns>
+        private LoginCredentialModel GetUserCredentials(int id)
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+
+            var userCredentials =
+                (from o in viewModelWorker.VBForumsMetroSterlingService.Database.Query<LoginCredentialModel, int>()
+                 where o.LazyValue.Value.Id == id
+                 select o.LazyValue.Value).FirstOrDefault();
+
+            return userCredentials ?? null;
         }
     }
 }
