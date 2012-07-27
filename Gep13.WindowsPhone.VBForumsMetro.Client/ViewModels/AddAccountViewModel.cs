@@ -261,7 +261,7 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         {
             this.VMWorker.StorageService.Add("firstrunflag", false);
             this.ResetViewModel();
-            this.DeleteUserCredentials(1);
+            this.DeleteUserCredentials(this.MemberId);
         }
 
         /// <summary>
