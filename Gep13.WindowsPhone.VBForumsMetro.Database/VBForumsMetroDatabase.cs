@@ -74,26 +74,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Database
             // get rid of old data
             database.Truncate(typeof(ReputationModel));
             database.Truncate(typeof(LoginCredentialModel));
-
-            database.Save(new LoginCredentialModel() { UserName = "gep31", Password = "qwerty" });
-            database.Save(
-                new ProfileModel()
-                    {
-                        UserName = "gep13",
-                        JoinDate = new DateTime(2004, 11, 16),
-                        Posts = 21352,
-                        PostsPerDay = 7.6
-                    });
-            database.Save(
-                new ReputationModel()
-                    {
-                        ThreadName = "test1",
-                        ThreadUri = new Uri("http://www.vbforums.com"),
-                        AuthorName = "gep13",
-                        AuthorUri = new Uri("http://www.gep13.co.uk/blog"),
-                        Comment = "this is a test",
-                        CreationDate = DateTime.Now
-                    });
             
             database.Flush();
         }
