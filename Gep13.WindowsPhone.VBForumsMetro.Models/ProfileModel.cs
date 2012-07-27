@@ -35,11 +35,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
         private string userName;
 
         /// <summary>
-        /// The custom user title.
-        /// </summary>
-        private string customUserTitle;
-
-        /// <summary>
         /// The join date.
         /// </summary>
         private DateTime joinDate;
@@ -90,23 +85,6 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Models
             {
                 this.userName = value;
                 this.NotifyOfPropertyChange(() => this.UserName);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the custom user title.
-        /// </summary>
-        public string CustomUserTitle
-        {
-            get
-            {
-                return this.customUserTitle;
-            }
-
-            set
-            {
-                this.customUserTitle = value;
-                this.NotifyOfPropertyChange(() => this.CustomUserTitle);
             }
         }
 
