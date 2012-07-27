@@ -5,5 +5,6 @@
 
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityInvertedConverter"  InvertValue="true" />
+    <converters:ImageCacheConverter x:Key="ImageCacheConverter" />
 
 </ResourceDictionary>
