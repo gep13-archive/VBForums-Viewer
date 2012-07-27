@@ -17,13 +17,47 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
+    using System;
+    using System.Threading.Tasks;
+
     using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
+    using Gep13.WindowsPhone.VBForumsMetro.Models;
 
     /// <summary>
     /// The ViewModel class for the Profile page
     /// </summary>
     public class ProfileViewModel : PivotItemViewModelBase
     {
+        /// <summary>
+        /// The member id.
+        /// </summary>
+        private int memberId;
+
+        /// <summary>
+        /// The user name.
+        /// </summary>
+        private string userName;
+
+        /// <summary>
+        /// The join date.
+        /// </summary>
+        private DateTime joinDate;
+
+        /// <summary>
+        /// The posts.
+        /// </summary>
+        private int posts;
+
+        /// <summary>
+        /// The posts per day.
+        /// </summary>
+        private double postsPerDay;
+
+        /// <summary>
+        /// The profile picture url.
+        /// </summary>
+        private Uri profilePictureUrl;
+
         /// <summary>
         /// Initializes a new instance of the ProfileViewModel class
         /// </summary>
@@ -35,11 +69,154 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the member id.
+        /// </summary>
+        public int MemberId
+        {
+            get
+            {
+                return this.memberId;
+            }
+
+            set
+            {
+                this.memberId = value;
+                this.NotifyOfPropertyChange(() => this.MemberId);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the user name.
+        /// </summary>
+        public string UserName
+        {
+            get
+            {
+                return this.userName;
+            }
+
+            set
+            {
+                this.userName = value;
+                this.NotifyOfPropertyChange(() => this.UserName);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the join date.
+        /// </summary>
+        public DateTime JoinDate
+        {
+            get
+            {
+                return this.joinDate;
+            }
+
+            set
+            {
+                this.joinDate = value;
+                this.NotifyOfPropertyChange(() => this.JoinDate);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the posts.
+        /// </summary>
+        public int Posts
+        {
+            get
+            {
+                return this.posts;
+            }
+
+            set
+            {
+                this.posts = value;
+                this.NotifyOfPropertyChange(() => this.Posts);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the posts per day.
+        /// </summary>
+        public double PostsPerDay
+        {
+            get
+            {
+                return this.postsPerDay;
+            }
+
+            set
+            {
+                this.postsPerDay = value;
+                this.NotifyOfPropertyChange(() => this.PostsPerDay);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the profile picture url.
+        /// </summary>
+        public Uri ProfilePictureUrl
+        {
+            get
+            {
+                return this.profilePictureUrl;
+            }
+
+            set
+            {
+                this.profilePictureUrl = value;
+                this.NotifyOfPropertyChange(() => this.ProfilePictureUrl);
+            }
+        }
+
+        /// <summary>
         /// An overridden implemenation of the OnViewLoaded method to do specific functionality within this view
         /// </summary>
         /// <param name="view">The current view</param>
         protected override void OnViewLoaded(object view)
         {
+            this.GetProfile();
+
+            base.OnViewLoaded(view);
+        }
+
+        /// <summary>
+        /// The get profile.
+        /// </summary>
+        private async void GetProfile()
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+
+            var id = await this.GetMemberId();
+
+            var profile =
+                await
+                viewModelWorker.VBForumsWebService.GetProfileForUser(
+                    id, new LoginCredentialModel() { UserName = "gep31", Password = "qwerty" });
+            this.MemberId = profile.MemberId;
+            this.UserName = profile.UserName;
+            this.JoinDate = profile.JoinDate;
+            this.Posts = profile.Posts;
+            this.PostsPerDay = profile.PostsPerDay;
+            this.ProfilePictureUrl = profile.ProfilePictureUrl;
+        }
+
+        /// <summary>
+        /// The get member id.
+        /// </summary>
+        /// <returns>
+        /// The System.Threading.Tasks.Task`1[TResult -&gt; System.Int32].
+        /// </returns>
+        private async Task<int> GetMemberId()
+        {
+         var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+            var id =
+                await
+                viewModelWorker.VBForumsWebService.GetMemberIdForUser(
+                    new LoginCredentialModel() { UserName = "gep31", Password = "qwerty" });
+
+            return id;
         }
     }
 }
