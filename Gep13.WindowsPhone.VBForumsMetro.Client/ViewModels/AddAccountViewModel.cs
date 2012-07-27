@@ -17,6 +17,8 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
+    using System.Linq;
+
     using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
     using Gep13.WindowsPhone.VBForumsMetro.Models;
 
@@ -25,6 +27,11 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
     /// </summary>
     public class AddAccountViewModel : VBForumsMetroScreenPageViewModelBase
     {
+        /// <summary>
+        /// The member id.
+        /// </summary>
+        private int memberId;
+
         /// <summary>
         /// The user name.
         /// </summary>
@@ -58,6 +65,23 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         /// Gets or sets a value indicating whether an account is being added or edited.
         /// </summary>
         public bool IsEditMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the member id.
+        /// </summary>
+        public int MemberId
+        {
+            get
+            {
+                return this.memberId;
+            }
+
+            set
+            {
+                this.memberId = value;
+                this.NotifyOfPropertyChange(() => this.MemberId);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the user name.
@@ -236,9 +260,8 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         public void DeleteAccount()
         {
             this.VMWorker.StorageService.Add("firstrunflag", false);
-            this.UserName = string.Empty;
-            this.Password = string.Empty;
-            this.IsUserAuthenticated = false;
+            this.ResetViewModel();
+            this.DeleteUserCredentials(1);
         }
 
         /// <summary>
@@ -320,14 +343,13 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         private void SaveUserCredentials()
         {
             var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
-            viewModelWorker.VBForumsMetroSterlingService.Database.Save(
-                new LoginCredentialModel
-                {
-                    UserName = this.UserName,
-                    Password = this.Password,
-                });
+            var loginCredentials = new LoginCredentialModel() { UserName = this.UserName, Password = this.Password };
+
+            viewModelWorker.VBForumsMetroSterlingService.Database.Save(loginCredentials);
 
             viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
+
+            this.MemberId = loginCredentials.Id;
         }
 
         /// <summary>
@@ -339,11 +361,33 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
             viewModelWorker.VBForumsMetroSterlingService.Database.Save(
                 new LoginCredentialModel
                 {
-                    Id = 1, // TODO: Need to fix this!
+                    Id = this.MemberId,
                     UserName = this.UserName,
                     Password = this.Password,
                 });
 
+            viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
+        }
+
+        /// <summary>
+        /// The delete user credentials.
+        /// </summary>
+        /// <param name="id">The member id.</param>
+        private void DeleteUserCredentials(int id)
+        {
+            var viewModelWorker = (VBForumsMetroViewModelWorker)this.VMWorker;
+
+            var deleteUserCredentials =
+                (from o in viewModelWorker.VBForumsMetroSterlingService.Database.Query<LoginCredentialModel, int>()
+                 where o.LazyValue.Value.Id == id
+                 select o.LazyValue.Value).FirstOrDefault();
+
+            if (deleteUserCredentials == null)
+            {
+                return;
+            }
+
+            viewModelWorker.VBForumsMetroSterlingService.Database.Delete(deleteUserCredentials);
             viewModelWorker.VBForumsMetroSterlingService.Database.Flush();
         }
     }
