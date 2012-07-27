@@ -17,83 +17,27 @@
 
 namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
 {
-    using System;
-
     using Caliburn.Micro;
 
-    using Gep13.WindowsPhone.VBForumsMetro.Core.Workers;
+    using Gep13.WindowsPhone.Core.Workers;
 
     /// <summary>
     /// The pivot item view model base.
     /// </summary>
-    public class PivotItemViewModelBase : Screen, IHandle<DateTime>
+    public class PivotItemViewModelBase : Screen
     {
-        /// <summary>
-        /// The current date time text.
-        /// </summary>
-        private string currentDateTimeText;
-
-        /// <summary>
-        /// The vm worker.
-        /// </summary>
-        private VBForumsMetroViewModelWorker viewModelWorker;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PivotItemViewModelBase"/> class.
         /// </summary>
         /// <param name="viewModelWorker">The vm worker.</param>
-        public PivotItemViewModelBase(VBForumsMetroViewModelWorker viewModelWorker)
+        public PivotItemViewModelBase(ViewModelWorker viewModelWorker)
         {
-            this.viewModelWorker = viewModelWorker;
+            this.VMWorker = viewModelWorker;
         }
 
         /// <summary>
-        /// Gets or sets the current date time text.
+        /// Gets the vm worker.
         /// </summary>
-        public string CurrentDateTimeText
-        {
-            get
-            {
-                return this.currentDateTimeText;
-            }
-
-            set
-            {
-                this.currentDateTimeText = value;
-                this.NotifyOfPropertyChange(() => this.CurrentDateTimeText);
-            }
-        }
-
-        /// <summary>
-        /// handle datetime message
-        /// </summary>
-        /// <param name="dateTime">The date time.</param>
-        public void Handle(DateTime dateTime)
-        {
-            this.CurrentDateTimeText = dateTime.ToString("dd/MM/yyyy hh:mm:ss");
-        }
-
-        /// <summary>
-        /// View navigated to or brought into view
-        /// </summary>
-        protected override void OnActivate()
-        {
-            base.OnActivate();
-
-            // subscribe the pivot item to future messages
-            this.viewModelWorker.EventAggregator.Subscribe(this);
-        }
-
-        /// <summary>
-        /// The on deactivate.
-        /// </summary>
-        /// <param name="close">The close.</param>
-        protected override void OnDeactivate(bool close)
-        {
-            base.OnDeactivate(close);
-
-            // unsubscribe the pivot item from future messages
-            this.viewModelWorker.EventAggregator.Unsubscribe(this);
-        }
+        protected ViewModelWorker VMWorker { get; private set; }
     }
 }
