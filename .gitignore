@@ -7,5 +7,6 @@ deploy
 *.orig
 output
 *DotSettings*
-packages
+packages/*
+!packages/repositories.config
 StyleCop.Cache
