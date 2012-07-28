@@ -118,7 +118,6 @@
       <Name>Gep13.WindowsPhone.VBForumsMetro.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <WindowsPhoneBuildResources>..\SharedBinaries\Build\MSBuild_WP7</WindowsPhoneBuildResources>
     <SilverlightBuildResources>..\SharedBinaries\Silverlight\v4.0</SilverlightBuildResources>
@@ -158,7 +157,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <StyleCopMSBuildTargetsFile>..\packages\StyleCop.MSBuild.4.7.34.0\tools\StyleCop.targets</StyleCopMSBuildTargetsFile>
+    <StyleCopMSBuildTargetsFile>..\packages\StyleCop.MSBuild.4.7.35.0\tools\StyleCop.targets</StyleCopMSBuildTargetsFile>
   </PropertyGroup>
   <Import Condition="Exists('$(StyleCopMSBuildTargetsFile)')" Project="$(StyleCopMSBuildTargetsFile)" />
   <PropertyGroup>
