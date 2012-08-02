@@ -65,6 +65,7 @@
 
                     <toolkit:PhoneTextBox x:Name="UsernameText"
                                           LengthIndicatorVisible="False"
+                                          HidesActionItemWhenEmpty="True"
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"
@@ -72,6 +73,9 @@
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ActionIconTapped">
                                 <cal:ActionMessage MethodName="UsernameActionIconTapped" />
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="TextChanged">
+                                <cal:ActionMessage MethodName="UserNameTextChanged" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </toolkit:PhoneTextBox>
@@ -81,6 +85,7 @@
                                Margin="0" />
                     <toolkit:PhoneTextBox x:Name="PasswordText"
                                           LengthIndicatorVisible="False"
+                                          HidesActionItemWhenEmpty="True"
                                           Margin="-10,-5,-10,8"
                                           InputScope="EmailUserName"
                                           ActionIcon="/Resources/Images/clearboxicon.png"

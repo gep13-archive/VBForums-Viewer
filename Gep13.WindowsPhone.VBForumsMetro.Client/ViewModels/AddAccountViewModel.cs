@@ -229,6 +229,14 @@ namespace Gep13.WindowsPhone.VBForumsMetro.Client.ViewModels
         }
 
         /// <summary>
+        /// Helper method to 
+        /// </summary>
+        public void UserNameTextChanged()
+        {
+            this.NotifyOfPropertyChange(() => this.UserName);
+        }
+
+        /// <summary>
         /// Helper method to do the work when the ActionIcon is tapped on the Password Textbox
         /// </summary>
         public void PasswordActionIconTapped()
